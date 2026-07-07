@@ -7,6 +7,9 @@ import { TourCard } from "@/components/site/TourCard";
 import { FloatingRail } from "@/components/site/FloatingRail";
 import { featuredTours, destinationsMaroc, IMG } from "@/lib/tours";
 import { ArrowRight, ChevronLeft, ChevronRight, Compass, Shield, Sparkles, Users } from "lucide-react";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
+import { HoverScale } from "@/components/motion/HoverScale";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -85,15 +88,21 @@ function Hero() {
               <div className="font-display text-2xl font-semibold">{slide.price.replace("À partir de ", "")}</div>
             </div>
             {slide.kind === "pilgrimage" ? (
-              <Link to="/hajj-omra/$slug" params={{ slug: slide.slug }} className="btn-primary w-full justify-center hover:-translate-y-0.5 sm:w-auto">
-                Voir le programme <ArrowRight className="h-4 w-4" />
-              </Link>
+              <HoverScale className="w-full sm:w-auto">
+                <Link to="/hajj-omra/$slug" params={{ slug: slide.slug }} className="btn-primary w-full justify-center sm:w-auto">
+                  Voir le programme <ArrowRight className="h-4 w-4" />
+                </Link>
+              </HoverScale>
             ) : (
-              <Link to="/voyages/$slug" params={{ slug: slide.slug }} className="btn-primary w-full justify-center hover:-translate-y-0.5 sm:w-auto">
-                Découvrir l'offre <ArrowRight className="h-4 w-4" />
-              </Link>
+              <HoverScale className="w-full sm:w-auto">
+                <Link to="/voyages/$slug" params={{ slug: slide.slug }} className="btn-primary w-full justify-center sm:w-auto">
+                  Découvrir l'offre <ArrowRight className="h-4 w-4" />
+                </Link>
+              </HoverScale>
             )}
-            <Link to="/voyages" className="btn-ghost w-full justify-center hover:-translate-y-0.5 sm:w-auto">Tous nos programmes</Link>
+            <HoverScale className="w-full sm:w-auto">
+              <Link to="/voyages" className="btn-ghost w-full justify-center sm:w-auto">Tous nos programmes</Link>
+            </HoverScale>
           </div>
 
           {/* slide dots */}
@@ -121,12 +130,12 @@ function FeaturedTours() {
   return (
     <section className="relative mt-16 overflow-hidden py-4 sm:mt-20">
       {/* centered header + pill */}
-      <div className="container-page mb-8 flex flex-col items-center text-center sm:mb-10">
+      <Reveal className="container-page mb-8 flex flex-col items-center text-center sm:mb-10">
         <h2 className="font-display text-3xl sm:text-4xl md:text-5xl">Voyages organisés</h2>
         <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-secondary px-5 py-2 text-sm font-semibold text-primary">
           <span aria-hidden>•</span> Tarif avec billet d'avion <span aria-hidden>•</span>
         </span>
-      </div>
+      </Reveal>
 
       {/* decorative yellow arc (echoes terratour's drawn line) */}
       <svg
@@ -197,9 +206,9 @@ function PillarStrip() {
   return (
     <section className="mt-16 sm:mt-24">
       <div className="container-page">
-        <div className="grid gap-5 rounded-3xl border border-border bg-sand p-6 sm:grid-cols-2 sm:p-8 lg:grid-cols-4 lg:p-10">
+        <StaggerGroup className="grid gap-5 rounded-3xl border border-border bg-sand p-6 sm:grid-cols-2 sm:p-8 lg:grid-cols-4 lg:p-10">
           {pillars.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="flex gap-4">
+            <StaggerItem key={title} className="flex gap-4">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/15 text-primary">
                 <Icon className="h-5 w-5" />
               </div>
@@ -207,9 +216,9 @@ function PillarStrip() {
                 <div className="font-display text-lg">{title}</div>
                 <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );
@@ -223,7 +232,8 @@ function HajjOmra() {
           { title: "برنامج الحج 1448هـ / 2027م", label: "Hajj", price: "À partir de 76 500 dhs", href: "/hajj-omra" },
           { title: "برنامج العمرة 1447هـ / 2026م", label: "Omra", price: "À partir de 15 900 dhs", href: "/hajj-omra" },
         ].map((h, i) => (
-          <Link key={i} to="/hajj-omra" className="group relative overflow-hidden rounded-3xl">
+          <Reveal key={i} delay={i * 0.1}>
+          <Link to="/hajj-omra" className="group relative overflow-hidden rounded-3xl">
             <img src={IMG.hajj} alt={h.title} loading="lazy" width={1200} height={800} className="h-72 w-full object-cover transition duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-7 text-white">
@@ -232,6 +242,7 @@ function HajjOmra() {
               <p className="mt-2 text-sm opacity-90">{h.price}</p>
             </div>
           </Link>
+          </Reveal>
         ))}
       </div>
     </section>
@@ -242,14 +253,15 @@ function MarocSection() {
   return (
     <section className="mt-16 sm:mt-24">
       <div className="container-page">
-        <div className="mb-8 max-w-2xl sm:mb-10">
+        <Reveal className="mb-8 max-w-2xl sm:mb-10">
           <div className="eyebrow-hand">Nos destinations</div>
           <h2 className="mt-1 font-display text-3xl sm:text-4xl md:text-5xl">Le Maroc, autrement.</h2>
           <p className="mt-3 text-muted-foreground">Explorez le Royaume à travers ses villes impériales, ses côtes et ses déserts — entre culture, détente et aventure.</p>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        </Reveal>
+        <StaggerGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {destinationsMaroc.map((d) => (
-            <article key={d.slug} className="group overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
+            <StaggerItem key={d.slug}>
+            <article className="group overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img src={d.image} alt={d.name} loading="lazy" width={1200} height={800} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
               </div>
@@ -262,8 +274,9 @@ function MarocSection() {
                 </Link>
               </div>
             </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );
@@ -297,7 +310,7 @@ function CruiseBanner() {
 function MICE() {
   return (
     <section className="mt-16 sm:mt-24">
-      <div className="container-page grid gap-8 rounded-3xl bg-foreground p-6 text-background sm:p-8 md:grid-cols-2 md:p-14">
+      <Reveal className="container-page grid gap-8 rounded-3xl bg-foreground p-6 text-background sm:p-8 md:grid-cols-2 md:p-14">
         <div>
           <div className="eyebrow-hand">MICE</div>
           <h2 className="mt-1 font-display text-4xl sm:text-5xl">Meetings, Incentives, Conferences &amp; Exhibitions</h2>
@@ -316,7 +329,7 @@ function MICE() {
             </div>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
