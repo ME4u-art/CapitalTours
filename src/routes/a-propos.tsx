@@ -19,7 +19,7 @@ export const Route = createFileRoute("/a-propos")({
         <h1 className="mt-2 font-display text-5xl">Voyager, avec le cœur.</h1>
         <p className="mt-6 text-lg text-muted-foreground">
           Capital Tours est une agence de voyages marocaine qui compose depuis des années des expériences soigneusement conçues :
-          circuits en groupe, séjours sur mesure, croisières, Hajj &amp; Omra et voyages d'affaires.
+          circuits en groupe, séjours sur mesure, Hajj &amp; Omra et voyages d'affaires.
         </p>
         <p className="mt-4 text-muted-foreground">
           Notre force : une équipe passionnée, un réseau international de partenaires triés sur le volet et un suivi personnalisé

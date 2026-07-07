@@ -21,9 +21,9 @@ export const Route = createFileRoute("/contact")({
           <h1 className="mt-2 font-display text-5xl">Parlons de votre prochain voyage.</h1>
           <p className="mt-4 text-muted-foreground">Notre équipe vous répond sous 24h ouvrées.</p>
           <ul className="mt-8 space-y-4 text-sm">
-            <li className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 text-primary"><Phone className="h-4 w-4"/></span> +212 5 00 00 00 00</li>
+            <li className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 text-primary"><Phone className="h-4 w-4"/></span>  +212 5 35 62 63 63 / +212 5 35 94 47 25</li>
             <li className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 text-primary"><Mail className="h-4 w-4"/></span> contact@capitaltours.ma</li>
-            <li className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 text-primary"><MapPin className="h-4 w-4"/></span> Casablanca, Maroc</li>
+            <li className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 text-primary"><MapPin className="h-4 w-4"/></span> fez, Maroc</li>
           </ul>
         </div>
         <form className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-soft)] space-y-4" onSubmit={(e)=>e.preventDefault()}>
