@@ -3,6 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { featuredTours } from "@/lib/tours";
 import { Calendar, Clock, MapPin, Check, X, ArrowRight } from "lucide-react";
+import { Reveal } from "@/components/motion/Reveal";
 
 export const Route = createFileRoute("/voyages/$slug")({
   loader: ({ params }) => {
@@ -60,7 +61,7 @@ function TourDetail() {
       </section>
 
       <section className="container-page grid gap-10 py-16 lg:grid-cols-3">
-        <div className="lg:col-span-2">
+        <Reveal className="lg:col-span-2">
           <h2 className="font-display text-3xl">Aperçu du programme</h2>
           <p className="mt-4 text-muted-foreground">
             {tour.subtitle}. Un programme organisé par Capital Tours et encadré par nos équipes, du départ au retour.
@@ -106,9 +107,10 @@ function TourDetail() {
               </ul>
             </>
           )}
-        </div>
+        </Reveal>
 
-        <aside className="lg:sticky lg:top-32 h-fit rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-soft)]">
+        <Reveal delay={0.1} className="lg:sticky lg:top-32 h-fit rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-soft)]">
+        <aside>
           <div className="text-xs uppercase tracking-widest text-muted-foreground">Prix par personne</div>
           <div className="mt-2 font-display text-4xl text-primary">{tour.price}</div>
           <p className="mt-2 text-xs text-muted-foreground">{tour.priceNote ?? "Base chambre double, sous réserve de disponibilité."}</p>
@@ -118,6 +120,7 @@ function TourDetail() {
           <Link to="/reservation/$slug" params={{ slug: tour.slug }} className="btn-primary mt-3 w-full hover:-translate-y-0.5">Réserver <ArrowRight className="h-4 w-4" /></Link>
           <Link to="/voyages" className="mt-3 block text-center text-sm text-primary underline">Voir tous les voyages</Link>
         </aside>
+        </Reveal>
       </section>
       <Footer />
     </div>
