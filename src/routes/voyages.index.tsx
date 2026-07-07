@@ -4,6 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { TourCard } from "@/components/site/TourCard";
 import { featuredTours } from "@/lib/tours";
 import { useState } from "react";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
 export const Route = createFileRoute("/voyages/")({
   head: () => ({
@@ -46,9 +47,13 @@ function VoyagesPage() {
             </button>
           ))}
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((t) => <TourCard key={t.slug} tour={t} />)}
-        </div>
+        <StaggerGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {list.map((t) => (
+            <StaggerItem key={t.slug}>
+              <TourCard tour={t} />
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
       </div>
       <Footer />
     </div>

@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
 export const Route = createFileRoute("/a-propos")({
   head: () => ({
@@ -15,24 +17,26 @@ export const Route = createFileRoute("/a-propos")({
     <div className="min-h-screen">
       <Header />
       <section className="pt-40 pb-16 container-page max-w-3xl">
-        <div className="text-xs font-semibold uppercase tracking-widest text-primary">À propos</div>
-        <h1 className="mt-2 font-display text-5xl">Voyager, avec le cœur.</h1>
-        <p className="mt-6 text-lg text-muted-foreground">
-          Capital Tours est une agence de voyages marocaine qui compose depuis des années des expériences soigneusement conçues :
-          circuits en groupe, séjours sur mesure, croisières, Hajj &amp; Omra et voyages d'affaires.
-        </p>
-        <p className="mt-4 text-muted-foreground">
-          Notre force : une équipe passionnée, un réseau international de partenaires triés sur le volet et un suivi personnalisé
-          avant, pendant et après votre voyage.
-        </p>
-        <div className="mt-12 grid gap-6 sm:grid-cols-3">
+        <Reveal>
+          <div className="text-xs font-semibold uppercase tracking-widest text-primary">À propos</div>
+          <h1 className="mt-2 font-display text-5xl">Voyager, avec le cœur.</h1>
+          <p className="mt-6 text-lg text-muted-foreground">
+            Capital Tours est une agence de voyages marocaine qui compose depuis des années des expériences soigneusement conçues :
+            circuits en groupe, séjours sur mesure, Hajj &amp; Omra et voyages d'affaires.
+          </p>
+          <p className="mt-4 text-muted-foreground">
+            Notre force : une équipe passionnée, un réseau international de partenaires triés sur le volet et un suivi personnalisé
+            avant, pendant et après votre voyage.
+          </p>
+        </Reveal>
+        <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-3">
           {[["15+","années d'expérience"],["10k","voyageurs conquis"],["50+","destinations couvertes"]].map(([n,t]) => (
-            <div key={t} className="rounded-3xl bg-sand p-6 text-center">
+            <StaggerItem key={t} className="rounded-3xl bg-sand p-6 text-center">
               <div className="font-display text-4xl text-primary">{n}</div>
               <div className="mt-1 text-sm text-muted-foreground">{t}</div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </section>
       <Footer />
     </div>

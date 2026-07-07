@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { featuredTours } from "@/lib/tours";
+import { Reveal } from "@/components/motion/Reveal";
 import {
   Calendar,
   Check,
@@ -99,7 +100,8 @@ function Reservation() {
             </div>
 
             {/* Right: order summary */}
-            <aside className="h-fit overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)] lg:sticky lg:top-32">
+            <aside className="h-fit lg:sticky lg:top-32">
+            <Reveal className="overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
               <img src={tour.image} alt={tour.title} className="h-40 w-full object-cover" />
               <div className="p-6">
                 <h3 className="font-display text-lg leading-tight">{tour.title}</h3>
@@ -125,6 +127,7 @@ function Reservation() {
                   <ShieldCheck className="h-4 w-4 shrink-0" /> Paiement sécurisé — acompte remboursable sous conditions.
                 </div>
               </div>
+            </Reveal>
             </aside>
           </div>
 

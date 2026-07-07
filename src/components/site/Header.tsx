@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { HoverScale } from "@/components/motion/HoverScale";
 
 const nav = [
   { to: "/voyages", label: "Nos voyages" },
@@ -36,20 +37,23 @@ export function Header() {
           </Link>
           <nav className="hidden items-center gap-1 lg:flex">
             {nav.map((n) => (
-              <Link
-                key={n.to}
-                to={n.to}
-                className="rounded-full px-3.5 py-2 text-sm font-medium text-foreground/80 transition hover:bg-secondary hover:text-foreground"
-                activeProps={{ className: "bg-secondary text-foreground" }}
-              >
-                {n.label}
-              </Link>
+              <HoverScale key={n.to}>
+                <Link
+                  to={n.to}
+                  className="rounded-full px-3.5 py-2 text-sm font-medium text-foreground/80 transition hover:bg-secondary hover:text-foreground"
+                  activeProps={{ className: "bg-secondary text-foreground" }}
+                >
+                  {n.label}
+                </Link>
+              </HoverScale>
             ))}
           </nav>
           <div className="flex items-center gap-2">
-            <Link to="/contact" className="btn-primary hidden sm:inline-flex hover:-translate-y-0.5">
-              Nous contacter
-            </Link>
+            <HoverScale className="hidden sm:block">
+              <Link to="/contact" className="btn-primary inline-flex">
+                Nous contacter
+              </Link>
+            </HoverScale>
             <button
               onClick={() => setOpen((o) => !o)}
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border lg:hidden"
