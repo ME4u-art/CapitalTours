@@ -3,6 +3,8 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { IMG } from "@/lib/tours";
 import { pilgrimagePrograms, agencyPhones, agencyAddresses } from "@/lib/pilgrimage";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import {
   Plane,
   Building2,
@@ -83,16 +85,16 @@ function HajjOmraIndex() {
         {/* بطاقات البرامج — انقر للتفاصيل */}
         <section className="py-16">
           <div className="container-page">
-            <div className="text-center">
+            <Reveal className="text-center">
               <Eyebrow>برامجنا</Eyebrow>
               <h2 className="mt-1 font-display text-4xl sm:text-5xl">اختر برنامجك</h2>
               <p className="mt-3 text-muted-foreground">اضغط على البرنامج لعرض الأسعار والفنادق والتفاصيل الكاملة.</p>
-            </div>
+            </Reveal>
 
-            <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <StaggerGroup className="mt-10 grid gap-6 md:grid-cols-2">
               {pilgrimagePrograms.map((p) => (
+                <StaggerItem key={p.slug}>
                 <Link
-                  key={p.slug}
                   to="/hajj-omra/$slug"
                   params={{ slug: p.slug }}
                   className="group relative block h-80 overflow-hidden rounded-3xl shadow-[var(--shadow-soft)] transition hover:shadow-[var(--shadow-lift)]"
@@ -114,35 +116,36 @@ function HajjOmraIndex() {
                     </span>
                   </div>
                 </Link>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
         </section>
 
         {/* الخدمات المشمولة */}
         <section className="bg-sand py-16">
           <div className="container-page">
-            <div className="text-center">
+            <Reveal className="text-center">
               <Eyebrow>كل شيء مشمول</Eyebrow>
               <h2 className="mt-1 font-display text-3xl sm:text-4xl">خدماتنا المشمولة</h2>
-            </div>
-            <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            </Reveal>
+            <StaggerGroup className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
               {services.map(({ icon: Icon, label }) => (
-                <div key={label} className="flex flex-col items-center gap-3 rounded-2xl bg-card p-5 text-center shadow-[var(--shadow-soft)]">
+                <StaggerItem key={label} className="flex flex-col items-center gap-3 rounded-2xl bg-card p-5 text-center shadow-[var(--shadow-soft)]">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <Icon className="h-6 w-6" />
                   </div>
                   <span className="text-sm font-medium">{label}</span>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
         </section>
 
         {/* لماذا نحن */}
         <section className="py-16">
           <div className="container-page grid gap-10 md:grid-cols-2 md:items-center">
-            <div>
+            <Reveal>
               <Eyebrow>لماذا كابيتال تورز</Eyebrow>
               <h2 className="mt-1 font-display text-3xl sm:text-4xl">مرافقة تثقون بها</h2>
               <ul className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -152,7 +155,7 @@ function HajjOmraIndex() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
             <div className="overflow-hidden rounded-3xl">
               <img src={IMG.hajj} alt="الحج والعمرة" className="h-80 w-full object-cover" />
             </div>
@@ -162,7 +165,7 @@ function HajjOmraIndex() {
         {/* التواصل */}
         <section className="pb-20">
           <div className="container-page">
-            <div className="rounded-3xl bg-primary px-8 py-12 text-center text-white">
+            <Reveal className="rounded-3xl bg-primary px-8 py-12 text-center text-white">
               <h2 className="font-display text-3xl sm:text-4xl">احجز مكانك الآن</h2>
               <p className="mx-auto mt-3 max-w-xl opacity-90">يرافقكم مستشارونا لاختيار الصيغة المثالية. تواصلوا مع كابيتال تورز:</p>
               <div className="mt-6 flex flex-wrap justify-center gap-3" dir="ltr">
@@ -178,7 +181,7 @@ function HajjOmraIndex() {
                 {agencyAddresses[1]}
               </p>
               <p className="mt-2 text-sm opacity-80">فيسبوك: Capitaltours · إنستغرام: Capitaltoursmaroc</p>
-            </div>
+            </Reveal>
           </div>
         </section>
       </div>
