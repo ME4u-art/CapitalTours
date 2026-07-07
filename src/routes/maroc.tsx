@@ -3,6 +3,8 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { IMG, destinationsMaroc } from "@/lib/tours";
 import { ArrowRight } from "lucide-react";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
 export const Route = createFileRoute("/maroc")({
   head: () => ({
@@ -40,10 +42,10 @@ function MarocPage() {
       </section>
 
       <section className="container-page py-16">
-        <h2 className="font-display text-4xl">Circuits Maroc</h2>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <Reveal><h2 className="font-display text-4xl">Circuits Maroc</h2></Reveal>
+        <StaggerGroup className="mt-8 grid gap-6 md:grid-cols-3">
           {circuits.map((c) => (
-            <div key={c.title} className="group overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
+            <StaggerItem key={c.title} className="group overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={c.image} alt={c.title} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
               </div>
@@ -54,16 +56,16 @@ function MarocPage() {
                   <span className="font-display text-lg text-primary">{c.price}</span>
                 </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </section>
 
       <section className="container-page py-16">
-        <h2 className="font-display text-4xl">Nos destinations au Maroc</h2>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <Reveal><h2 className="font-display text-4xl">Nos destinations au Maroc</h2></Reveal>
+        <StaggerGroup className="mt-8 grid gap-6 md:grid-cols-3">
           {destinationsMaroc.map((d) => (
-            <article key={d.slug} className="group overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
+            <StaggerItem key={d.slug} className="group overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={d.image} alt={d.name} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
               </div>
@@ -75,9 +77,9 @@ function MarocPage() {
                   Réserver <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
-            </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </section>
       <Footer />
     </div>
