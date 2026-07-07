@@ -69,31 +69,31 @@ function Hero() {
       <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
 
-      <div className="relative z-10 flex min-h-[92vh] items-end pb-24 pt-40">
+      <div className="relative z-10 flex min-h-[92vh] items-end pb-20 pt-36 sm:pb-24 sm:pt-40">
         <div className="container-page">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-white backdrop-blur">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-white backdrop-blur sm:text-xs">
             <Sparkles className="h-3.5 w-3.5" /> {slide.badge}
           </span>
-          <h1 key={slide.slug} className="mt-6 max-w-4xl font-display text-5xl leading-[1.02] text-white sm:text-6xl md:text-7xl">
+          <h1 key={slide.slug} className="mt-6 max-w-4xl font-display text-4xl leading-[1.02] text-white sm:text-5xl md:text-7xl">
             {slide.title}, <br className="hidden sm:inline" />
             <em className="not-italic text-accent">{slide.accent}</em>
           </h1>
-          <p className="mt-5 max-w-xl text-lg text-white/85">{slide.subtitle}</p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <div className="rounded-2xl bg-accent px-5 py-3 text-accent-foreground shadow-lg">
+          <p className="mt-5 max-w-xl text-base text-white/85 sm:text-lg">{slide.subtitle}</p>
+          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+            <div className="w-full rounded-2xl bg-accent px-5 py-3 text-accent-foreground shadow-lg sm:w-auto">
               <div className="text-xs font-medium uppercase opacity-80">À partir de</div>
               <div className="font-display text-2xl font-semibold">{slide.price.replace("À partir de ", "")}</div>
             </div>
             {slide.kind === "pilgrimage" ? (
-              <Link to="/hajj-omra/$slug" params={{ slug: slide.slug }} className="btn-primary hover:-translate-y-0.5">
+              <Link to="/hajj-omra/$slug" params={{ slug: slide.slug }} className="btn-primary w-full justify-center hover:-translate-y-0.5 sm:w-auto">
                 Voir le programme <ArrowRight className="h-4 w-4" />
               </Link>
             ) : (
-              <Link to="/voyages/$slug" params={{ slug: slide.slug }} className="btn-primary hover:-translate-y-0.5">
+              <Link to="/voyages/$slug" params={{ slug: slide.slug }} className="btn-primary w-full justify-center hover:-translate-y-0.5 sm:w-auto">
                 Découvrir l'offre <ArrowRight className="h-4 w-4" />
               </Link>
             )}
-            <Link to="/voyages" className="btn-ghost hover:-translate-y-0.5">Tous nos programmes</Link>
+            <Link to="/voyages" className="btn-ghost w-full justify-center hover:-translate-y-0.5 sm:w-auto">Tous nos programmes</Link>
           </div>
 
           {/* slide dots */}
@@ -119,10 +119,10 @@ function FeaturedTours() {
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
   return (
-    <section className="relative mt-20 overflow-hidden py-4">
+    <section className="relative mt-16 overflow-hidden py-4 sm:mt-20">
       {/* centered header + pill */}
-      <div className="container-page mb-10 flex flex-col items-center text-center">
-        <h2 className="font-display text-4xl sm:text-5xl">Voyages organisés</h2>
+      <div className="container-page mb-8 flex flex-col items-center text-center sm:mb-10">
+        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl">Voyages organisés</h2>
         <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-secondary px-5 py-2 text-sm font-semibold text-primary">
           <span aria-hidden>•</span> Tarif avec billet d'avion <span aria-hidden>•</span>
         </span>
@@ -164,14 +164,14 @@ function FeaturedTours() {
         <button
           onClick={scrollPrev}
           aria-label="Précédent"
-          className="absolute left-2 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-brand-yellow text-white shadow-lg transition hover:brightness-105 md:left-6 md:h-14 md:w-14"
+          className="absolute left-2 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-brand-yellow text-white shadow-lg transition hover:brightness-105 sm:flex md:left-6 md:h-14 md:w-14"
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
         <button
           onClick={scrollNext}
           aria-label="Suivant"
-          className="absolute right-2 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-brand-yellow text-white shadow-lg transition hover:brightness-105 md:right-6 md:h-14 md:w-14"
+          className="absolute right-2 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-brand-yellow text-white shadow-lg transition hover:brightness-105 sm:flex md:right-6 md:h-14 md:w-14"
         >
           <ChevronRight className="h-6 w-6" />
         </button>
@@ -195,9 +195,9 @@ const pillars = [
 
 function PillarStrip() {
   return (
-    <section className="mt-24">
+    <section className="mt-16 sm:mt-24">
       <div className="container-page">
-        <div className="grid gap-6 rounded-3xl border border-border bg-sand p-8 sm:grid-cols-2 lg:grid-cols-4 lg:p-10">
+        <div className="grid gap-5 rounded-3xl border border-border bg-sand p-6 sm:grid-cols-2 sm:p-8 lg:grid-cols-4 lg:p-10">
           {pillars.map(({ icon: Icon, title, desc }) => (
             <div key={title} className="flex gap-4">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/15 text-primary">
@@ -217,8 +217,8 @@ function PillarStrip() {
 
 function HajjOmra() {
   return (
-    <section className="mt-24">
-      <div className="container-page grid gap-6 md:grid-cols-2">
+    <section className="mt-16 sm:mt-24">
+      <div className="container-page grid gap-4 sm:gap-6 md:grid-cols-2">
         {[
           { title: "برنامج الحج 1448هـ / 2027م", label: "Hajj", price: "À partir de 76 500 dhs", href: "/hajj-omra" },
           { title: "برنامج العمرة 1447هـ / 2026م", label: "Omra", price: "À partir de 15 900 dhs", href: "/hajj-omra" },
@@ -240,14 +240,14 @@ function HajjOmra() {
 
 function MarocSection() {
   return (
-    <section className="mt-24">
+    <section className="mt-16 sm:mt-24">
       <div className="container-page">
-        <div className="mb-10 max-w-2xl">
+        <div className="mb-8 max-w-2xl sm:mb-10">
           <div className="eyebrow-hand">Nos destinations</div>
-          <h2 className="mt-1 font-display text-4xl sm:text-5xl">Le Maroc, autrement.</h2>
+          <h2 className="mt-1 font-display text-3xl sm:text-4xl md:text-5xl">Le Maroc, autrement.</h2>
           <p className="mt-3 text-muted-foreground">Explorez le Royaume à travers ses villes impériales, ses côtes et ses déserts — entre culture, détente et aventure.</p>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {destinationsMaroc.map((d) => (
             <article key={d.slug} className="group overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -296,8 +296,8 @@ function CruiseBanner() {
 
 function MICE() {
   return (
-    <section className="mt-24">
-      <div className="container-page grid gap-10 rounded-3xl bg-foreground p-10 text-background md:grid-cols-2 md:p-14">
+    <section className="mt-16 sm:mt-24">
+      <div className="container-page grid gap-8 rounded-3xl bg-foreground p-6 text-background sm:p-8 md:grid-cols-2 md:p-14">
         <div>
           <div className="eyebrow-hand">MICE</div>
           <h2 className="mt-1 font-display text-4xl sm:text-5xl">Meetings, Incentives, Conferences &amp; Exhibitions</h2>
@@ -309,7 +309,7 @@ function MICE() {
             En savoir plus <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
           {[IMG.marrakech, IMG.prague, IMG.thailand, IMG.china, IMG.vietnam, IMG.sahara].map((src, i) => (
             <div key={i} className={`overflow-hidden rounded-2xl ${i % 4 === 0 ? "row-span-2 aspect-[3/5]" : "aspect-square"}`}>
               <img src={src} alt="" loading="lazy" className="h-full w-full object-cover" />

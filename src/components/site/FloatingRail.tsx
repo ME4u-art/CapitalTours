@@ -18,7 +18,7 @@ export function FloatingRail() {
   return (
     <>
       {/* social rail — left edge, vertically centered */}
-      <div className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-3 lg:flex">
+      <div className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-3 sm:flex">
         <a
           href="https://wa.me/212661645083"
           target="_blank"
@@ -59,7 +59,7 @@ export function FloatingRail() {
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Remonter en haut"
-        className={`fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 ${
+        className={`fixed bottom-4 right-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 sm:bottom-6 sm:right-6 ${
           showTop ? "opacity-100" : "pointer-events-none translate-y-2 opacity-0"
         }`}
       >
