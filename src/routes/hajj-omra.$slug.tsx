@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { pilgrimagePrograms, agencyPhones, agencyAddresses, whatsappNumber } from "@/lib/pilgrimage";
+import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import {
   Plane,
   Check,
@@ -199,7 +201,7 @@ function ProgramDetail() {
         <section className="py-14">
           <div className="container-page grid gap-8 lg:grid-cols-[1fr_360px]">
             {/* العمود الرئيسي */}
-            <div className="order-2 lg:order-1">
+            <Reveal className="order-2 lg:order-1">
               {/* صندوق معلومات الرحلة */}
               <div className="rounded-3xl bg-primary p-6 text-white sm:p-8">
                 <div className="text-lg font-semibold">
@@ -281,10 +283,11 @@ function ProgramDetail() {
                   )}
                 </div>
               )}
-            </div>
+            </Reveal>
 
             {/* الشريط الجانبي */}
-            <aside className="order-1 space-y-5 lg:order-2 lg:sticky lg:top-28 lg:h-fit">
+            <aside className="order-1 lg:order-2 lg:sticky lg:top-28 lg:h-fit">
+            <Reveal className="space-y-5">
               {/* تواصل معنا */}
               <div className="overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
                 <div className="bg-accent px-6 py-4 text-center font-display text-lg font-semibold text-accent-foreground">تواصل معنا</div>
@@ -318,6 +321,7 @@ function ProgramDetail() {
                 dates={program.dates}
                 programs={program.tables.map((t) => t.name).filter(Boolean) as string[]}
               />
+            </Reveal>
             </aside>
           </div>
         </section>
@@ -330,13 +334,13 @@ function ProgramDetail() {
                 <div className="text-sm font-bold" style={{ color: "var(--brand-yellow)" }}>معرض الصور</div>
                 <h2 className="mt-1 font-display text-3xl text-primary sm:text-4xl">صور من رحلاتنا</h2>
               </div>
-              <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+              <StaggerGroup className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
                 {program.gallery.map((src, i) => (
-                  <div key={i} className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-[var(--shadow-soft)]">
+                  <StaggerItem key={i} className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-[var(--shadow-soft)]">
                     <img src={src} alt={`${program.shortTitle} — صورة ${i + 1}`} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-                  </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
             </div>
           </section>
         )}
