@@ -1,8 +1,10 @@
 import type { Tour } from "@/lib/tours";
 import { Link } from "@tanstack/react-router";
+import { HoverScale } from "@/components/motion/HoverScale";
 
 export function TourCard({ tour }: { tour: Tour }) {
   return (
+    <HoverScale className="h-full w-full">
     <Link
       to="/voyages/$slug"
       params={{ slug: tour.slug }}
@@ -32,5 +34,6 @@ export function TourCard({ tour }: { tour: Tour }) {
         </span>
       </div>
     </Link>
+    </HoverScale>
   );
 }
