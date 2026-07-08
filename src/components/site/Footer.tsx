@@ -1,11 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { NavTicker } from "./NavTicker";
-import { agencyAddresses, agencyPhones } from "@/lib/pilgrimage";
+import { agencyPhones } from "@/lib/pilgrimage";
 import ministereTourisme from "@/assets/footer/ministere-tourisme.svg";
 import iata from "@/assets/footer/iata.svg";
 
 const legalLinks = ["Mentions légales", "CGU", "Politique de confidentialité", "Politique de cookies"];
+
+// French addresses (footer only — the shared agencyAddresses stays Arabic for the RTL program pages)
+const footerAddresses = [
+  "Siège 1 : 45 Résidence Al Watania, Avenue Hassan II, Fès",
+  "Siège 2 : Avenue Moulay Rachid, Quartier Zohour 1, Route de Sefrou, Fès",
+];
 
 export function Footer() {
   return (
@@ -28,9 +34,11 @@ export function Footer() {
 
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-wide">Retrouvez-nous ici</h4>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground" dir="rtl">
-              {agencyAddresses.map((a) => (
-                <li key={a}>{a}</li>
+            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              {footerAddresses.map((a) => (
+                <li key={a} className="flex gap-2">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0" /> {a}
+                </li>
               ))}
             </ul>
 
