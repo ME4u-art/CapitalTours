@@ -17,8 +17,8 @@ export function FloatingRail() {
 
   return (
     <>
-      {/* social rail — left edge, vertically centered */}
-      <div className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-3 sm:flex">
+      {/* social rail — lower-left, clear of the hero's edge arrows */}
+      <div className="fixed bottom-6 left-4 z-40 hidden flex-col gap-3 sm:flex">
         <a
           href="https://wa.me/212661645083"
           target="_blank"

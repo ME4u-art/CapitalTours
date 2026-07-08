@@ -102,8 +102,8 @@ function Hero() {
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${idx === i ? "hero-kenburns opacity-100" : "opacity-0"}`}
         />
       ))}
-      <div className="absolute inset-0 bg-black/30" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-black/30" />
+      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-black/10 to-black/30" />
 
       {/* centered slide content */}
       <div className="relative z-10 flex min-h-[92svh] items-center justify-center px-14 pb-24 pt-36 sm:px-20 sm:pt-40">
