@@ -403,7 +403,7 @@ function Partners() {
                   key={`${p.name}-${i}`}
                   className="flex h-28 w-48 shrink-0 items-center justify-center border-l border-border py-6 first:border-l-0"
                 >
-                  <img src={p.logo} alt={p.name} className="max-h-10 max-w-[75%] object-contain" />
+                  <img src={p.logo} alt={p.name} className={`${p.tall ? "max-h-16" : "max-h-10"} max-w-[75%] object-contain`} />
                 </div>
               ))}
             </div>
