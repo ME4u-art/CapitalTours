@@ -45,8 +45,33 @@ export const Route = createFileRoute("/hajj-omra/$slug")({
 
 function PriceTable({ rows }: { rows: { label: string; sub?: string; quad: string; triple: string; double: string }[] }) {
   return (
-    <div className="overflow-x-auto">
-      <div className="min-w-[520px] overflow-hidden rounded-2xl border border-border">
+    <>
+      {/* mobile — one card per hotel, no horizontal scrolling */}
+      <div className="space-y-3 sm:hidden">
+        {rows.map((r) => (
+          <div key={r.label} className="overflow-hidden rounded-2xl border border-border bg-card">
+            <div className="bg-accent px-4 py-3 text-accent-foreground">
+              <div className="text-sm font-semibold">{r.label}</div>
+              {r.sub && <div className="mt-0.5 text-xs opacity-80">{r.sub}</div>}
+            </div>
+            <div className="grid grid-cols-3 divide-x divide-x-reverse divide-border text-center">
+              {[
+                { room: "ثنائية", price: r.double, highlight: true },
+                { room: "ثلاثية", price: r.triple },
+                { room: "رباعية", price: r.quad },
+              ].map((c) => (
+                <div key={c.room} className="px-2 py-3">
+                  <div className="text-xs text-muted-foreground">{c.room}</div>
+                  <div className={`mt-1 text-sm font-semibold ${c.highlight ? "text-primary" : ""}`}>{c.price}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* tablet & desktop — comparison table */}
+      <div className="hidden overflow-hidden rounded-2xl border border-border sm:block">
         <div className="grid grid-cols-4 gap-2 bg-accent px-4 py-3 text-center text-sm font-semibold text-accent-foreground">
           <span className="text-right">الفندق</span>
           <span>ثنائية</span>
@@ -65,7 +90,7 @@ function PriceTable({ rows }: { rows: { label: string; sub?: string; quad: strin
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
 
