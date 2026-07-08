@@ -201,7 +201,7 @@ function ProgramDetail() {
         <section className="py-14">
           <div className="container-page grid gap-8 lg:grid-cols-[1fr_360px]">
             {/* العمود الرئيسي */}
-            <Reveal className="order-2 lg:order-1">
+            <Reveal className="order-2 min-w-0 lg:order-1">
               {/* صندوق معلومات الرحلة */}
               <div className="rounded-3xl bg-primary p-6 text-white sm:p-8">
                 <div className="text-lg font-semibold">
@@ -286,7 +286,7 @@ function ProgramDetail() {
             </Reveal>
 
             {/* الشريط الجانبي */}
-            <aside className="order-1 lg:order-2 lg:sticky lg:top-28 lg:h-fit">
+            <aside className="order-1 min-w-0 lg:order-2 lg:sticky lg:top-28 lg:h-fit">
             <Reveal className="space-y-5">
               {/* تواصل معنا */}
               <div className="overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
