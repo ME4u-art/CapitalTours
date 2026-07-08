@@ -12,6 +12,7 @@ import { type ReactNode } from "react";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 
 import appCss from "../styles.css?url";
+import { FloatingRail } from "@/components/site/FloatingRail";
 
 function NotFoundComponent() {
   return (
@@ -131,6 +132,8 @@ function RootComponent() {
             <Outlet />
           </motion.div>
         </AnimatePresence>
+        {/* Floating social rail + scroll-to-top — persists across every route */}
+        <FloatingRail />
       </MotionConfig>
     </QueryClientProvider>
   );

@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { FloatingRail } from "@/components/site/FloatingRail";
 import { galleryTitle } from "@/lib/pilgrimage";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
@@ -40,7 +39,6 @@ function GalleryPage() {
         </StaggerGroup>
       </main>
       <Footer />
-      <FloatingRail />
     </div>
   );
 }

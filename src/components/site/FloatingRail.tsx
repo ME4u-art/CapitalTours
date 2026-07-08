@@ -17,8 +17,8 @@ export function FloatingRail() {
 
   return (
     <>
-      {/* social rail — lower-left, clear of the hero's edge arrows */}
-      <div className="fixed bottom-6 left-4 z-40 hidden flex-col gap-3 sm:flex">
+      {/* social rail — lower-left on all screens, clear of the hero's edge arrows */}
+      <div className="fixed bottom-6 left-4 z-40 flex flex-col gap-3">
         <a
           href="https://wa.me/212661645083"
           target="_blank"
@@ -53,19 +53,6 @@ export function FloatingRail() {
           </svg>
         </a>
       </div>
-
-      {/* WhatsApp — bottom left on mobile, where the rail above is hidden */}
-      <a
-        href="https://wa.me/212661645083"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="WhatsApp"
-        className="fixed bottom-4 left-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg sm:hidden"
-      >
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden>
-          <path d="M17.47 14.38c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.9 1.13-.17.19-.33.22-.62.07-.29-.15-1.22-.45-2.32-1.44-.86-.77-1.44-1.72-1.6-2-.17-.29-.02-.45.13-.6.13-.13.29-.33.44-.5.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.15-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36-.26.29-1 .98-1 2.38s1.02 2.76 1.17 2.95c.15.19 2.02 3.08 4.9 4.32.68.29 1.21.47 1.63.6.68.22 1.31.19 1.8.12.55-.08 1.7-.69 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34zM12.05 21.5h-.01a9.5 9.5 0 0 1-4.84-1.32l-.35-.21-3.6.94.96-3.51-.23-.36a9.46 9.46 0 0 1-1.45-5.06c0-5.23 4.26-9.49 9.5-9.49 2.54 0 4.92.99 6.71 2.79a9.42 9.42 0 0 1 2.78 6.71c0 5.23-4.26 9.49-9.49 9.49z" />
-        </svg>
-      </a>
 
       {/* scroll-to-top — bottom right */}
       <button

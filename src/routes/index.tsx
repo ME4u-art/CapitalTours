@@ -5,7 +5,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { TourCard } from "@/components/site/TourCard";
-import { FloatingRail } from "@/components/site/FloatingRail";
 import { featuredTours, destinationsMaroc, IMG } from "@/lib/tours";
 import { partners } from "@/lib/partners";
 import businessNewspaper from "@/assets/mice/business-newspaper.jpg";
@@ -43,7 +42,6 @@ function HomePage() {
       <MICE />
       <Partners />
       <Footer />
-      <FloatingRail />
     </div>
   );
 }
