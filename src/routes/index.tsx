@@ -102,11 +102,12 @@ function Hero() {
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${idx === i ? "hero-kenburns opacity-100" : "opacity-0"}`}
         />
       ))}
-      <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
+      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-black/30" />
 
-      <div className="relative z-10 flex min-h-[92svh] items-end pb-16 pt-40 sm:pb-24 sm:pt-40">
-        <div className="container-page w-full">
+      {/* centered slide content */}
+      <div className="relative z-10 flex min-h-[92svh] items-center justify-center px-14 pb-24 pt-36 sm:px-20 sm:pt-40">
+        <div className="w-full max-w-4xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={slide.slug}
@@ -114,74 +115,65 @@ function Hero() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col items-center text-center"
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-white backdrop-blur sm:text-xs">
                 <Sparkles className="h-3.5 w-3.5" /> {slide.badge}
               </span>
-              <h1 className="mt-5 max-w-4xl font-display text-[2.5rem] leading-[1.05] text-white sm:mt-6 sm:text-5xl sm:leading-[1.02] md:text-7xl">
-                {slide.title}, <br className="hidden sm:inline" />
-                <em className="not-italic text-accent">{slide.accent}</em>
+              <h1 className="mt-5 font-display text-[2.5rem] leading-[1.05] text-white drop-shadow-md sm:mt-6 sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-7xl">
+                {slide.title}, <em className="not-italic text-accent">{slide.accent}</em>
               </h1>
-              <p className="mt-4 max-w-xl text-[15px] text-white/85 sm:mt-5 sm:text-lg">{slide.subtitle}</p>
-              <div className="mt-7 flex flex-col items-stretch gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-                <div className="flex items-baseline justify-between gap-3 rounded-2xl bg-accent px-5 py-3 text-accent-foreground shadow-lg sm:block">
-                  <div className="text-xs font-medium uppercase opacity-80">À partir de</div>
-                  <div className="font-display text-xl font-semibold sm:text-2xl">{slide.price.replace("À partir de ", "")}</div>
-                </div>
-                {slide.kind === "pilgrimage" ? (
-                  <HoverScale className="w-full sm:w-auto">
-                    <Link to="/hajj-omra/$slug" params={{ slug: slide.slug }} className="btn-primary w-full justify-center sm:w-auto">
-                      Voir le programme <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </HoverScale>
-                ) : (
-                  <HoverScale className="w-full sm:w-auto">
-                    <Link to="/voyages/$slug" params={{ slug: slide.slug }} className="btn-primary w-full justify-center sm:w-auto">
-                      Découvrir l'offre <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </HoverScale>
-                )}
-                <HoverScale className="w-full sm:w-auto">
-                  <Link to="/voyages" className="btn-ghost w-full justify-center sm:w-auto">Tous nos programmes</Link>
-                </HoverScale>
+              <p className="mt-4 max-w-2xl text-[15px] text-white/90 drop-shadow sm:mt-5 sm:text-xl">{slide.subtitle}</p>
+              <div className="mt-7 inline-flex items-baseline gap-2 rounded-full border border-white/60 bg-white/10 px-7 py-2.5 text-white backdrop-blur sm:mt-8">
+                <span className="text-sm opacity-80">À partir de</span>
+                <span className="font-display text-2xl font-semibold sm:text-3xl">{slide.price.replace("À partir de ", "")}</span>
               </div>
+              <HoverScale className="mt-6">
+                {slide.kind === "pilgrimage" ? (
+                  <Link to="/hajj-omra/$slug" params={{ slug: slide.slug }} className="btn-primary">
+                    Découvrir notre offre <ArrowRight className="h-4 w-4" />
+                  </Link>
+                ) : (
+                  <Link to="/voyages/$slug" params={{ slug: slide.slug }} className="btn-primary">
+                    Découvrir notre offre <ArrowRight className="h-4 w-4" />
+                  </Link>
+                )}
+              </HoverScale>
             </motion.div>
           </AnimatePresence>
-
-          {/* slide dots + arrows */}
-          <div className="mt-6 flex items-center justify-between sm:mt-8">
-            <div className="-ml-2 flex">
-              {heroSlides.map((s, idx) => (
-                <button
-                  key={s.slug}
-                  onClick={() => goTo(idx)}
-                  aria-label={`Aller au programme ${idx + 1}`}
-                  className="group flex h-9 items-center px-2"
-                >
-                  <span
-                    className={`h-2 rounded-full transition-all duration-300 ${idx === i ? "w-8 bg-white" : "w-2 bg-white/50 group-hover:bg-white/80"}`}
-                  />
-                </button>
-              ))}
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => goTo(i - 1)}
-                aria-label="Programme précédent"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white/25"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={() => goTo(i + 1)}
-                aria-label="Programme suivant"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white/25"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
-          </div>
         </div>
+      </div>
+
+      {/* side arrows — vertically centered on the edges */}
+      <button
+        onClick={() => goTo(i - 1)}
+        aria-label="Programme précédent"
+        className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white/25 sm:left-6 sm:h-12 sm:w-12"
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+      <button
+        onClick={() => goTo(i + 1)}
+        aria-label="Programme suivant"
+        className="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white/25 sm:right-6 sm:h-12 sm:w-12"
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
+
+      {/* dots — centered at the bottom */}
+      <div className="absolute inset-x-0 bottom-6 z-20 flex justify-center sm:bottom-8">
+        {heroSlides.map((s, idx) => (
+          <button
+            key={s.slug}
+            onClick={() => goTo(idx)}
+            aria-label={`Aller au programme ${idx + 1}`}
+            className="group flex h-9 items-center px-2"
+          >
+            <span
+              className={`h-2 rounded-full transition-all duration-300 ${idx === i ? "w-8 bg-white" : "w-2 bg-white/50 group-hover:bg-white/80"}`}
+            />
+          </button>
+        ))}
       </div>
     </section>
   );
