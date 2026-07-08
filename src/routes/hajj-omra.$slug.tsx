@@ -182,6 +182,18 @@ function ProgramDetail() {
                 <span className="font-display text-3xl" style={{ color: "var(--brand-yellow)" }}>{program.priceFrom}</span>
                 <span className="opacity-80">للشخص الواحد</span>
               </div>
+              <div className="mt-5">
+                <a
+                  href="#booking"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="btn-primary inline-flex"
+                >
+                  احجز الآن
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -201,7 +213,7 @@ function ProgramDetail() {
         <section className="py-14">
           <div className="container-page grid gap-8 lg:grid-cols-[1fr_360px]">
             {/* العمود الرئيسي */}
-            <Reveal className="order-2 min-w-0 lg:order-1">
+            <Reveal className="min-w-0">
               {/* صندوق معلومات الرحلة */}
               <div className="rounded-3xl bg-primary p-6 text-white sm:p-8">
                 <div className="text-lg font-semibold">
@@ -286,7 +298,7 @@ function ProgramDetail() {
             </Reveal>
 
             {/* الشريط الجانبي */}
-            <aside className="order-1 min-w-0 lg:order-2 lg:sticky lg:top-28 lg:h-fit">
+            <aside className="min-w-0 lg:sticky lg:top-28 lg:h-fit">
             <Reveal className="space-y-5">
               {/* تواصل معنا */}
               <div className="overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
@@ -315,12 +327,14 @@ function ProgramDetail() {
               </a>
 
               {/* نموذج الحجز */}
+              <div id="booking" className="scroll-mt-28">
               <BookingForm
                 programTitle={program.shortTitle}
                 hotels={program.tables.flatMap((t) => t.rows.map((r) => r.label))}
                 dates={program.dates}
                 programs={program.tables.map((t) => t.name).filter(Boolean) as string[]}
               />
+              </div>
             </Reveal>
             </aside>
           </div>
