@@ -18,7 +18,7 @@ export function Header() {
     <header className="absolute inset-x-0 top-0 z-40">
       <div className="bg-primary/90 text-primary-foreground backdrop-blur">
         <div className="container-page flex flex-col items-start justify-between gap-2 py-2 text-[11px] sm:flex-row sm:items-center sm:text-sm">
-          <span className="opacity-80">Suivez-nous · agence de voyages au Maroc</span>
+          <span className="hidden opacity-80 sm:inline">Suivez-nous · agence de voyages au Maroc</span>
           <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-5">
             <a href="mailto:contact@capitaltours.ma" className="inline-flex items-center gap-1.5 hover:opacity-80">
               <Mail className="h-3.5 w-3.5 shrink-0" /> contact@capitaltours.ma

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -57,71 +58,128 @@ const heroSlides = [
 
 function Hero() {
   const [i, setI] = useState(0);
+  const paused = useRef(false);
+  const touchX = useRef<number | null>(null);
+
+  const goTo = useCallback((idx: number) => {
+    setI(((idx % heroSlides.length) + heroSlides.length) % heroSlides.length);
+  }, []);
 
   useEffect(() => {
-    const t = setInterval(() => setI((p) => (p + 1) % heroSlides.length), 5000);
+    const t = setInterval(() => {
+      if (!paused.current && !document.hidden) setI((p) => (p + 1) % heroSlides.length);
+    }, 6000);
     return () => clearInterval(t);
   }, []);
 
   const slide = heroSlides[i];
 
   return (
-    <section className="relative min-h-[92vh] w-full overflow-hidden">
-      {/* cross-fading programme photos */}
+    <section
+      className="relative min-h-[92svh] w-full overflow-hidden"
+      onMouseEnter={() => (paused.current = true)}
+      onMouseLeave={() => (paused.current = false)}
+      onTouchStart={(e) => {
+        paused.current = true;
+        touchX.current = e.touches[0].clientX;
+      }}
+      onTouchEnd={(e) => {
+        paused.current = false;
+        if (touchX.current === null) return;
+        const dx = e.changedTouches[0].clientX - touchX.current;
+        touchX.current = null;
+        if (Math.abs(dx) > 48) goTo(dx < 0 ? i + 1 : i - 1);
+      }}
+    >
+      {/* cross-fading programme photos with a slow Ken Burns drift */}
       {heroSlides.map((s, idx) => (
         <img
           key={s.slug}
           src={s.image}
           alt={s.title}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${idx === i ? "opacity-100" : "opacity-0"}`}
+          loading={idx === 0 ? "eager" : "lazy"}
+          fetchPriority={idx === 0 ? "high" : "low"}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${idx === i ? "hero-kenburns opacity-100" : "opacity-0"}`}
         />
       ))}
       <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
 
-      <div className="relative z-10 flex min-h-[92vh] items-end pb-20 pt-36 sm:pb-24 sm:pt-40">
-        <div className="container-page">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-white backdrop-blur sm:text-xs">
-            <Sparkles className="h-3.5 w-3.5" /> {slide.badge}
-          </span>
-          <h1 key={slide.slug} className="mt-6 max-w-4xl font-display text-4xl leading-[1.02] text-white sm:text-5xl md:text-7xl">
-            {slide.title}, <br className="hidden sm:inline" />
-            <em className="not-italic text-accent">{slide.accent}</em>
-          </h1>
-          <p className="mt-5 max-w-xl text-base text-white/85 sm:text-lg">{slide.subtitle}</p>
-          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-            <div className="w-full rounded-2xl bg-accent px-5 py-3 text-accent-foreground shadow-lg sm:w-auto">
-              <div className="text-xs font-medium uppercase opacity-80">À partir de</div>
-              <div className="font-display text-2xl font-semibold">{slide.price.replace("À partir de ", "")}</div>
-            </div>
-            {slide.kind === "pilgrimage" ? (
-              <HoverScale className="w-full sm:w-auto">
-                <Link to="/hajj-omra/$slug" params={{ slug: slide.slug }} className="btn-primary w-full justify-center sm:w-auto">
-                  Voir le programme <ArrowRight className="h-4 w-4" />
-                </Link>
-              </HoverScale>
-            ) : (
-              <HoverScale className="w-full sm:w-auto">
-                <Link to="/voyages/$slug" params={{ slug: slide.slug }} className="btn-primary w-full justify-center sm:w-auto">
-                  Découvrir l'offre <ArrowRight className="h-4 w-4" />
-                </Link>
-              </HoverScale>
-            )}
-            <HoverScale className="w-full sm:w-auto">
-              <Link to="/voyages" className="btn-ghost w-full justify-center sm:w-auto">Tous nos programmes</Link>
-            </HoverScale>
-          </div>
+      <div className="relative z-10 flex min-h-[92svh] items-end pb-16 pt-40 sm:pb-24 sm:pt-40">
+        <div className="container-page w-full">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slide.slug}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-white backdrop-blur sm:text-xs">
+                <Sparkles className="h-3.5 w-3.5" /> {slide.badge}
+              </span>
+              <h1 className="mt-5 max-w-4xl font-display text-[2.5rem] leading-[1.05] text-white sm:mt-6 sm:text-5xl sm:leading-[1.02] md:text-7xl">
+                {slide.title}, <br className="hidden sm:inline" />
+                <em className="not-italic text-accent">{slide.accent}</em>
+              </h1>
+              <p className="mt-4 max-w-xl text-[15px] text-white/85 sm:mt-5 sm:text-lg">{slide.subtitle}</p>
+              <div className="mt-7 flex flex-col items-stretch gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+                <div className="flex items-baseline justify-between gap-3 rounded-2xl bg-accent px-5 py-3 text-accent-foreground shadow-lg sm:block">
+                  <div className="text-xs font-medium uppercase opacity-80">À partir de</div>
+                  <div className="font-display text-xl font-semibold sm:text-2xl">{slide.price.replace("À partir de ", "")}</div>
+                </div>
+                {slide.kind === "pilgrimage" ? (
+                  <HoverScale className="w-full sm:w-auto">
+                    <Link to="/hajj-omra/$slug" params={{ slug: slide.slug }} className="btn-primary w-full justify-center sm:w-auto">
+                      Voir le programme <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </HoverScale>
+                ) : (
+                  <HoverScale className="w-full sm:w-auto">
+                    <Link to="/voyages/$slug" params={{ slug: slide.slug }} className="btn-primary w-full justify-center sm:w-auto">
+                      Découvrir l'offre <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </HoverScale>
+                )}
+                <HoverScale className="w-full sm:w-auto">
+                  <Link to="/voyages" className="btn-ghost w-full justify-center sm:w-auto">Tous nos programmes</Link>
+                </HoverScale>
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
-          {/* slide dots */}
-          <div className="mt-8 flex gap-2">
-            {heroSlides.map((s, idx) => (
+          {/* slide dots + arrows */}
+          <div className="mt-6 flex items-center justify-between sm:mt-8">
+            <div className="-ml-2 flex">
+              {heroSlides.map((s, idx) => (
+                <button
+                  key={s.slug}
+                  onClick={() => goTo(idx)}
+                  aria-label={`Aller au programme ${idx + 1}`}
+                  className="group flex h-9 items-center px-2"
+                >
+                  <span
+                    className={`h-2 rounded-full transition-all duration-300 ${idx === i ? "w-8 bg-white" : "w-2 bg-white/50 group-hover:bg-white/80"}`}
+                  />
+                </button>
+              ))}
+            </div>
+            <div className="flex gap-2">
               <button
-                key={s.slug}
-                onClick={() => setI(idx)}
-                aria-label={`Aller au programme ${idx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 ${idx === i ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/80"}`}
-              />
-            ))}
+                onClick={() => goTo(i - 1)}
+                aria-label="Programme précédent"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white/25"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={() => goTo(i + 1)}
+                aria-label="Programme suivant"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white/25"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
