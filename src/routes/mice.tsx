@@ -5,6 +5,13 @@ import { IMG } from "@/lib/tours";
 import { Users, Mic, Building2, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
+import businessNewspaper from "@/assets/mice/business-newspaper.jpg";
+import streetProfessionals from "@/assets/mice/street-professionals.jpg";
+import skyscrapersBlue from "@/assets/mice/skyscrapers-blue.jpg";
+import skyscrapersDusk from "@/assets/mice/skyscrapers-dusk.jpg";
+import teamCoworking from "@/assets/mice/team-coworking.jpg";
+
+const miceGallery = [businessNewspaper, streetProfessionals, skyscrapersBlue, skyscrapersDusk, teamCoworking];
 
 export const Route = createFileRoute("/mice")({
   head: () => ({
@@ -28,10 +35,10 @@ export const Route = createFileRoute("/mice")({
             <Link to="/contact" className="btn-primary mt-6 hover:-translate-y-0.5">Demander un devis</Link>
           </Reveal>
           <div className="grid grid-cols-2 gap-3">
-            <img src={IMG.marrakech} alt="" className="aspect-square rounded-2xl object-cover" />
-            <img src={IMG.prague} alt="" className="aspect-square rounded-2xl object-cover mt-8" />
-            <img src={IMG.thailand} alt="" className="aspect-square rounded-2xl object-cover" />
-            <img src={IMG.sahara} alt="" className="aspect-square rounded-2xl object-cover mt-8" />
+            <img src={businessNewspaper} alt="" className="aspect-square rounded-2xl object-cover" />
+            <img src={skyscrapersBlue} alt="" className="aspect-square rounded-2xl object-cover mt-8" />
+            <img src={streetProfessionals} alt="" className="aspect-square rounded-2xl object-cover" />
+            <img src={skyscrapersDusk} alt="" className="aspect-square rounded-2xl object-cover mt-8" />
           </div>
         </div>
       </section>
@@ -49,6 +56,21 @@ export const Route = createFileRoute("/mice")({
           </StaggerItem>
         ))}
       </StaggerGroup>
+      <section className="container-page pb-16">
+        <Reveal>
+          <h2 className="font-display text-3xl sm:text-4xl">Nos événements en images</h2>
+        </Reveal>
+        <StaggerGroup className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3">
+          {miceGallery.map((src, i) => (
+            <StaggerItem
+              key={i}
+              className={`overflow-hidden rounded-2xl ${i === 0 ? "col-span-2 aspect-[16/9] md:col-span-1 md:aspect-square" : "aspect-square"}`}
+            >
+              <img src={src} alt="" loading="lazy" className="h-full w-full object-cover" />
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+      </section>
       <Footer />
     </div>
   ),

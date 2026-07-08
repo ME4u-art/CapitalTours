@@ -3,7 +3,7 @@ import { Mail, Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { HoverScale } from "@/components/motion/HoverScale";
 
-const nav = [
+export const nav = [
   { to: "/voyages", label: "Nos voyages" },
   { to: "/hajj-omra", label: "Hajj / Omra" },
   { to: "/maroc", label: "Départs Maroc" },

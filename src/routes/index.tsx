@@ -6,6 +6,12 @@ import { Footer } from "@/components/site/Footer";
 import { TourCard } from "@/components/site/TourCard";
 import { FloatingRail } from "@/components/site/FloatingRail";
 import { featuredTours, destinationsMaroc, IMG } from "@/lib/tours";
+import { partners } from "@/lib/partners";
+import businessNewspaper from "@/assets/mice/business-newspaper.jpg";
+import streetProfessionals from "@/assets/mice/street-professionals.jpg";
+import skyscrapersBlue from "@/assets/mice/skyscrapers-blue.jpg";
+import skyscrapersDusk from "@/assets/mice/skyscrapers-dusk.jpg";
+import teamCoworking from "@/assets/mice/team-coworking.jpg";
 import { ArrowRight, ChevronLeft, ChevronRight, Compass, Shield, Sparkles, Users } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
@@ -34,6 +40,7 @@ function HomePage() {
       <PillarStrip />
       <MarocSection />
       <MICE />
+      <Partners />
       <Footer />
       <FloatingRail />
     </div>
@@ -229,12 +236,12 @@ function HajjOmra() {
     <section className="mt-16 sm:mt-24">
       <div className="container-page grid gap-4 sm:gap-6 md:grid-cols-2">
         {[
-          { title: "برنامج الحج 1448هـ / 2027م", label: "Hajj", price: "À partir de 76 500 dhs", href: "/hajj-omra" },
-          { title: "برنامج العمرة 1447هـ / 2026م", label: "Omra", price: "À partir de 15 900 dhs", href: "/hajj-omra" },
+          { title: "برنامج الحج 1448هـ / 2027م", label: "Hajj", price: "À partir de 76 500 dhs", href: "/hajj-omra", image: "/Hajj.jpg" },
+          { title: "برنامج العمرة 1447هـ / 2026م", label: "Omra", price: "À partir de 15 900 dhs", href: "/hajj-omra", image: IMG.hajj },
         ].map((h, i) => (
           <Reveal key={i} delay={i * 0.1}>
           <Link to="/hajj-omra" className="group relative overflow-hidden rounded-3xl">
-            <img src={IMG.hajj} alt={h.title} loading="lazy" width={1200} height={800} className="h-72 w-full object-cover transition duration-700 group-hover:scale-105" />
+            <img src={h.image} alt={h.title} loading="lazy" width={1200} height={800} className="h-72 w-full object-cover transition duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-7 text-white">
               <span className="rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground">{h.label}</span>
@@ -323,13 +330,38 @@ function MICE() {
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
-          {[IMG.marrakech, IMG.prague, IMG.thailand, IMG.china, IMG.vietnam, IMG.sahara].map((src, i) => (
+          {[businessNewspaper, skyscrapersBlue, streetProfessionals, teamCoworking, skyscrapersDusk].map((src, i) => (
             <div key={i} className={`overflow-hidden rounded-2xl ${i % 4 === 0 ? "row-span-2 aspect-[3/5]" : "aspect-square"}`}>
               <img src={src} alt="" loading="lazy" className="h-full w-full object-cover" />
             </div>
           ))}
         </div>
       </Reveal>
+    </section>
+  );
+}
+
+function Partners() {
+  const loop = [...partners, ...partners, ...partners];
+  return (
+    <section className="mt-16 mb-16 sm:mt-24 sm:mb-24">
+      <div className="container-page">
+        <Reveal>
+          <h2 className="text-center font-display text-3xl sm:text-4xl">Nos partenaires</h2>
+          <div className="mt-8 overflow-hidden rounded-3xl border border-border">
+            <div className="partners-track">
+              {loop.map((p, i) => (
+                <div
+                  key={`${p.name}-${i}`}
+                  className="flex h-28 w-48 shrink-0 items-center justify-center border-l border-border py-6 first:border-l-0"
+                >
+                  <img src={p.logo} alt={p.name} className="max-h-10 max-w-[75%] object-contain" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
 }

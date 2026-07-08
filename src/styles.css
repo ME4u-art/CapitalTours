@@ -154,3 +154,22 @@
   border: 1px solid var(--border);
   backdrop-filter: blur(6px);
 }
+
+/* Partners logo strip — seamless infinite scroll (paused on hover, static when reduced motion) */
+@keyframes partners-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-33.333%); }
+}
+
+@utility partners-track {
+  display: flex;
+  width: max-content;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: partners-scroll 25s linear infinite;
+  }
+}
+
+.partners-track:hover {
+  animation-play-state: paused;
+}
