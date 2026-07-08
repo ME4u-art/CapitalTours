@@ -176,8 +176,8 @@
 
 /* Hero slideshow — slow Ken Burns drift on the active photo (static when reduced motion) */
 @keyframes hero-kenburns {
-  from { transform: scale(1); }
-  to { transform: scale(1.08); }
+  from { transform: scale(1.06); }
+  to { transform: scale(1); }
 }
 
 .hero-kenburns {
