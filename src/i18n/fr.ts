@@ -28,6 +28,28 @@ export const fr = {
   "footer.privacy": "Politique de confidentialité",
   "footer.cookies": "Politique de cookies",
   "footer.rights": "Tous droits réservés.",
+  "footer.agencyType": "Agence de voyages",
+  "footer.findUs": "Retrouvez-nous ici",
+  "footer.usefulLinks": "Liens utiles",
+  "footer.cgu": "CGU",
+  "footer.organisedTrips": "Voyages organisés",
+  "footer.contactLink": "Contact",
+  "footer.hq1": "Siège 1 : 45 Résidence Al Watania, Avenue Hassan II, Fès",
+  "footer.hq2":
+    "Siège 2 : Avenue Moulay Rachid, Quartier Zohour 1, Route de Sefrou, Fès",
+
+  "home.heroCta": "Découvrir notre offre",
+  "home.prevProgram": "Programme précédent",
+  "home.nextProgram": "Programme suivant",
+  "home.prev": "Précédent",
+  "home.next": "Suivant",
+  "home.organisedTrips": "Voyages organisés",
+  "home.destinations": "Nos destinations",
+  "home.moroccoTitle": "Le Maroc, autrement.",
+  "home.cruises": "Nos croisières",
+  "home.cruisesTitle": "Découvrez le monde au fil de l'eau.",
+  "home.miceTitle": "Meetings, Incentives, Conferences & Exhibitions",
+  "home.partners": "Nos partenaires",
 
   // shared actions
   "action.discover": "Découvrir",

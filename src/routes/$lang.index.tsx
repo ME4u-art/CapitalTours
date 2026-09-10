@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useLocale } from "@/i18n";
+import { useLocale, useLocalized, useT } from "@/i18n";
 import { useCallback, useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
@@ -13,7 +13,15 @@ import streetProfessionals from "@/assets/mice/street-professionals.jpg";
 import skyscrapersBlue from "@/assets/mice/skyscrapers-blue.jpg";
 import skyscrapersDusk from "@/assets/mice/skyscrapers-dusk.jpg";
 import teamCoworking from "@/assets/mice/team-coworking.jpg";
-import { ArrowRight, ChevronLeft, ChevronRight, Compass, Shield, Sparkles, Users } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Compass,
+  Shield,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { HoverScale } from "@/components/motion/HoverScale";
@@ -22,9 +30,20 @@ export const Route = createFileRoute("/$lang/")({
   head: () => ({
     meta: [
       { title: "Capital Tours — Agence de voyages au Maroc" },
-      { name: "description", content: "Voyages organisés, circuits, croisières, Hajj & Omra et MICE. Découvrez le monde avec Capital Tours, votre agence de voyages basée au Maroc." },
-      { property: "og:title", content: "Capital Tours — Agence de voyages au Maroc" },
-      { property: "og:description", content: "Voyages organisés, circuits, croisières, Hajj & Omra et MICE." },
+      {
+        name: "description",
+        content:
+          "Voyages organisés, circuits, croisières, Hajj & Omra et MICE. Découvrez le monde avec Capital Tours, votre agence de voyages basée au Maroc.",
+      },
+      {
+        property: "og:title",
+        content: "Capital Tours — Agence de voyages au Maroc",
+      },
+      {
+        property: "og:description",
+        content:
+          "Voyages organisés, circuits, croisières, Hajj & Omra et MICE.",
+      },
       { property: "og:type", content: "website" },
     ],
   }),
@@ -47,15 +66,123 @@ function HomePage() {
   );
 }
 
+/**
+ * Hero programmes. Badge, accent and subtitle are the words a visitor reads,
+ * so they carry all three languages; the slug, image and price are the same
+ * whichever language you are browsing in and stay written once.
+ */
 const heroSlides = [
-  { kind: "pilgrimage", slug: "omra-2026", image: IMG.hajj, badge: "عمرة 2026 · Omra", title: "Omra 2026", accent: "vol direct vers Médine.", subtitle: "Hôtels proches du Haram et encadrement complet — plusieurs départs en juillet & août 2026.", price: "À partir de 17 000 dh" },
-  { kind: "pilgrimage", slug: "hajj-2027", image: "/Hajj.jpg", badge: "الحج 1448هـ · Hajj 2027", title: "Hajj 1448H / 2027", accent: "un pèlerinage accompagné.", subtitle: "3 formules (Économique, Moyen, Touristique 5★), vol direct et tout compris.", price: "À partir de 77 000 dh" },
-  { kind: "tour", slug: "maldives-sri-lanka", image: IMG.thailand, badge: "Été 2026 — Nouveaux programmes", title: "Maldives & Sri Lanka", accent: "évasion tropicale.", subtitle: "Casa · Malé · Colombo — 14 jours entre plages paradisiaques et culture. Du 18 au 31 juillet.", price: "À partir de 30 800 dh" },
-  { kind: "tour", slug: "saint-petersbourg-moscou", image: IMG.prague, badge: "Été 2026 — Nouveaux programmes", title: "Saint-Pétersbourg / Moscou", accent: "palais impériaux.", subtitle: "9 jours entre la Neva et la Place Rouge. Du 2 au 10 août 2026.", price: "À partir de 18 500 dh" },
-  { kind: "tour", slug: "istanbul", image: IMG.hero, badge: "Été 2026 — Nouveaux programmes", title: "Istanbul", accent: "entre deux continents.", subtitle: "Départ Rabat · Hôtel Eyfel 3★ · 3 jours d'excursions. Plusieurs dates en juillet & août.", price: "À partir de 8 800 dh" },
+  {
+    kind: "pilgrimage",
+    slug: "omra-2026",
+    image: IMG.hajj,
+    badge: { fr: "عمرة 2026 · Omra", en: "عمرة 2026 · Umrah", ar: "عمرة 2026" },
+    title: "Omra 2026",
+    accent: {
+      fr: "vol direct vers Médine.",
+      en: "direct flight to Madinah.",
+      ar: "رحلة مباشرة إلى المدينة المنورة.",
+    },
+    subtitle: {
+      fr: "Hôtels proches du Haram et encadrement complet — plusieurs départs en juillet & août 2026.",
+      en: "Hotels close to the Haram with full guidance — several departures in July and August 2026.",
+      ar: "فنادق قريبة من الحرم وتأطير كامل — عدة انطلاقات في يوليوز وغشت 2026.",
+    },
+    price: "À partir de 17 000 dh",
+  },
+  {
+    kind: "pilgrimage",
+    slug: "hajj-2027",
+    image: "/Hajj.jpg",
+    badge: {
+      fr: "الحج 1448هـ · Hajj 2027",
+      en: "الحج 1448هـ · Hajj 2027",
+      ar: "الحج 1448 هـ",
+    },
+    title: "Hajj 1448H / 2027",
+    accent: {
+      fr: "un pèlerinage accompagné.",
+      en: "a guided pilgrimage.",
+      ar: "حج بمرافقة كاملة.",
+    },
+    subtitle: {
+      fr: "3 formules (Économique, Moyen, Touristique 5★), vol direct et tout compris.",
+      en: "Three packages (economy, mid-range, 5-star), direct flight, all inclusive.",
+      ar: "ثلاث صيغ (اقتصادي، متوسط، سياحي 5 نجوم)، رحلة مباشرة وكل شيء مشمول.",
+    },
+    price: "À partir de 77 000 dh",
+  },
+  {
+    kind: "tour",
+    slug: "maldives-sri-lanka",
+    image: IMG.thailand,
+    badge: {
+      fr: "Été 2026 — Nouveaux programmes",
+      en: "Summer 2026 — new programmes",
+      ar: "صيف 2026 — برامج جديدة",
+    },
+    title: "Maldives & Sri Lanka",
+    accent: {
+      fr: "évasion tropicale.",
+      en: "a tropical escape.",
+      ar: "عطلة استوائية.",
+    },
+    subtitle: {
+      fr: "Casa · Malé · Colombo — 14 jours entre plages paradisiaques et culture. Du 18 au 31 juillet.",
+      en: "Casablanca · Malé · Colombo — 14 days of beaches and culture. 18 to 31 July.",
+      ar: "الدار البيضاء · ماليه · كولومبو — 14 يومًا بين الشواطئ والثقافة. من 18 إلى 31 يوليوز.",
+    },
+    price: "À partir de 30 800 dh",
+  },
+  {
+    kind: "tour",
+    slug: "saint-petersbourg-moscou",
+    image: IMG.prague,
+    badge: {
+      fr: "Été 2026 — Nouveaux programmes",
+      en: "Summer 2026 — new programmes",
+      ar: "صيف 2026 — برامج جديدة",
+    },
+    title: "Saint-Pétersbourg / Moscou",
+    accent: {
+      fr: "palais impériaux.",
+      en: "imperial palaces.",
+      ar: "قصور إمبراطورية.",
+    },
+    subtitle: {
+      fr: "9 jours entre la Neva et la Place Rouge. Du 2 au 10 août 2026.",
+      en: "Nine days between the Neva and Red Square. 2 to 10 August 2026.",
+      ar: "9 أيام بين نهر النيفا والساحة الحمراء. من 2 إلى 10 غشت 2026.",
+    },
+    price: "À partir de 18 500 dh",
+  },
+  {
+    kind: "tour",
+    slug: "istanbul",
+    image: IMG.hero,
+    badge: {
+      fr: "Été 2026 — Nouveaux programmes",
+      en: "Summer 2026 — new programmes",
+      ar: "صيف 2026 — برامج جديدة",
+    },
+    title: "Istanbul",
+    accent: {
+      fr: "entre deux continents.",
+      en: "between two continents.",
+      ar: "بين قارتين.",
+    },
+    subtitle: {
+      fr: "Départ Rabat · Hôtel Eyfel 3★ · 3 jours d'excursions. Plusieurs dates en juillet & août.",
+      en: "Departing Rabat · Eyfel Hotel 3★ · three days of excursions. Several dates in July and August.",
+      ar: "انطلاق من الرباط · فندق إيفل 3 نجوم · 3 أيام من الرحلات. عدة تواريخ في يوليوز وغشت.",
+    },
+    price: "À partir de 8 800 dh",
+  },
 ] as const;
 
 function Hero() {
+  const t = useT();
+  const { pick: pickL } = useLocalized();
   const lang = useLocale();
   const [i, setI] = useState(0);
   const paused = useRef(false);
@@ -67,7 +194,8 @@ function Hero() {
 
   useEffect(() => {
     const t = setInterval(() => {
-      if (!paused.current && !document.hidden) setI((p) => (p + 1) % heroSlides.length);
+      if (!paused.current && !document.hidden)
+        setI((p) => (p + 1) % heroSlides.length);
     }, 6000);
     return () => clearInterval(t);
   }, []);
@@ -118,24 +246,42 @@ function Hero() {
               className="flex flex-col items-center text-center"
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-white backdrop-blur sm:text-xs">
-                <Sparkles className="h-3.5 w-3.5" /> {slide.badge}
+                <Sparkles className="h-3.5 w-3.5" /> {pickL(slide.badge)}
               </span>
               <h1 className="mt-5 font-display text-[2.5rem] leading-[1.05] text-white drop-shadow-md sm:mt-6 sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-7xl">
-                {slide.title}, <em className="not-italic text-accent">{slide.accent}</em>
+                {slide.title},{" "}
+                <em className="not-italic text-accent">
+                  {pickL(slide.accent)}
+                </em>
               </h1>
-              <p className="mt-4 max-w-2xl text-[15px] text-white/90 drop-shadow sm:mt-5 sm:text-xl">{slide.subtitle}</p>
+              <p className="mt-4 max-w-2xl text-[15px] text-white/90 drop-shadow sm:mt-5 sm:text-xl">
+                {pickL(slide.subtitle)}
+              </p>
               <div className="mt-7 inline-flex items-baseline gap-2 rounded-full border border-white/60 bg-white/10 px-7 py-2.5 text-white backdrop-blur sm:mt-8">
-                <span className="text-sm opacity-80">À partir de</span>
-                <span className="font-display text-2xl font-semibold sm:text-3xl">{slide.price.replace("À partir de ", "")}</span>
+                <span className="text-sm opacity-80">{t("tour.from")}</span>
+                <bdi
+                  dir="ltr"
+                  className="font-display text-2xl font-semibold sm:text-3xl"
+                >
+                  {slide.price.replace("À partir de ", "")}
+                </bdi>
               </div>
               <HoverScale className="mt-6">
                 {slide.kind === "pilgrimage" ? (
-                  <Link to="/$lang/hajj-omra/$slug" params={{ lang, slug: slide.slug }} className="btn-primary">
-                    Découvrir notre offre <ArrowRight className="h-4 w-4" />
+                  <Link
+                    to="/$lang/hajj-omra/$slug"
+                    params={{ lang, slug: slide.slug }}
+                    className="btn-primary"
+                  >
+                    {t("home.heroCta")} <ArrowRight className="h-4 w-4" />
                   </Link>
                 ) : (
-                  <Link to="/$lang/voyages/$slug" params={{ lang, slug: slide.slug }} className="btn-primary">
-                    Découvrir notre offre <ArrowRight className="h-4 w-4" />
+                  <Link
+                    to="/$lang/voyages/$slug"
+                    params={{ lang, slug: slide.slug }}
+                    className="btn-primary"
+                  >
+                    {t("home.heroCta")} <ArrowRight className="h-4 w-4" />
                   </Link>
                 )}
               </HoverScale>
@@ -147,14 +293,14 @@ function Hero() {
       {/* side arrows — vertically centered on the edges */}
       <button
         onClick={() => goTo(i - 1)}
-        aria-label="Programme précédent"
+        aria-label={t("home.prevProgram")}
         className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white/25 sm:left-6 sm:h-12 sm:w-12"
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
       <button
         onClick={() => goTo(i + 1)}
-        aria-label="Programme suivant"
+        aria-label={t("home.nextProgram")}
         className="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur transition hover:bg-white/25 sm:right-6 sm:h-12 sm:w-12"
       >
         <ChevronRight className="h-6 w-6" />
@@ -180,8 +326,12 @@ function Hero() {
 }
 
 function FeaturedTours() {
+  const t = useT();
   const lang = useLocale();
-  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "center", loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "center",
+    loop: true,
+  });
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
@@ -189,9 +339,12 @@ function FeaturedTours() {
     <section className="relative mt-16 overflow-hidden py-4 sm:mt-20">
       {/* centered header + pill */}
       <Reveal className="container-page mb-8 flex flex-col items-center text-center sm:mb-10">
-        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl">Voyages organisés</h2>
+        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl">
+          {t("home.organisedTrips")}
+        </h2>
         <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-secondary px-5 py-2 text-sm font-semibold text-primary">
-          <span aria-hidden>•</span> Tarif avec billet d'avion <span aria-hidden>•</span>
+          <span aria-hidden>•</span> Tarif avec billet d'avion{" "}
+          <span aria-hidden>•</span>
         </span>
       </Reveal>
 
@@ -230,14 +383,14 @@ function FeaturedTours() {
         {/* yellow circular nav arrows */}
         <button
           onClick={scrollPrev}
-          aria-label="Précédent"
+          aria-label={t("home.prev")}
           className="absolute left-2 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-brand-yellow text-white shadow-lg transition hover:brightness-105 sm:flex md:left-6 md:h-14 md:w-14"
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
         <button
           onClick={scrollNext}
-          aria-label="Suivant"
+          aria-label={t("home.next")}
           className="absolute right-2 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-brand-yellow text-white shadow-lg transition hover:brightness-105 sm:flex md:right-6 md:h-14 md:w-14"
         >
           <ChevronRight className="h-6 w-6" />
@@ -245,8 +398,11 @@ function FeaturedTours() {
       </div>
 
       <div className="container-page mt-10 text-center">
-        <Link to="/$lang/voyages"
-              params={{ lang }} className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all">
+        <Link
+          to="/$lang/voyages"
+          params={{ lang }}
+          className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
+        >
           Voir tous les voyages <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
@@ -255,25 +411,68 @@ function FeaturedTours() {
 }
 
 const pillars = [
-  { icon: Compass, title: "20+ destinations", desc: "Asie, Europe, Amériques, Afrique — la planète à portée de main." },
-  { icon: Users, title: "Voyages en groupe", desc: "Guides francophones, ambiance conviviale, moments partagés." },
-  { icon: Shield, title: "Agence de confiance", desc: "Une équipe marocaine à votre écoute avant, pendant et après." },
-  { icon: Sparkles, title: "Sur mesure", desc: "Circuits, croisières, MICE : tout se compose autour de vous." },
+  {
+    icon: Compass,
+    title: {
+      fr: "20+ destinations",
+      en: "20+ destinations",
+      ar: "أكثر من 20 وجهة",
+    },
+    desc: {
+      fr: "Asie, Europe, Amériques, Afrique — la planète à portée de main.",
+      en: "Asia, Europe, the Americas, Africa — the planet within reach.",
+      ar: "آسيا وأوروبا والأمريكتان وإفريقيا — العالم في متناول يدك.",
+    },
+  },
+  {
+    icon: Users,
+    title: { fr: "Voyages en groupe", en: "Group travel", ar: "رحلات جماعية" },
+    desc: {
+      fr: "Guides francophones, ambiance conviviale, moments partagés.",
+      en: "French-speaking guides, a friendly group, shared moments.",
+      ar: "مرشدون ناطقون بالفرنسية، أجواء ودية، ولحظات مشتركة.",
+    },
+  },
+  {
+    icon: Shield,
+    title: {
+      fr: "Agence de confiance",
+      en: "An agency you can trust",
+      ar: "وكالة موثوقة",
+    },
+    desc: {
+      fr: "Une équipe marocaine à votre écoute avant, pendant et après.",
+      en: "A Moroccan team on hand before, during and after your trip.",
+      ar: "فريق مغربي في خدمتك قبل الرحلة وأثناءها وبعدها.",
+    },
+  },
+  {
+    icon: Sparkles,
+    title: { fr: "Sur mesure", en: "Tailor-made", ar: "حسب الطلب" },
+    desc: {
+      fr: "Circuits, croisières, MICE : tout se compose autour de vous.",
+      en: "Tours, cruises, MICE — everything built around you.",
+      ar: "جولات ورحلات بحرية ومؤتمرات: كل شيء يُصمم حولك.",
+    },
+  },
 ];
 
 function PillarStrip() {
+  const { pick: pickL } = useLocalized();
   return (
     <section className="mt-16 sm:mt-24">
       <div className="container-page">
         <StaggerGroup className="grid gap-5 rounded-3xl border border-border bg-sand p-6 sm:grid-cols-2 sm:p-8 lg:grid-cols-4 lg:p-10">
           {pillars.map(({ icon: Icon, title, desc }) => (
-            <StaggerItem key={title} className="flex gap-4">
+            <StaggerItem key={title.fr} className="flex gap-4">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/15 text-primary">
                 <Icon className="h-5 w-5" />
               </div>
               <div>
-                <div className="font-display text-lg">{title}</div>
-                <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
+                <div className="font-display text-lg">{pickL(title)}</div>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {pickL(desc)}
+                </p>
               </div>
             </StaggerItem>
           ))}
@@ -289,20 +488,46 @@ function HajjOmra() {
     <section className="mt-16 sm:mt-24">
       <div className="container-page grid gap-4 sm:gap-6 md:grid-cols-2">
         {[
-          { title: "برنامج الحج 1448هـ / 2027م", label: "Hajj", price: "À partir de 76 500 dhs", href: "/hajj-omra", image: "/Hajj.jpg" },
-          { title: "برنامج العمرة 1447هـ / 2026م", label: "Omra", price: "À partir de 15 900 dhs", href: "/hajj-omra", image: IMG.hajj },
+          {
+            title: "برنامج الحج 1448هـ / 2027م",
+            label: "Hajj",
+            price: "À partir de 76 500 dhs",
+            href: "/hajj-omra",
+            image: "/Hajj.jpg",
+          },
+          {
+            title: "برنامج العمرة 1447هـ / 2026م",
+            label: "Omra",
+            price: "À partir de 15 900 dhs",
+            href: "/hajj-omra",
+            image: IMG.hajj,
+          },
         ].map((h, i) => (
           <Reveal key={i} delay={i * 0.1}>
-          <Link to="/$lang/hajj-omra"
-              params={{ lang }} className="group relative overflow-hidden rounded-3xl">
-            <img src={h.image} alt={h.title} loading="lazy" width={1200} height={800} className="h-72 w-full object-cover transition duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-7 text-white">
-              <span className="rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground">{h.label}</span>
-              <h3 dir="rtl" className="mt-3 font-display text-3xl">{h.title}</h3>
-              <p className="mt-2 text-sm opacity-90">{h.price}</p>
-            </div>
-          </Link>
+            <Link
+              to="/$lang/hajj-omra"
+              params={{ lang }}
+              className="group relative overflow-hidden rounded-3xl"
+            >
+              <img
+                src={h.image}
+                alt={h.title}
+                loading="lazy"
+                width={1200}
+                height={800}
+                className="h-72 w-full object-cover transition duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-7 text-white">
+                <span className="rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground">
+                  {h.label}
+                </span>
+                <h3 dir="rtl" className="mt-3 font-display text-3xl">
+                  {h.title}
+                </h3>
+                <p className="mt-2 text-sm opacity-90">{h.price}</p>
+              </div>
+            </Link>
           </Reveal>
         ))}
       </div>
@@ -311,32 +536,50 @@ function HajjOmra() {
 }
 
 function MarocSection() {
+  const t = useT();
   const lang = useLocale();
   return (
     <section className="mt-16 sm:mt-24">
       <div className="container-page">
         <Reveal className="mb-8 max-w-2xl sm:mb-10">
-          <div className="eyebrow-hand">Nos destinations</div>
-          <h2 className="mt-1 font-display text-3xl sm:text-4xl md:text-5xl">Le Maroc, autrement.</h2>
-          <p className="mt-3 text-muted-foreground">Explorez le Royaume à travers ses villes impériales, ses côtes et ses déserts — entre culture, détente et aventure.</p>
+          <div className="eyebrow-hand">{t("home.destinations")}</div>
+          <h2 className="mt-1 font-display text-3xl sm:text-4xl md:text-5xl">
+            {t("home.moroccoTitle")}
+          </h2>
+          <p className="mt-3 text-muted-foreground">
+            Explorez le Royaume à travers ses villes impériales, ses côtes et
+            ses déserts — entre culture, détente et aventure.
+          </p>
         </Reveal>
         <StaggerGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {destinationsMaroc.map((d) => (
             <StaggerItem key={d.slug}>
-            <article className="group overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img src={d.image} alt={d.name} loading="lazy" width={1200} height={800} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-              </div>
-              <div className="p-6">
-                <div className="text-xs uppercase tracking-widest text-accent">{d.tagline}</div>
-                <h3 className="mt-2 font-display text-2xl">{d.name}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{d.desc}</p>
-                <Link to="/$lang/maroc"
-              params={{ lang }} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                  Plus de détail <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </article>
+              <article className="group overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={d.image}
+                    alt={d.name}
+                    loading="lazy"
+                    width={1200}
+                    height={800}
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="text-xs uppercase tracking-widest text-accent">
+                    {d.tagline}
+                  </div>
+                  <h3 className="mt-2 font-display text-2xl">{d.name}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{d.desc}</p>
+                  <Link
+                    to="/$lang/maroc"
+                    params={{ lang }}
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary"
+                  >
+                    Plus de détail <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </article>
             </StaggerItem>
           ))}
         </StaggerGroup>
@@ -346,21 +589,37 @@ function MarocSection() {
 }
 
 function CruiseBanner() {
+  const t = useT();
   const lang = useLocale();
   return (
     <section className="mt-24">
       <div className="container-page">
         <div className="relative overflow-hidden rounded-3xl">
-          <img src={IMG.cruise} alt="Croisière" loading="lazy" width={1920} height={800} className="h-[380px] w-full object-cover md:h-[440px]" />
+          <img
+            src={IMG.cruise}
+            alt="Croisière"
+            loading="lazy"
+            width={1920}
+            height={800}
+            className="h-[380px] w-full object-cover md:h-[440px]"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
           <div className="absolute inset-0 flex items-center">
             <div className="container-page">
               <div className="max-w-lg text-white">
-                <div className="eyebrow-hand">Nos croisières</div>
-                <h2 className="mt-1 font-display text-4xl sm:text-5xl">Découvrez le monde au fil de l'eau.</h2>
-                <p className="mt-3 opacity-90">Caraïbes, Méditerranée orientale, tour du monde — nos partenaires : Royal Caribbean, MSC et bien plus.</p>
-                <Link to="/$lang/voyages"
-              params={{ lang }} className="btn-primary mt-6 hover:-translate-y-0.5">
+                <div className="eyebrow-hand">{t("home.cruises")}</div>
+                <h2 className="mt-1 font-display text-4xl sm:text-5xl">
+                  {t("home.cruisesTitle")}
+                </h2>
+                <p className="mt-3 opacity-90">
+                  Caraïbes, Méditerranée orientale, tour du monde — nos
+                  partenaires : Royal Caribbean, MSC et bien plus.
+                </p>
+                <Link
+                  to="/$lang/voyages"
+                  params={{ lang }}
+                  className="btn-primary mt-6 hover:-translate-y-0.5"
+                >
                   Voir les croisières <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -373,26 +632,47 @@ function CruiseBanner() {
 }
 
 function MICE() {
+  const t = useT();
   const lang = useLocale();
   return (
     <section className="mt-16 sm:mt-24">
       <Reveal className="container-page grid gap-8 rounded-3xl bg-foreground p-6 text-background sm:p-8 md:grid-cols-2 md:p-14">
         <div>
           <div className="eyebrow-hand">MICE</div>
-          <h2 className="mt-1 font-display text-4xl sm:text-5xl">Meetings, Incentives, Conferences &amp; Exhibitions</h2>
+          <h2 className="mt-1 font-display text-4xl sm:text-5xl">
+            {t("home.miceTitle")}
+          </h2>
           <p className="mt-4 opacity-80">
-            Capital Tours vous accompagne dans l'organisation de séminaires, conférences, congrès et voyages incentives.
-            De la conception à la logistique, nous créons des expériences professionnelles mémorables.
+            Capital Tours vous accompagne dans l'organisation de séminaires,
+            conférences, congrès et voyages incentives. De la conception à la
+            logistique, nous créons des expériences professionnelles mémorables.
           </p>
-          <Link to="/$lang/mice"
-              params={{ lang }} className="btn-primary mt-6 hover:-translate-y-0.5">
+          <Link
+            to="/$lang/mice"
+            params={{ lang }}
+            className="btn-primary mt-6 hover:-translate-y-0.5"
+          >
             En savoir plus <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
-          {[businessNewspaper, skyscrapersBlue, streetProfessionals, teamCoworking, skyscrapersDusk].map((src, i) => (
-            <div key={i} className={`overflow-hidden rounded-2xl ${i % 4 === 0 ? "row-span-2 aspect-[3/5]" : "aspect-square"}`}>
-              <img src={src} alt="" loading="lazy" className="h-full w-full object-cover" />
+          {[
+            businessNewspaper,
+            skyscrapersBlue,
+            streetProfessionals,
+            teamCoworking,
+            skyscrapersDusk,
+          ].map((src, i) => (
+            <div
+              key={i}
+              className={`overflow-hidden rounded-2xl ${i % 4 === 0 ? "row-span-2 aspect-[3/5]" : "aspect-square"}`}
+            >
+              <img
+                src={src}
+                alt=""
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
             </div>
           ))}
         </div>
@@ -402,12 +682,15 @@ function MICE() {
 }
 
 function Partners() {
+  const t = useT();
   const loop = [...partners, ...partners, ...partners];
   return (
     <section className="mt-16 mb-16 sm:mt-24 sm:mb-24">
       <div className="container-page">
         <Reveal>
-          <h2 className="text-center font-display text-3xl sm:text-4xl">Nos partenaires</h2>
+          <h2 className="text-center font-display text-3xl sm:text-4xl">
+            {t("home.partners")}
+          </h2>
           <div className="mt-8 overflow-hidden rounded-3xl border border-border">
             <div className="partners-track">
               {loop.map((p, i) => (
@@ -415,7 +698,11 @@ function Partners() {
                   key={`${p.name}-${i}`}
                   className="flex h-28 w-48 shrink-0 items-center justify-center border-l border-border py-6 first:border-l-0"
                 >
-                  <img src={p.logo} alt={p.name} className={`${p.tall ? "max-h-16" : "max-h-10"} max-w-[75%] object-contain`} />
+                  <img
+                    src={p.logo}
+                    alt={p.name}
+                    className={`${p.tall ? "max-h-16" : "max-h-10"} max-w-[75%] object-contain`}
+                  />
                 </div>
               ))}
             </div>
