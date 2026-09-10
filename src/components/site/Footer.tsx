@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { useLocale } from "@/i18n";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { NavTicker } from "./NavTicker";
 import { agencyPhones } from "@/lib/pilgrimage";
@@ -14,6 +15,7 @@ const footerAddresses = [
 ];
 
 export function Footer() {
+  const lang = useLocale();
   return (
     <>
       <NavTicker />
@@ -58,23 +60,30 @@ export function Footer() {
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-wide">Nos voyages</h4>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/voyages">Voyages organisés</Link></li>
-              <li><Link to="/maroc">Départs Maroc</Link></li>
-              <li><Link to="/hajj-omra">Hajj / Omra</Link></li>
+              <li><Link to="/$lang/voyages"
+              params={{ lang }}>Voyages organisés</Link></li>
+              <li><Link to="/$lang/maroc"
+              params={{ lang }}>Départs Maroc</Link></li>
+              <li><Link to="/$lang/hajj-omra"
+              params={{ lang }}>Hajj / Omra</Link></li>
             </ul>
 
             <h4 className="mt-6 font-display text-sm font-bold uppercase tracking-wide">Nos services</h4>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/mice">MICE</Link></li>
-              <li><Link to="/transport">Transport</Link></li>
+              <li><Link to="/$lang/mice"
+              params={{ lang }}>MICE</Link></li>
+              <li><Link to="/$lang/transport"
+              params={{ lang }}>Transport</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-wide">Liens utiles</h4>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/a-propos">Qui sommes-nous</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/$lang/a-propos"
+              params={{ lang }}>Qui sommes-nous</Link></li>
+              <li><Link to="/$lang/contact"
+              params={{ lang }}>Contact</Link></li>
             </ul>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { featuredTours } from "@/lib/tours";
 import { useState } from "react";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
-export const Route = createFileRoute("/voyages/")({
+export const Route = createFileRoute("/$lang/voyages/")({
   head: () => ({
     meta: [
       { title: "Nos voyages organisés — Capital Tours" },

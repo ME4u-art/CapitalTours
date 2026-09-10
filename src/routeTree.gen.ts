@@ -9,47 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TransportRouteImport } from './routes/transport'
-import { Route as MiceRouteImport } from './routes/mice'
-import { Route as MarocRouteImport } from './routes/maroc'
-import { Route as GalleryRouteImport } from './routes/gallery'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AProposRouteImport } from './routes/a-propos'
+import { Route as LangRouteImport } from './routes/$lang'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as VoyagesIndexRouteImport } from './routes/voyages.index'
-import { Route as HajjOmraIndexRouteImport } from './routes/hajj-omra.index'
-import { Route as VoyagesSlugRouteImport } from './routes/voyages.$slug'
-import { Route as ReservationSlugRouteImport } from './routes/reservation.$slug'
-import { Route as HajjOmraSlugRouteImport } from './routes/hajj-omra.$slug'
+import { Route as LangIndexRouteImport } from './routes/$lang.index'
+import { Route as LangTransportRouteImport } from './routes/$lang.transport'
+import { Route as LangMiceRouteImport } from './routes/$lang.mice'
+import { Route as LangMarocRouteImport } from './routes/$lang.maroc'
+import { Route as LangGalleryRouteImport } from './routes/$lang.gallery'
+import { Route as LangContactRouteImport } from './routes/$lang.contact'
+import { Route as LangAProposRouteImport } from './routes/$lang.a-propos'
+import { Route as LangVoyagesIndexRouteImport } from './routes/$lang.voyages.index'
+import { Route as LangHajjOmraIndexRouteImport } from './routes/$lang.hajj-omra.index'
+import { Route as LangVoyagesSlugRouteImport } from './routes/$lang.voyages.$slug'
+import { Route as LangReservationSlugRouteImport } from './routes/$lang.reservation.$slug'
+import { Route as LangHajjOmraSlugRouteImport } from './routes/$lang.hajj-omra.$slug'
 
-const TransportRoute = TransportRouteImport.update({
-  id: '/transport',
-  path: '/transport',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MiceRoute = MiceRouteImport.update({
-  id: '/mice',
-  path: '/mice',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MarocRoute = MarocRouteImport.update({
-  id: '/maroc',
-  path: '/maroc',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GalleryRoute = GalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AProposRoute = AProposRouteImport.update({
-  id: '/a-propos',
-  path: '/a-propos',
+const LangRoute = LangRouteImport.update({
+  id: '/$lang',
+  path: '/$lang',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -57,177 +34,177 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VoyagesIndexRoute = VoyagesIndexRouteImport.update({
+const LangIndexRoute = LangIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangTransportRoute = LangTransportRouteImport.update({
+  id: '/transport',
+  path: '/transport',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangMiceRoute = LangMiceRouteImport.update({
+  id: '/mice',
+  path: '/mice',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangMarocRoute = LangMarocRouteImport.update({
+  id: '/maroc',
+  path: '/maroc',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangGalleryRoute = LangGalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangContactRoute = LangContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangAProposRoute = LangAProposRouteImport.update({
+  id: '/a-propos',
+  path: '/a-propos',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangVoyagesIndexRoute = LangVoyagesIndexRouteImport.update({
   id: '/voyages/',
   path: '/voyages/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LangRoute,
 } as any)
-const HajjOmraIndexRoute = HajjOmraIndexRouteImport.update({
+const LangHajjOmraIndexRoute = LangHajjOmraIndexRouteImport.update({
   id: '/hajj-omra/',
   path: '/hajj-omra/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LangRoute,
 } as any)
-const VoyagesSlugRoute = VoyagesSlugRouteImport.update({
+const LangVoyagesSlugRoute = LangVoyagesSlugRouteImport.update({
   id: '/voyages/$slug',
   path: '/voyages/$slug',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LangRoute,
 } as any)
-const ReservationSlugRoute = ReservationSlugRouteImport.update({
+const LangReservationSlugRoute = LangReservationSlugRouteImport.update({
   id: '/reservation/$slug',
   path: '/reservation/$slug',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LangRoute,
 } as any)
-const HajjOmraSlugRoute = HajjOmraSlugRouteImport.update({
+const LangHajjOmraSlugRoute = LangHajjOmraSlugRouteImport.update({
   id: '/hajj-omra/$slug',
   path: '/hajj-omra/$slug',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LangRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/a-propos': typeof AProposRoute
-  '/contact': typeof ContactRoute
-  '/gallery': typeof GalleryRoute
-  '/maroc': typeof MarocRoute
-  '/mice': typeof MiceRoute
-  '/transport': typeof TransportRoute
-  '/hajj-omra/$slug': typeof HajjOmraSlugRoute
-  '/reservation/$slug': typeof ReservationSlugRoute
-  '/voyages/$slug': typeof VoyagesSlugRoute
-  '/hajj-omra/': typeof HajjOmraIndexRoute
-  '/voyages/': typeof VoyagesIndexRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/$lang/a-propos': typeof LangAProposRoute
+  '/$lang/contact': typeof LangContactRoute
+  '/$lang/gallery': typeof LangGalleryRoute
+  '/$lang/maroc': typeof LangMarocRoute
+  '/$lang/mice': typeof LangMiceRoute
+  '/$lang/transport': typeof LangTransportRoute
+  '/$lang/': typeof LangIndexRoute
+  '/$lang/hajj-omra/$slug': typeof LangHajjOmraSlugRoute
+  '/$lang/reservation/$slug': typeof LangReservationSlugRoute
+  '/$lang/voyages/$slug': typeof LangVoyagesSlugRoute
+  '/$lang/hajj-omra/': typeof LangHajjOmraIndexRoute
+  '/$lang/voyages/': typeof LangVoyagesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/a-propos': typeof AProposRoute
-  '/contact': typeof ContactRoute
-  '/gallery': typeof GalleryRoute
-  '/maroc': typeof MarocRoute
-  '/mice': typeof MiceRoute
-  '/transport': typeof TransportRoute
-  '/hajj-omra/$slug': typeof HajjOmraSlugRoute
-  '/reservation/$slug': typeof ReservationSlugRoute
-  '/voyages/$slug': typeof VoyagesSlugRoute
-  '/hajj-omra': typeof HajjOmraIndexRoute
-  '/voyages': typeof VoyagesIndexRoute
+  '/$lang/a-propos': typeof LangAProposRoute
+  '/$lang/contact': typeof LangContactRoute
+  '/$lang/gallery': typeof LangGalleryRoute
+  '/$lang/maroc': typeof LangMarocRoute
+  '/$lang/mice': typeof LangMiceRoute
+  '/$lang/transport': typeof LangTransportRoute
+  '/$lang': typeof LangIndexRoute
+  '/$lang/hajj-omra/$slug': typeof LangHajjOmraSlugRoute
+  '/$lang/reservation/$slug': typeof LangReservationSlugRoute
+  '/$lang/voyages/$slug': typeof LangVoyagesSlugRoute
+  '/$lang/hajj-omra': typeof LangHajjOmraIndexRoute
+  '/$lang/voyages': typeof LangVoyagesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/a-propos': typeof AProposRoute
-  '/contact': typeof ContactRoute
-  '/gallery': typeof GalleryRoute
-  '/maroc': typeof MarocRoute
-  '/mice': typeof MiceRoute
-  '/transport': typeof TransportRoute
-  '/hajj-omra/$slug': typeof HajjOmraSlugRoute
-  '/reservation/$slug': typeof ReservationSlugRoute
-  '/voyages/$slug': typeof VoyagesSlugRoute
-  '/hajj-omra/': typeof HajjOmraIndexRoute
-  '/voyages/': typeof VoyagesIndexRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/$lang/a-propos': typeof LangAProposRoute
+  '/$lang/contact': typeof LangContactRoute
+  '/$lang/gallery': typeof LangGalleryRoute
+  '/$lang/maroc': typeof LangMarocRoute
+  '/$lang/mice': typeof LangMiceRoute
+  '/$lang/transport': typeof LangTransportRoute
+  '/$lang/': typeof LangIndexRoute
+  '/$lang/hajj-omra/$slug': typeof LangHajjOmraSlugRoute
+  '/$lang/reservation/$slug': typeof LangReservationSlugRoute
+  '/$lang/voyages/$slug': typeof LangVoyagesSlugRoute
+  '/$lang/hajj-omra/': typeof LangHajjOmraIndexRoute
+  '/$lang/voyages/': typeof LangVoyagesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/a-propos'
-    | '/contact'
-    | '/gallery'
-    | '/maroc'
-    | '/mice'
-    | '/transport'
-    | '/hajj-omra/$slug'
-    | '/reservation/$slug'
-    | '/voyages/$slug'
-    | '/hajj-omra/'
-    | '/voyages/'
+    | '/$lang'
+    | '/$lang/a-propos'
+    | '/$lang/contact'
+    | '/$lang/gallery'
+    | '/$lang/maroc'
+    | '/$lang/mice'
+    | '/$lang/transport'
+    | '/$lang/'
+    | '/$lang/hajj-omra/$slug'
+    | '/$lang/reservation/$slug'
+    | '/$lang/voyages/$slug'
+    | '/$lang/hajj-omra/'
+    | '/$lang/voyages/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/a-propos'
-    | '/contact'
-    | '/gallery'
-    | '/maroc'
-    | '/mice'
-    | '/transport'
-    | '/hajj-omra/$slug'
-    | '/reservation/$slug'
-    | '/voyages/$slug'
-    | '/hajj-omra'
-    | '/voyages'
+    | '/$lang/a-propos'
+    | '/$lang/contact'
+    | '/$lang/gallery'
+    | '/$lang/maroc'
+    | '/$lang/mice'
+    | '/$lang/transport'
+    | '/$lang'
+    | '/$lang/hajj-omra/$slug'
+    | '/$lang/reservation/$slug'
+    | '/$lang/voyages/$slug'
+    | '/$lang/hajj-omra'
+    | '/$lang/voyages'
   id:
     | '__root__'
     | '/'
-    | '/a-propos'
-    | '/contact'
-    | '/gallery'
-    | '/maroc'
-    | '/mice'
-    | '/transport'
-    | '/hajj-omra/$slug'
-    | '/reservation/$slug'
-    | '/voyages/$slug'
-    | '/hajj-omra/'
-    | '/voyages/'
+    | '/$lang'
+    | '/$lang/a-propos'
+    | '/$lang/contact'
+    | '/$lang/gallery'
+    | '/$lang/maroc'
+    | '/$lang/mice'
+    | '/$lang/transport'
+    | '/$lang/'
+    | '/$lang/hajj-omra/$slug'
+    | '/$lang/reservation/$slug'
+    | '/$lang/voyages/$slug'
+    | '/$lang/hajj-omra/'
+    | '/$lang/voyages/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AProposRoute: typeof AProposRoute
-  ContactRoute: typeof ContactRoute
-  GalleryRoute: typeof GalleryRoute
-  MarocRoute: typeof MarocRoute
-  MiceRoute: typeof MiceRoute
-  TransportRoute: typeof TransportRoute
-  HajjOmraSlugRoute: typeof HajjOmraSlugRoute
-  ReservationSlugRoute: typeof ReservationSlugRoute
-  VoyagesSlugRoute: typeof VoyagesSlugRoute
-  HajjOmraIndexRoute: typeof HajjOmraIndexRoute
-  VoyagesIndexRoute: typeof VoyagesIndexRoute
+  LangRoute: typeof LangRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/transport': {
-      id: '/transport'
-      path: '/transport'
-      fullPath: '/transport'
-      preLoaderRoute: typeof TransportRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mice': {
-      id: '/mice'
-      path: '/mice'
-      fullPath: '/mice'
-      preLoaderRoute: typeof MiceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/maroc': {
-      id: '/maroc'
-      path: '/maroc'
-      fullPath: '/maroc'
-      preLoaderRoute: typeof MarocRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gallery': {
-      id: '/gallery'
-      path: '/gallery'
-      fullPath: '/gallery'
-      preLoaderRoute: typeof GalleryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/a-propos': {
-      id: '/a-propos'
-      path: '/a-propos'
-      fullPath: '/a-propos'
-      preLoaderRoute: typeof AProposRouteImport
+    '/$lang': {
+      id: '/$lang'
+      path: '/$lang'
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -237,57 +214,128 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/voyages/': {
-      id: '/voyages/'
+    '/$lang/': {
+      id: '/$lang/'
+      path: '/'
+      fullPath: '/$lang/'
+      preLoaderRoute: typeof LangIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/transport': {
+      id: '/$lang/transport'
+      path: '/transport'
+      fullPath: '/$lang/transport'
+      preLoaderRoute: typeof LangTransportRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/mice': {
+      id: '/$lang/mice'
+      path: '/mice'
+      fullPath: '/$lang/mice'
+      preLoaderRoute: typeof LangMiceRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/maroc': {
+      id: '/$lang/maroc'
+      path: '/maroc'
+      fullPath: '/$lang/maroc'
+      preLoaderRoute: typeof LangMarocRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/gallery': {
+      id: '/$lang/gallery'
+      path: '/gallery'
+      fullPath: '/$lang/gallery'
+      preLoaderRoute: typeof LangGalleryRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/contact': {
+      id: '/$lang/contact'
+      path: '/contact'
+      fullPath: '/$lang/contact'
+      preLoaderRoute: typeof LangContactRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/a-propos': {
+      id: '/$lang/a-propos'
+      path: '/a-propos'
+      fullPath: '/$lang/a-propos'
+      preLoaderRoute: typeof LangAProposRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/voyages/': {
+      id: '/$lang/voyages/'
       path: '/voyages'
-      fullPath: '/voyages/'
-      preLoaderRoute: typeof VoyagesIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/$lang/voyages/'
+      preLoaderRoute: typeof LangVoyagesIndexRouteImport
+      parentRoute: typeof LangRoute
     }
-    '/hajj-omra/': {
-      id: '/hajj-omra/'
+    '/$lang/hajj-omra/': {
+      id: '/$lang/hajj-omra/'
       path: '/hajj-omra'
-      fullPath: '/hajj-omra/'
-      preLoaderRoute: typeof HajjOmraIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/$lang/hajj-omra/'
+      preLoaderRoute: typeof LangHajjOmraIndexRouteImport
+      parentRoute: typeof LangRoute
     }
-    '/voyages/$slug': {
-      id: '/voyages/$slug'
+    '/$lang/voyages/$slug': {
+      id: '/$lang/voyages/$slug'
       path: '/voyages/$slug'
-      fullPath: '/voyages/$slug'
-      preLoaderRoute: typeof VoyagesSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/$lang/voyages/$slug'
+      preLoaderRoute: typeof LangVoyagesSlugRouteImport
+      parentRoute: typeof LangRoute
     }
-    '/reservation/$slug': {
-      id: '/reservation/$slug'
+    '/$lang/reservation/$slug': {
+      id: '/$lang/reservation/$slug'
       path: '/reservation/$slug'
-      fullPath: '/reservation/$slug'
-      preLoaderRoute: typeof ReservationSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/$lang/reservation/$slug'
+      preLoaderRoute: typeof LangReservationSlugRouteImport
+      parentRoute: typeof LangRoute
     }
-    '/hajj-omra/$slug': {
-      id: '/hajj-omra/$slug'
+    '/$lang/hajj-omra/$slug': {
+      id: '/$lang/hajj-omra/$slug'
       path: '/hajj-omra/$slug'
-      fullPath: '/hajj-omra/$slug'
-      preLoaderRoute: typeof HajjOmraSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/$lang/hajj-omra/$slug'
+      preLoaderRoute: typeof LangHajjOmraSlugRouteImport
+      parentRoute: typeof LangRoute
     }
   }
 }
 
+interface LangRouteChildren {
+  LangAProposRoute: typeof LangAProposRoute
+  LangContactRoute: typeof LangContactRoute
+  LangGalleryRoute: typeof LangGalleryRoute
+  LangMarocRoute: typeof LangMarocRoute
+  LangMiceRoute: typeof LangMiceRoute
+  LangTransportRoute: typeof LangTransportRoute
+  LangIndexRoute: typeof LangIndexRoute
+  LangHajjOmraSlugRoute: typeof LangHajjOmraSlugRoute
+  LangReservationSlugRoute: typeof LangReservationSlugRoute
+  LangVoyagesSlugRoute: typeof LangVoyagesSlugRoute
+  LangHajjOmraIndexRoute: typeof LangHajjOmraIndexRoute
+  LangVoyagesIndexRoute: typeof LangVoyagesIndexRoute
+}
+
+const LangRouteChildren: LangRouteChildren = {
+  LangAProposRoute: LangAProposRoute,
+  LangContactRoute: LangContactRoute,
+  LangGalleryRoute: LangGalleryRoute,
+  LangMarocRoute: LangMarocRoute,
+  LangMiceRoute: LangMiceRoute,
+  LangTransportRoute: LangTransportRoute,
+  LangIndexRoute: LangIndexRoute,
+  LangHajjOmraSlugRoute: LangHajjOmraSlugRoute,
+  LangReservationSlugRoute: LangReservationSlugRoute,
+  LangVoyagesSlugRoute: LangVoyagesSlugRoute,
+  LangHajjOmraIndexRoute: LangHajjOmraIndexRoute,
+  LangVoyagesIndexRoute: LangVoyagesIndexRoute,
+}
+
+const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AProposRoute: AProposRoute,
-  ContactRoute: ContactRoute,
-  GalleryRoute: GalleryRoute,
-  MarocRoute: MarocRoute,
-  MiceRoute: MiceRoute,
-  TransportRoute: TransportRoute,
-  HajjOmraSlugRoute: HajjOmraSlugRoute,
-  ReservationSlugRoute: ReservationSlugRoute,
-  VoyagesSlugRoute: VoyagesSlugRoute,
-  HajjOmraIndexRoute: HajjOmraIndexRoute,
-  VoyagesIndexRoute: VoyagesIndexRoute,
+  LangRoute: LangRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

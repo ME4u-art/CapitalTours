@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useLocale } from "@/i18n";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Car, ShieldCheck, Clock } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
-export const Route = createFileRoute("/transport")({
+export const Route = createFileRoute("/$lang/transport")({
   head: () => ({
     meta: [
       { title: "Transport privé & chauffeurs — Capital Tours" },
@@ -14,7 +15,9 @@ export const Route = createFileRoute("/transport")({
       { property: "og:description", content: "Chauffeurs professionnels et flotte premium au Maroc." },
     ],
   }),
-  component: () => (
+  component: () => {
+  const lang = useLocale();
+  return (
     <div className="min-h-screen">
       <Header />
       <section className="pt-40 pb-16">
@@ -23,7 +26,8 @@ export const Route = createFileRoute("/transport")({
             <div className="text-xs font-semibold uppercase tracking-widest text-primary">Transport</div>
             <h1 className="mt-2 font-display text-5xl sm:text-6xl">Votre confort, notre priorité.</h1>
             <p className="mt-4 text-muted-foreground">Flotte de véhicules haut de gamme, chauffeurs professionnels et service exécutif pour vos déplacements individuels et de groupe au Maroc.</p>
-            <Link to="/contact" className="btn-primary mt-6 hover:-translate-y-0.5">Réserver un transfert</Link>
+            <Link to="/$lang/contact"
+              params={{ lang }} className="btn-primary mt-6 hover:-translate-y-0.5">Réserver un transfert</Link>
           </Reveal>
           <div className="rounded-3xl overflow-hidden aspect-[4/3] shadow-[var(--shadow-lift)]">
             <img src="/transport.jpg" alt="Van VIP Mercedes Sprinter — Capital Tours" className="h-full w-full object-cover" />
@@ -45,5 +49,6 @@ export const Route = createFileRoute("/transport")({
       </StaggerGroup>
       <Footer />
     </div>
-  ),
+  );
+},
 });

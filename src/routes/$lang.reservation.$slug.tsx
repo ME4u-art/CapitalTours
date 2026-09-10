@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useLocale } from "@/i18n";
 import { useState } from "react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -16,7 +17,7 @@ import {
   BadgeCheck,
 } from "lucide-react";
 
-export const Route = createFileRoute("/reservation/$slug")({
+export const Route = createFileRoute("/$lang/reservation/$slug")({
   loader: ({ params }) => {
     const tour = featuredTours.find((t) => t.slug === params.slug);
     if (!tour) throw notFound();
@@ -29,16 +30,20 @@ export const Route = createFileRoute("/reservation/$slug")({
     ],
   }),
   component: Reservation,
-  notFoundComponent: () => (
+  notFoundComponent: () => {
+  const lang = useLocale();
+  return (
     <div className="min-h-screen">
       <Header />
       <div className="container-page py-40 text-center">
         <h1 className="font-display text-4xl">Programme introuvable</h1>
-        <Link to="/voyages" className="btn-primary mt-6 inline-flex">Voir nos programmes</Link>
+        <Link to="/$lang/voyages"
+              params={{ lang }} className="btn-primary mt-6 inline-flex">Voir nos programmes</Link>
       </div>
       <Footer />
     </div>
-  ),
+  );
+},
 });
 
 const DEPOSIT = "3 000 dhs";
@@ -249,6 +254,7 @@ function PaymentStep({
 }
 
 function ConfirmStep({ reference, tourTitle }: { reference: string; tourTitle: string }) {
+  const lang = useLocale();
   return (
     <div className="py-6 text-center">
       <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/15 text-primary">
@@ -265,8 +271,10 @@ function ConfirmStep({ reference, tourTitle }: { reference: string; tourTitle: s
         Un conseiller Capital Tours vous contactera sous 24h pour finaliser votre dossier.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <Link to="/voyages" className="btn-primary hover:-translate-y-0.5">Découvrir d'autres programmes</Link>
-        <Link to="/" className="btn-ghost hover:-translate-y-0.5">Retour à l'accueil</Link>
+        <Link to="/$lang/voyages"
+              params={{ lang }} className="btn-primary hover:-translate-y-0.5">Découvrir d'autres programmes</Link>
+        <Link to="/$lang"
+              params={{ lang }} className="btn-ghost hover:-translate-y-0.5">Retour à l'accueil</Link>
       </div>
     </div>
   );

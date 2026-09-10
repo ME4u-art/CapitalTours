@@ -5,7 +5,7 @@ import { galleryTitle } from "@/lib/pilgrimage";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
-export const Route = createFileRoute("/gallery")({
+export const Route = createFileRoute("/$lang/gallery")({
   head: () => ({
     meta: [{ title: galleryTitle }],
   }),

@@ -4,7 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
-export const Route = createFileRoute("/a-propos")({
+export const Route = createFileRoute("/$lang/a-propos")({
   head: () => ({
     meta: [
       { title: "Qui sommes-nous ? — Capital Tours" },

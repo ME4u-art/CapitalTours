@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useLocale } from "@/i18n";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { IMG } from "@/lib/tours";
@@ -13,7 +14,7 @@ import teamCoworking from "@/assets/mice/team-coworking.jpg";
 
 const miceGallery = [businessNewspaper, streetProfessionals, skyscrapersBlue, skyscrapersDusk, teamCoworking];
 
-export const Route = createFileRoute("/mice")({
+export const Route = createFileRoute("/$lang/mice")({
   head: () => ({
     meta: [
       { title: "MICE — Séminaires, congrès & incentives | Capital Tours" },
@@ -23,7 +24,9 @@ export const Route = createFileRoute("/mice")({
       { property: "og:image", content: IMG.marrakech },
     ],
   }),
-  component: () => (
+  component: () => {
+  const lang = useLocale();
+  return (
     <div className="min-h-screen">
       <Header />
       <section className="pt-40 pb-16 bg-sand">
@@ -32,7 +35,8 @@ export const Route = createFileRoute("/mice")({
             <div className="text-xs font-semibold uppercase tracking-widest text-primary">MICE</div>
             <h1 className="mt-2 font-display text-5xl sm:text-6xl">Meetings, Incentives, Conferences & Exhibitions</h1>
             <p className="mt-4 text-muted-foreground">De la conception à la logistique, nous imaginons et produisons des événements professionnels sur mesure, au Maroc et à l'international.</p>
-            <Link to="/contact" className="btn-primary mt-6 hover:-translate-y-0.5">Demander un devis</Link>
+            <Link to="/$lang/contact"
+              params={{ lang }} className="btn-primary mt-6 hover:-translate-y-0.5">Demander un devis</Link>
           </Reveal>
           <div className="grid grid-cols-2 gap-3">
             <img src={businessNewspaper} alt="" className="aspect-square rounded-2xl object-cover" />
@@ -73,5 +77,6 @@ export const Route = createFileRoute("/mice")({
       </section>
       <Footer />
     </div>
-  ),
+  );
+},
 });

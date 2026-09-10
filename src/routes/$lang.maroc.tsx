@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useLocale } from "@/i18n";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { IMG, destinationsMaroc } from "@/lib/tours";
@@ -6,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
-export const Route = createFileRoute("/maroc")({
+export const Route = createFileRoute("/$lang/maroc")({
   head: () => ({
     meta: [
       { title: "Départs Maroc — Circuits & séjours au Maroc | Capital Tours" },
@@ -26,6 +27,7 @@ const circuits = [
 ];
 
 function MarocPage() {
+  const lang = useLocale();
   return (
     <div className="min-h-screen">
       <Header />
@@ -73,7 +75,8 @@ function MarocPage() {
                 <div className="text-xs uppercase tracking-widest text-accent">{d.tagline}</div>
                 <h3 className="mt-1 font-display text-2xl">{d.name}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{d.desc}</p>
-                <Link to="/contact" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                <Link to="/$lang/contact"
+              params={{ lang }} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
                   Réserver <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

@@ -1,13 +1,15 @@
 import type { Tour } from "@/lib/tours";
+import { useLocale } from "@/i18n";
 import { Link } from "@tanstack/react-router";
 import { HoverScale } from "@/components/motion/HoverScale";
 
 export function TourCard({ tour }: { tour: Tour }) {
+  const lang = useLocale();
   return (
     <HoverScale className="h-full w-full">
     <Link
-      to="/voyages/$slug"
-      params={{ slug: tour.slug }}
+      to="/$lang/voyages/$slug"
+      params={{ lang, slug: tour.slug }}
       className="group relative block aspect-[3/4] w-full overflow-hidden rounded-[28px] shadow-[var(--shadow-soft)] transition duration-300 hover:shadow-[var(--shadow-lift)]"
     >
       <img

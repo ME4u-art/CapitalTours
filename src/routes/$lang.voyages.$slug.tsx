@@ -1,11 +1,12 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useLocale } from "@/i18n";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { featuredTours } from "@/lib/tours";
 import { Calendar, Clock, MapPin, Check, X, ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 
-export const Route = createFileRoute("/voyages/$slug")({
+export const Route = createFileRoute("/$lang/voyages/$slug")({
   loader: ({ params }) => {
     const tour = featuredTours.find((t) => t.slug === params.slug);
     if (!tour) throw notFound();
@@ -26,18 +27,23 @@ export const Route = createFileRoute("/voyages/$slug")({
     };
   },
   component: TourDetail,
-  notFoundComponent: () => (
+  notFoundComponent: () => {
+  const lang = useLocale();
+  return (
     <div className="min-h-screen"><Header />
       <div className="container-page py-40 text-center">
         <h1 className="font-display text-4xl">Voyage introuvable</h1>
-        <Link to="/voyages" className="btn-primary mt-6 inline-flex">Voir tous les voyages</Link>
+        <Link to="/$lang/voyages"
+              params={{ lang }} className="btn-primary mt-6 inline-flex">Voir tous les voyages</Link>
       </div>
       <Footer />
     </div>
-  ),
+  );
+},
 });
 
 function TourDetail() {
+  const lang = useLocale();
   const { tour } = Route.useLoaderData();
   return (
     <div className="min-h-screen">
@@ -117,8 +123,9 @@ function TourDetail() {
           <div className="mt-4 rounded-xl bg-secondary px-4 py-2 text-center text-xs font-medium text-primary">
             Réservez en ligne — acompte 3 000 dhs
           </div>
-          <Link to="/reservation/$slug" params={{ slug: tour.slug }} className="btn-primary mt-3 w-full hover:-translate-y-0.5">Réserver <ArrowRight className="h-4 w-4" /></Link>
-          <Link to="/voyages" className="mt-3 block text-center text-sm text-primary underline">Voir tous les voyages</Link>
+          <Link to="/$lang/reservation/$slug" params={{ lang, slug: tour.slug }} className="btn-primary mt-3 w-full hover:-translate-y-0.5">Réserver <ArrowRight className="h-4 w-4" /></Link>
+          <Link to="/$lang/voyages"
+              params={{ lang }} className="mt-3 block text-center text-sm text-primary underline">Voir tous les voyages</Link>
         </aside>
         </Reveal>
       </section>

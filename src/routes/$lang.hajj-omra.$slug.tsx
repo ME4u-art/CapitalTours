@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useLocale } from "@/i18n";
 import { useState } from "react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -16,7 +17,7 @@ import {
   BadgeCheck,
 } from "lucide-react";
 
-export const Route = createFileRoute("/hajj-omra/$slug")({
+export const Route = createFileRoute("/$lang/hajj-omra/$slug")({
   loader: ({ params }) => {
     const program = pilgrimagePrograms.find((p) => p.slug === params.slug);
     if (!program) throw notFound();
@@ -31,16 +32,20 @@ export const Route = createFileRoute("/hajj-omra/$slug")({
     ],
   }),
   component: ProgramDetail,
-  notFoundComponent: () => (
+  notFoundComponent: () => {
+  const lang = useLocale();
+  return (
     <div className="min-h-screen">
       <Header />
       <div className="container-page py-40 text-center" dir="rtl">
         <h1 className="font-display text-4xl">البرنامج غير موجود</h1>
-        <Link to="/hajj-omra" className="btn-primary mt-6 inline-flex">العودة إلى العمرة والحج</Link>
+        <Link to="/$lang/hajj-omra"
+              params={{ lang }} className="btn-primary mt-6 inline-flex">العودة إلى العمرة والحج</Link>
       </div>
       <Footer />
     </div>
-  ),
+  );
+},
 });
 
 function PriceTable({ rows }: { rows: { label: string; sub?: string; quad: string; triple: string; double: string }[] }) {
@@ -188,6 +193,7 @@ function BookingForm({ programTitle, hotels, dates, programs }: { programTitle: 
 }
 
 function ProgramDetail() {
+  const lang = useLocale();
   const { program } = Route.useLoaderData();
 
   return (
@@ -226,9 +232,11 @@ function ProgramDetail() {
         {/* مسار التنقل */}
         <div className="border-b border-border bg-sand">
           <div className="container-page flex items-center gap-1.5 py-3 text-sm text-muted-foreground">
-            <Link to="/" className="hover:text-primary">الرئيسية</Link>
+            <Link to="/$lang"
+              params={{ lang }} className="hover:text-primary">الرئيسية</Link>
             <ChevronLeft className="h-3.5 w-3.5" />
-            <Link to="/hajj-omra" className="hover:text-primary">العمرة والحج</Link>
+            <Link to="/$lang/hajj-omra"
+              params={{ lang }} className="hover:text-primary">العمرة والحج</Link>
             <ChevronLeft className="h-3.5 w-3.5" />
             <span className="font-semibold text-foreground">{program.shortTitle}</span>
           </div>

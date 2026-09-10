@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useLocale } from "@/i18n";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { IMG } from "@/lib/tours";
@@ -18,7 +19,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 
-export const Route = createFileRoute("/hajj-omra/")({
+export const Route = createFileRoute("/$lang/hajj-omra/")({
   head: () => ({
     meta: [
       { title: "العمرة والحج — Capital Tours" },
@@ -54,6 +55,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 }
 
 function HajjOmraIndex() {
+  const lang = useLocale();
   return (
     <div className="min-h-screen">
       <Header />
@@ -71,10 +73,10 @@ function HajjOmraIndex() {
                 برامج متكاملة، وتأطير ديني، وفنادق قريبة من الحرم، وطيران مباشر — انطلاقاً من المغرب.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <Link to="/hajj-omra/$slug" params={{ slug: "omra-2026" }} className="btn-primary hover:-translate-y-0.5">
+                <Link to="/$lang/hajj-omra/$slug" params={{ lang, slug: "omra-2026" }} className="btn-primary hover:-translate-y-0.5">
                   برنامج العمرة <ArrowLeft className="h-4 w-4" />
                 </Link>
-                <Link to="/hajj-omra/$slug" params={{ slug: "hajj-2027" }} className="btn-ghost hover:-translate-y-0.5">
+                <Link to="/$lang/hajj-omra/$slug" params={{ lang, slug: "hajj-2027" }} className="btn-ghost hover:-translate-y-0.5">
                   برنامج الحج 2027
                 </Link>
               </div>
@@ -95,8 +97,8 @@ function HajjOmraIndex() {
               {pilgrimagePrograms.map((p) => (
                 <StaggerItem key={p.slug}>
                 <Link
-                  to="/hajj-omra/$slug"
-                  params={{ slug: p.slug }}
+                  to="/$lang/hajj-omra/$slug"
+                  params={{ lang, slug: p.slug }}
                   className="group relative block h-80 overflow-hidden rounded-3xl shadow-[var(--shadow-soft)] transition hover:shadow-[var(--shadow-lift)]"
                 >
                   <img src={p.image} alt={p.title} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />

@@ -4,7 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 
-export const Route = createFileRoute("/contact")({
+export const Route = createFileRoute("/$lang/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Capital Tours" },
