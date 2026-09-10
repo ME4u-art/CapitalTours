@@ -43,9 +43,14 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   ar: "العربية",
 };
 
-/** Short codes for the compact header switcher. */
+/**
+ * Short codes for the compact header switcher.
+ *
+ * Arabic gets a real word rather than a lone letter: "ع" is a character, not
+ * a language name, and it reads as a stray glyph beside two Latin codes.
+ */
 export const LOCALE_SHORT: Record<Locale, string> = {
   fr: "FR",
   en: "EN",
-  ar: "ع",
+  ar: "عربي",
 };
