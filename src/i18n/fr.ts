@@ -50,6 +50,14 @@ export const fr = {
   "home.cruisesTitle": "Découvrez le monde au fil de l'eau.",
   "home.miceTitle": "Meetings, Incentives, Conferences & Exhibitions",
   "home.partners": "Nos partenaires",
+  "meta.home.title": "Capital Tours — Agence de voyages au Maroc",
+  "meta.home.desc":
+    "Voyages organisés, circuits, croisières, Hajj & Omra et MICE. Découvrez le monde avec Capital Tours, votre agence de voyages basée au Maroc.",
+  "meta.home.ogDesc":
+    "Voyages organisés, circuits, croisières, Hajj & Omra et MICE.",
+  "home.moroccoLead":
+    "Explorez le Royaume à travers ses villes impériales, ses côtes et ses déserts — entre culture, détente et aventure.",
+  "action.moreDetail": "Plus de détail",
 
   // shared actions
   "action.discover": "Découvrir",
@@ -76,6 +84,162 @@ export const fr = {
   "pilgrimage.roomDouble": "Chambre double",
   "pilgrimage.roomTriple": "Chambre triple",
   "pilgrimage.roomQuad": "Chambre quadruple",
+
+  // regions — filter labels on /voyages, badge on a tour page
+  "region.all": "Tous",
+  "region.Asie": "Asie",
+  "region.Europe": "Europe",
+  "region.Afrique": "Afrique",
+  "region.Ameriques": "Amériques",
+  "region.MoyenOrient": "Moyen-Orient",
+
+  // /voyages
+  "voyages.title": "Toutes nos destinations",
+  "voyages.lead":
+    "Circuits en groupe avec billet d'avion au départ du Maroc, encadrés par nos guides.",
+
+  // tour detail page
+  "tour.overview": "Aperçu du programme",
+  "tour.overviewBody":
+    "Un programme organisé par Capital Tours et encadré par nos équipes, du départ au retour.",
+  "tour.yourItinerary": "Votre itinéraire",
+  "tour.includedTitle": "Ce que comprend le programme",
+  "tour.notIncludedTitle": "Non inclus",
+  "tour.pricePerPerson": "Prix par personne",
+  "tour.priceNoteDefault":
+    "Base chambre double, sous réserve de disponibilité.",
+  "tour.deposit": "Réservez en ligne — acompte 3 000 dhs",
+  "tour.seeAll": "Voir tous les voyages",
+  "tour.notFound": "Voyage introuvable",
+  "tour.fbFlights": "Vols internationaux",
+  "tour.fbHotel": "Hébergement",
+  "tour.fbTransfers": "Transferts",
+  "tour.fbGuiding": "Encadrement",
+
+  // /maroc
+  "maroc.eyebrow": "Départs garantis Maroc",
+  "maroc.title": "Explorez le Maroc autrement.",
+  "maroc.lead":
+    "Voyages soigneusement conçus, mêlant découverte culturelle, détente et aventure.",
+  "maroc.circuits": "Circuits Maroc",
+  "maroc.destinations": "Nos destinations au Maroc",
+  "maroc.ifrane": "Une journée au cœur d'Ifrane",
+  "maroc.imperial": "Au cœur des villes impériales",
+  "maroc.south": "Sud du Maroc",
+
+  // /mice
+  "mice.lead":
+    "De la conception à la logistique, nous imaginons et produisons des événements professionnels sur mesure, au Maroc et à l'international.",
+  "mice.quote": "Demander un devis",
+  "mice.meetings": "Meetings",
+  "mice.meetingsDesc": "Réunions d'entreprise clé en main.",
+  "mice.incentives": "Incentives",
+  "mice.incentivesDesc": "Voyages de motivation & récompenses.",
+  "mice.conferences": "Conferences",
+  "mice.conferencesDesc": "Congrès professionnels & scientifiques.",
+  "mice.exhibitions": "Exhibitions",
+  "mice.exhibitionsDesc": "Salons et événements grand format.",
+  "mice.gallery": "Nos événements en images",
+
+  // /transport
+  "transport.title": "Votre confort, notre priorité.",
+  "transport.lead":
+    "Flotte de véhicules haut de gamme, chauffeurs professionnels et service exécutif pour vos déplacements individuels et de groupe au Maroc.",
+  "transport.cta": "Réserver un transfert",
+  "transport.fleet": "Flotte premium",
+  "transport.fleetDesc": "Berlines, SUV, minibus et vans VIP récents.",
+  "transport.safety": "Sécurité",
+  "transport.safetyDesc":
+    "Chauffeurs formés, véhicules assurés, suivi trajet.",
+  "transport.always": "24/7",
+  "transport.alwaysDesc": "Disponibilité totale, ponctualité garantie.",
+
+  // /a-propos
+  "about.eyebrow": "À propos",
+  "about.title": "Voyager, avec le cœur.",
+  "about.p1":
+    "Capital Tours est une agence de voyages marocaine qui compose depuis des années des expériences soigneusement conçues : circuits en groupe, séjours sur mesure, Hajj & Omra et voyages d'affaires.",
+  "about.p2":
+    "Notre force : une équipe passionnée, un réseau international de partenaires triés sur le volet et un suivi personnalisé avant, pendant et après votre voyage.",
+  "about.statYears": "années d'expérience",
+  "about.statTravellers": "voyageurs conquis",
+  "about.statDestinations": "destinations couvertes",
+
+  // /contact
+  "contact.title": "Parlons de votre prochain voyage.",
+  "contact.lead": "Notre équipe vous répond sous 24h ouvrées.",
+  "contact.city": "Fès, Maroc",
+  "contact.firstName": "Prénom",
+  "contact.lastName": "Nom",
+  "contact.email": "Email",
+  "contact.subject": "Sujet",
+  "contact.message": "Message",
+  "contact.send": "Envoyer",
+
+  // /gallery
+  "gallery.title": "Photos de nos voyages",
+  "gallery.lead":
+    "Quelques souvenirs de nos dernières sorties et pèlerinages.",
+
+  // /reservation — the demo checkout
+  "res.notFound": "Programme introuvable",
+  "res.seePrograms": "Voir nos programmes",
+  "res.step1": "Informations",
+  "res.step2": "Paiement",
+  "res.step3": "Confirmation",
+  "res.pricePerPerson": "Prix / personne",
+  "res.depositDue": "Acompte à payer",
+  "res.balance": "Solde à l'agence",
+  "res.beforeDeparture": "Avant le départ",
+  "res.secureNote":
+    "Paiement sécurisé — acompte remboursable sous conditions.",
+  "res.demoNote":
+    "Démonstration — paiement simulé. En production, cette étape est connectée à la passerelle bancaire marocaine (Payzone / CMI). Aucune carte n'est réellement débitée.",
+  "res.yourInfo": "Vos informations",
+  "res.mainTraveller": "Renseignez le voyageur principal.",
+  "res.phone": "Téléphone",
+  "res.travellers": "Nombre de voyageurs",
+  "res.departureCity": "Ville de départ",
+  "res.continue": "Continuer vers le paiement",
+  "res.payTitle": "Paiement de l'acompte",
+  "res.secureBadge": "Sécurisé",
+  "res.payLead": "Réglez {amount} pour confirmer votre réservation.",
+  "res.cardHolder": "Titulaire de la carte",
+  "res.cardNumber": "Numéro de carte",
+  "res.expiry": "Expiration",
+  "res.cvc": "CVC",
+  "res.processing": "Traitement…",
+  "res.pay": "Payer",
+  "res.back": "Retour",
+  "res.confirmed": "Réservation confirmée !",
+  "res.thanks":
+    "Merci — votre acompte de {amount} pour {tour} a bien été reçu.",
+  "res.reference": "Référence",
+  "res.followUp":
+    "Un conseiller Capital Tours vous contactera sous 24h pour finaliser votre dossier.",
+  "res.otherPrograms": "Découvrir d'autres programmes",
+  "meta.reservation": "Réservation",
+
+  // page titles and descriptions (<head>)
+  "meta.voyages.title": "Nos voyages organisés — Capital Tours",
+  "meta.voyages.desc":
+    "Découvrez tous nos voyages organisés en groupe avec billet d'avion : Asie, Europe, Amériques et plus.",
+  "meta.maroc.title": "Départs Maroc — Circuits & séjours au Maroc | Capital Tours",
+  "meta.maroc.desc":
+    "Découvrez le Maroc avec nos circuits soignés : Marrakech, Fès, Sahara, villes impériales et côte atlantique.",
+  "meta.mice.title": "MICE — Séminaires, congrès & incentives | Capital Tours",
+  "meta.mice.desc":
+    "Organisation de séminaires, conférences, congrès et voyages incentives. Capital Tours MICE.",
+  "meta.transport.title": "Transport privé & chauffeurs — Capital Tours",
+  "meta.transport.desc":
+    "Flotte haut de gamme, chauffeurs professionnels : transferts, mise à disposition et VIP au Maroc.",
+  "meta.about.title": "Qui sommes-nous ? — Capital Tours",
+  "meta.about.desc":
+    "Capital Tours, agence de voyages marocaine passionnée : circuits, croisières, Hajj & Omra et MICE.",
+  "meta.contact.title": "Contact — Capital Tours",
+  "meta.contact.desc":
+    "Contactez notre équipe pour un devis, une réservation ou un renseignement.",
+  "meta.gallery.title": "Photos de nos voyages — Capital Tours",
 
   // errors and empty states
   "error.notFoundTitle": "Page introuvable",

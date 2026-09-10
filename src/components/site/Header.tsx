@@ -83,7 +83,7 @@ export function Header() {
                 params={{ lang }}
                 className="btn-primary inline-flex"
               >
-                Nous contacter
+                {t("nav.contact")}
               </Link>
             </HoverScale>
             <button
@@ -115,7 +115,7 @@ export function Header() {
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground"
             >
-              Nous contacter
+              {t("nav.contact")}
             </Link>
           </div>
         )}

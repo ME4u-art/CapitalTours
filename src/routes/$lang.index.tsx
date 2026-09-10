@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useLocale, useLocalized, useT } from "@/i18n";
+import { tFor, useLocale, useLocalized, useT } from "@/i18n";
 import { useCallback, useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
@@ -27,26 +27,18 @@ import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { HoverScale } from "@/components/motion/HoverScale";
 
 export const Route = createFileRoute("/$lang/")({
-  head: () => ({
-    meta: [
-      { title: "Capital Tours — Agence de voyages au Maroc" },
-      {
-        name: "description",
-        content:
-          "Voyages organisés, circuits, croisières, Hajj & Omra et MICE. Découvrez le monde avec Capital Tours, votre agence de voyages basée au Maroc.",
-      },
-      {
-        property: "og:title",
-        content: "Capital Tours — Agence de voyages au Maroc",
-      },
-      {
-        property: "og:description",
-        content:
-          "Voyages organisés, circuits, croisières, Hajj & Omra et MICE.",
-      },
-      { property: "og:type", content: "website" },
-    ],
-  }),
+  head: ({ params }) => {
+    const t = tFor(params.lang);
+    return {
+      meta: [
+        { title: t("meta.home.title") },
+        { name: "description", content: t("meta.home.desc") },
+        { property: "og:title", content: t("meta.home.title") },
+        { property: "og:description", content: t("meta.home.ogDesc") },
+        { property: "og:type", content: "website" },
+      ],
+    };
+  },
   component: HomePage,
 });
 
@@ -77,7 +69,7 @@ const heroSlides = [
     slug: "omra-2026",
     image: IMG.hajj,
     badge: { fr: "عمرة 2026 · Omra", en: "عمرة 2026 · Umrah", ar: "عمرة 2026" },
-    title: "Omra 2026",
+    title: { fr: "Omra 2026", en: "Umrah 2026", ar: "عمرة 2026" },
     accent: {
       fr: "vol direct vers Médine.",
       en: "direct flight to Madinah.",
@@ -99,7 +91,11 @@ const heroSlides = [
       en: "الحج 1448هـ · Hajj 2027",
       ar: "الحج 1448 هـ",
     },
-    title: "Hajj 1448H / 2027",
+    title: {
+      fr: "Hajj 1448H / 2027",
+      en: "Hajj 1448H / 2027",
+      ar: "الحج 1448هـ / 2027",
+    },
     accent: {
       fr: "un pèlerinage accompagné.",
       en: "a guided pilgrimage.",
@@ -121,7 +117,11 @@ const heroSlides = [
       en: "Summer 2026 — new programmes",
       ar: "صيف 2026 — برامج جديدة",
     },
-    title: "Maldives & Sri Lanka",
+    title: {
+      fr: "Maldives & Sri Lanka",
+      en: "Maldives & Sri Lanka",
+      ar: "جزر المالديف وسريلانكا",
+    },
     accent: {
       fr: "évasion tropicale.",
       en: "a tropical escape.",
@@ -143,7 +143,11 @@ const heroSlides = [
       en: "Summer 2026 — new programmes",
       ar: "صيف 2026 — برامج جديدة",
     },
-    title: "Saint-Pétersbourg / Moscou",
+    title: {
+      fr: "Saint-Pétersbourg / Moscou",
+      en: "Saint Petersburg / Moscow",
+      ar: "سان بطرسبرغ / موسكو",
+    },
     accent: {
       fr: "palais impériaux.",
       en: "imperial palaces.",
@@ -165,7 +169,7 @@ const heroSlides = [
       en: "Summer 2026 — new programmes",
       ar: "صيف 2026 — برامج جديدة",
     },
-    title: "Istanbul",
+    title: { fr: "Istanbul", en: "Istanbul", ar: "إسطنبول" },
     accent: {
       fr: "entre deux continents.",
       en: "between two continents.",
@@ -224,7 +228,7 @@ function Hero() {
         <img
           key={s.slug}
           src={s.image}
-          alt={s.title}
+          alt={pickL(s.title)}
           loading={idx === 0 ? "eager" : "lazy"}
           fetchPriority={idx === 0 ? "high" : "low"}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${idx === i ? "hero-kenburns opacity-100" : "opacity-0"}`}
@@ -249,7 +253,7 @@ function Hero() {
                 <Sparkles className="h-3.5 w-3.5" /> {pickL(slide.badge)}
               </span>
               <h1 className="mt-5 font-display text-[2.5rem] leading-[1.05] text-white drop-shadow-md sm:mt-6 sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-7xl">
-                {slide.title},{" "}
+                {pickL(slide.title)},{" "}
                 <em className="not-italic text-accent">
                   {pickL(slide.accent)}
                 </em>
@@ -537,6 +541,7 @@ function HajjOmra() {
 
 function MarocSection() {
   const t = useT();
+  const { pick: pickL } = useLocalized();
   const lang = useLocale();
   return (
     <section className="mt-16 sm:mt-24">
@@ -546,10 +551,7 @@ function MarocSection() {
           <h2 className="mt-1 font-display text-3xl sm:text-4xl md:text-5xl">
             {t("home.moroccoTitle")}
           </h2>
-          <p className="mt-3 text-muted-foreground">
-            Explorez le Royaume à travers ses villes impériales, ses côtes et
-            ses déserts — entre culture, détente et aventure.
-          </p>
+          <p className="mt-3 text-muted-foreground">{t("home.moroccoLead")}</p>
         </Reveal>
         <StaggerGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {destinationsMaroc.map((d) => (
@@ -558,7 +560,7 @@ function MarocSection() {
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={d.image}
-                    alt={d.name}
+                    alt={pickL(d.name)}
                     loading="lazy"
                     width={1200}
                     height={800}
@@ -567,16 +569,16 @@ function MarocSection() {
                 </div>
                 <div className="p-6">
                   <div className="text-xs uppercase tracking-widest text-accent">
-                    {d.tagline}
+                    {pickL(d.tagline)}
                   </div>
-                  <h3 className="mt-2 font-display text-2xl">{d.name}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{d.desc}</p>
+                  <h3 className="mt-2 font-display text-2xl">{pickL(d.name)}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{pickL(d.desc)}</p>
                   <Link
                     to="/$lang/maroc"
                     params={{ lang }}
                     className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary"
                   >
-                    Plus de détail <ArrowRight className="h-4 w-4" />
+                    {t("action.moreDetail")} <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               </article>
@@ -597,7 +599,7 @@ function CruiseBanner() {
         <div className="relative overflow-hidden rounded-3xl">
           <img
             src={IMG.cruise}
-            alt="Croisière"
+            alt={t("home.cruises")}
             loading="lazy"
             width={1920}
             height={800}

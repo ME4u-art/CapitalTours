@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useLocale } from "@/i18n";
+import { tFor, useLocale, useT, type TranslationKey } from "@/i18n";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { IMG } from "@/lib/tours";
@@ -14,29 +14,44 @@ import teamCoworking from "@/assets/mice/team-coworking.jpg";
 
 const miceGallery = [businessNewspaper, streetProfessionals, skyscrapersBlue, skyscrapersDusk, teamCoworking];
 
+const pillars: { icon: typeof Users; title: TranslationKey; desc: TranslationKey }[] = [
+  { icon: Users, title: "mice.meetings", desc: "mice.meetingsDesc" },
+  { icon: Sparkles, title: "mice.incentives", desc: "mice.incentivesDesc" },
+  { icon: Mic, title: "mice.conferences", desc: "mice.conferencesDesc" },
+  { icon: Building2, title: "mice.exhibitions", desc: "mice.exhibitionsDesc" },
+];
+
 export const Route = createFileRoute("/$lang/mice")({
-  head: () => ({
-    meta: [
-      { title: "MICE — Séminaires, congrès & incentives | Capital Tours" },
-      { name: "description", content: "Organisation de séminaires, conférences, congrès et voyages incentives. Capital Tours MICE." },
-      { property: "og:title", content: "MICE — Capital Tours" },
-      { property: "og:description", content: "Séminaires, conférences, congrès et voyages incentives." },
-      { property: "og:image", content: IMG.marrakech },
-    ],
-  }),
-  component: () => {
+  head: ({ params }) => {
+    const t = tFor(params.lang);
+    return {
+      meta: [
+        { title: t("meta.mice.title") },
+        { name: "description", content: t("meta.mice.desc") },
+        { property: "og:title", content: t("meta.mice.title") },
+        { property: "og:description", content: t("meta.mice.desc") },
+        { property: "og:image", content: IMG.marrakech },
+      ],
+    };
+  },
+  component: MicePage,
+});
+
+function MicePage() {
   const lang = useLocale();
+  const t = useT();
   return (
     <div className="min-h-screen">
       <Header />
       <section className="pt-40 pb-16 bg-sand">
         <div className="container-page grid items-center gap-10 md:grid-cols-2">
           <Reveal>
-            <div className="text-xs font-semibold uppercase tracking-widest text-primary">MICE</div>
-            <h1 className="mt-2 font-display text-5xl sm:text-6xl">Meetings, Incentives, Conferences & Exhibitions</h1>
-            <p className="mt-4 text-muted-foreground">De la conception à la logistique, nous imaginons et produisons des événements professionnels sur mesure, au Maroc et à l'international.</p>
-            <Link to="/$lang/contact"
-              params={{ lang }} className="btn-primary mt-6 hover:-translate-y-0.5">Demander un devis</Link>
+            <div className="text-xs font-semibold uppercase tracking-widest text-primary">{t("nav.mice")}</div>
+            <h1 className="mt-2 font-display text-5xl sm:text-6xl">{t("home.miceTitle")}</h1>
+            <p className="mt-4 text-muted-foreground">{t("mice.lead")}</p>
+            <Link to="/$lang/contact" params={{ lang }} className="btn-primary mt-6 hover:-translate-y-0.5">
+              {t("mice.quote")}
+            </Link>
           </Reveal>
           <div className="grid grid-cols-2 gap-3">
             <img src={businessNewspaper} alt="" className="aspect-square rounded-2xl object-cover" />
@@ -47,22 +62,17 @@ export const Route = createFileRoute("/$lang/mice")({
         </div>
       </section>
       <StaggerGroup className="container-page py-16 grid gap-6 md:grid-cols-4">
-        {[
-          { icon: Users, t: "Meetings", d: "Réunions d'entreprise clé en main." },
-          { icon: Sparkles, t: "Incentives", d: "Voyages de motivation & récompenses." },
-          { icon: Mic, t: "Conferences", d: "Congrès professionnels & scientifiques." },
-          { icon: Building2, t: "Exhibitions", d: "Salons et événements grand format." },
-        ].map(({ icon: I, t, d }) => (
-          <StaggerItem key={t} className="rounded-3xl border border-border p-6">
+        {pillars.map(({ icon: I, title, desc }) => (
+          <StaggerItem key={title} className="rounded-3xl border border-border p-6">
             <I className="h-6 w-6 text-primary" />
-            <h3 className="mt-4 font-display text-xl">{t}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{d}</p>
+            <h3 className="mt-4 font-display text-xl">{t(title)}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{t(desc)}</p>
           </StaggerItem>
         ))}
       </StaggerGroup>
       <section className="container-page pb-16">
         <Reveal>
-          <h2 className="font-display text-3xl sm:text-4xl">Nos événements en images</h2>
+          <h2 className="font-display text-3xl sm:text-4xl">{t("mice.gallery")}</h2>
         </Reveal>
         <StaggerGroup className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3">
           {miceGallery.map((src, i) => (
@@ -78,5 +88,4 @@ export const Route = createFileRoute("/$lang/mice")({
       <Footer />
     </div>
   );
-},
-});
+}

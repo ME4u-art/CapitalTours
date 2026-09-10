@@ -1,10 +1,11 @@
 import type { Tour } from "@/lib/tours";
-import { useLocale } from "@/i18n";
+import { useLocale, useLocalized } from "@/i18n";
 import { Link } from "@tanstack/react-router";
 import { HoverScale } from "@/components/motion/HoverScale";
 
 export function TourCard({ tour }: { tour: Tour }) {
   const lang = useLocale();
+  const { pick } = useLocalized();
   return (
     <HoverScale className="h-full w-full">
     <Link
@@ -14,7 +15,7 @@ export function TourCard({ tour }: { tour: Tour }) {
     >
       <img
         src={tour.image}
-        alt={tour.title}
+        alt={pick(tour.title)}
         loading="lazy"
         className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
       />
@@ -23,16 +24,16 @@ export function TourCard({ tour }: { tour: Tour }) {
 
       {/* price pill — top right */}
       <span className="absolute right-4 top-4 rounded-full bg-white px-4 py-2 text-sm font-bold text-primary shadow-md">
-        {tour.price}
+        <bdi dir="ltr">{tour.price}</bdi>
       </span>
 
       {/* title + date — bottom */}
       <div className="absolute inset-x-0 bottom-0 p-6 text-white">
         <h3 className="font-display text-2xl font-bold leading-tight drop-shadow-sm">
-          {tour.title}
+          {pick(tour.title)}
         </h3>
         <span className="mt-3 inline-block rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-foreground shadow-sm">
-          {tour.dates}
+          {pick(tour.dates)}
         </span>
       </div>
     </Link>

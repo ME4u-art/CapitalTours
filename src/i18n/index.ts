@@ -34,7 +34,21 @@ export function translate(locale: Locale, key: TranslationKey): string {
 }
 
 /**
- * The active locale, read from the `/$lang` route segment.
+ * Translator for `head()` and loaders, which run outside React and so cannot
+ * call `useT`. Give it the raw `params.lang`; anything unrecognised is French.
+ */
+export function tFor(lang: unknown): (key: TranslationKey) => string {
+  const locale = isLocale(lang) ? lang : DEFAULT_LOCALE;
+  return (key) => translate(locale, key);
+}
+
+/** Same, for localised content outside React. */
+export function pickFor(lang: unknown): (value: Localized) => string {
+  const locale = isLocale(lang) ? lang : DEFAULT_LOCALE;
+  return (value) => pick(locale, value);
+}
+
+/** The active locale, read from the `/$lang` route segment.
  *
  * `strict: false` because this is called from shared components (header,
  * footer, cards) that are not tied to one route. Anything unrecognised falls

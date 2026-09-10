@@ -47,6 +47,14 @@ export const ar: Dictionary = {
   "home.cruisesTitle": "اكتشف العالم عبر البحر.",
   "home.miceTitle": "الاجتماعات والحوافز والمؤتمرات والمعارض",
   "home.partners": "شركاؤنا",
+  "meta.home.title": "كابيتال تورز — وكالة أسفار بالمغرب",
+  "meta.home.desc":
+    "رحلات منظمة، وجولات، ورحلات بحرية، والحج والعمرة، والمؤتمرات. اكتشف العالم مع كابيتال تورز، وكالة أسفار بالمغرب.",
+  "meta.home.ogDesc":
+    "رحلات منظمة، وجولات، ورحلات بحرية، والحج والعمرة، والمؤتمرات.",
+  "home.moroccoLead":
+    "اكتشف المملكة عبر مدنها العتيقة وسواحلها وصحاريها — بين الثقافة والراحة والمغامرة.",
+  "action.moreDetail": "مزيد من التفاصيل",
 
   "action.discover": "اكتشف",
   "action.seeAll": "عرض الكل",
@@ -70,6 +78,145 @@ export const ar: Dictionary = {
   "pilgrimage.roomDouble": "غرفة ثنائية",
   "pilgrimage.roomTriple": "غرفة ثلاثية",
   "pilgrimage.roomQuad": "غرفة رباعية",
+
+  "region.all": "الكل",
+  "region.Asie": "آسيا",
+  "region.Europe": "أوروبا",
+  "region.Afrique": "إفريقيا",
+  "region.Ameriques": "الأمريكتان",
+  "region.MoyenOrient": "الشرق الأوسط",
+
+  "voyages.title": "جميع وجهاتنا",
+  "voyages.lead":
+    "رحلات جماعية مع تذكرة الطيران انطلاقاً من المغرب، بمرافقة مرشدينا.",
+
+  "tour.overview": "نظرة عامة على البرنامج",
+  "tour.overviewBody":
+    "برنامج من تنظيم كابيتال تورز وبمرافقة فرقنا، من لحظة المغادرة إلى العودة.",
+  "tour.yourItinerary": "مسار رحلتك",
+  "tour.includedTitle": "ما يشمله البرنامج",
+  "tour.notIncludedTitle": "غير مشمول",
+  "tour.pricePerPerson": "الثمن للشخص الواحد",
+  "tour.priceNoteDefault": "على أساس غرفة ثنائية، حسب توفر الأماكن.",
+  "tour.deposit": "احجز عبر الإنترنت — تسبيق 3 000 درهم",
+  "tour.seeAll": "عرض جميع الرحلات",
+  "tour.notFound": "الرحلة غير موجودة",
+  "tour.fbFlights": "الرحلات الجوية الدولية",
+  "tour.fbHotel": "الإقامة",
+  "tour.fbTransfers": "التنقلات",
+  "tour.fbGuiding": "المرافقة طيلة الرحلة",
+
+  "maroc.eyebrow": "انطلاقات مضمونة داخل المغرب",
+  "maroc.title": "اكتشف المغرب بشكل مختلف.",
+  "maroc.lead": "رحلات مدروسة بعناية تجمع بين الثقافة والراحة والمغامرة.",
+  "maroc.circuits": "رحلات داخل المغرب",
+  "maroc.destinations": "وجهاتنا داخل المغرب",
+  "maroc.ifrane": "يوم في قلب إفران",
+  "maroc.imperial": "في قلب المدن العتيقة",
+  "maroc.south": "جنوب المغرب",
+
+  "mice.lead":
+    "من التصور إلى التنظيم اللوجيستي، نصمم وننفذ فعاليات مهنية على المقاس، داخل المغرب وخارجه.",
+  "mice.quote": "اطلب عرض ثمن",
+  "mice.meetings": "الاجتماعات",
+  "mice.meetingsDesc": "اجتماعات الشركات بتنظيم كامل.",
+  "mice.incentives": "الرحلات التحفيزية",
+  "mice.incentivesDesc": "رحلات التحفيز والمكافآت.",
+  "mice.conferences": "المؤتمرات",
+  "mice.conferencesDesc": "مؤتمرات مهنية وعلمية.",
+  "mice.exhibitions": "المعارض",
+  "mice.exhibitionsDesc": "معارض وفعاليات كبرى.",
+  "mice.gallery": "فعالياتنا بالصور",
+
+  "transport.title": "راحتك أولويتنا.",
+  "transport.lead":
+    "أسطول من السيارات الفاخرة، وسائقون محترفون، وخدمة تنفيذية لتنقلاتكم الفردية والجماعية داخل المغرب.",
+  "transport.cta": "احجز خدمة نقل",
+  "transport.fleet": "أسطول فاخر",
+  "transport.fleetDesc": "سيارات وسيارات دفع رباعي وحافلات صغيرة وفانات VIP حديثة.",
+  "transport.safety": "السلامة",
+  "transport.safetyDesc": "سائقون مؤهلون، سيارات مؤمَّنة، وتتبع للرحلات.",
+  "transport.always": "24/7",
+  "transport.alwaysDesc": "متوفرون دائماً، وفي الموعد دائماً.",
+
+  "about.eyebrow": "من نحن",
+  "about.title": "نسافر، بكل قلوبنا.",
+  "about.p1":
+    "كابيتال تورز وكالة أسفار مغربية تصمم منذ سنوات تجارب سفر مدروسة بعناية: رحلات جماعية، وإقامات على المقاس، والحج والعمرة، وأسفار الأعمال.",
+  "about.p2":
+    "قوتنا: فريق شغوف، وشبكة دولية من الشركاء المنتقين بعناية، ومتابعة شخصية قبل السفر وأثناءه وبعده.",
+  "about.statYears": "سنة من الخبرة",
+  "about.statTravellers": "مسافر سعيد",
+  "about.statDestinations": "وجهة نغطيها",
+
+  "contact.title": "لنتحدث عن رحلتك القادمة.",
+  "contact.lead": "فريقنا يجيبكم داخل 24 ساعة عمل.",
+  "contact.city": "فاس، المغرب",
+  "contact.firstName": "الاسم الشخصي",
+  "contact.lastName": "الاسم العائلي",
+  "contact.email": "البريد الإلكتروني",
+  "contact.subject": "الموضوع",
+  "contact.message": "الرسالة",
+  "contact.send": "إرسال",
+
+  "gallery.title": "صور من رحلاتنا",
+  "gallery.lead": "بعض الذكريات من رحلاتنا ومواسمنا الأخيرة.",
+
+  "res.notFound": "البرنامج غير موجود",
+  "res.seePrograms": "عرض برامجنا",
+  "res.step1": "المعلومات",
+  "res.step2": "الأداء",
+  "res.step3": "التأكيد",
+  "res.pricePerPerson": "الثمن / للشخص",
+  "res.depositDue": "التسبيق الواجب أداؤه",
+  "res.balance": "الباقي يُؤدى بالوكالة",
+  "res.beforeDeparture": "قبل السفر",
+  "res.secureNote": "أداء آمن — التسبيق قابل للاسترجاع وفق الشروط.",
+  "res.demoNote":
+    "نسخة تجريبية — الأداء محاكاة فقط. في النسخة النهائية ترتبط هذه المرحلة ببوابة الأداء البنكية المغربية (Payzone / CMI). لا يتم خصم أي مبلغ من أي بطاقة.",
+  "res.yourInfo": "معلوماتكم",
+  "res.mainTraveller": "المرجو ملء بيانات المسافر الرئيسي.",
+  "res.phone": "الهاتف",
+  "res.travellers": "عدد المسافرين",
+  "res.departureCity": "مدينة الانطلاق",
+  "res.continue": "المتابعة إلى الأداء",
+  "res.payTitle": "أداء التسبيق",
+  "res.secureBadge": "آمن",
+  "res.payLead": "أدِّ {amount} لتأكيد حجزك.",
+  "res.cardHolder": "اسم صاحب البطاقة",
+  "res.cardNumber": "رقم البطاقة",
+  "res.expiry": "تاريخ انتهاء الصلاحية",
+  "res.cvc": "الرمز السري CVC",
+  "res.processing": "جارٍ المعالجة…",
+  "res.pay": "أداء",
+  "res.back": "رجوع",
+  "res.confirmed": "تم تأكيد الحجز!",
+  "res.thanks": "شكراً لكم — توصلنا بتسبيقكم {amount} الخاص بـ {tour}.",
+  "res.reference": "المرجع",
+  "res.followUp":
+    "سيتصل بكم أحد مستشاري كابيتال تورز داخل 24 ساعة لإتمام ملفكم.",
+  "res.otherPrograms": "اكتشف برامج أخرى",
+  "meta.reservation": "الحجز",
+
+  "meta.voyages.title": "رحلاتنا المنظمة — كابيتال تورز",
+  "meta.voyages.desc":
+    "جميع رحلاتنا الجماعية مع تذكرة الطيران: آسيا وأوروبا والأمريكتان وغيرها.",
+  "meta.maroc.title": "انطلاقات من المغرب — رحلات وإقامات | كابيتال تورز",
+  "meta.maroc.desc":
+    "اكتشف المغرب مع رحلاتنا المدروسة: مراكش، فاس، الصحراء، المدن العتيقة، والساحل الأطلسي.",
+  "meta.mice.title": "المؤتمرات والحوافز — ندوات ومعارض | كابيتال تورز",
+  "meta.mice.desc":
+    "تنظيم الندوات والمؤتمرات والمعارض والرحلات التحفيزية. كابيتال تورز.",
+  "meta.transport.title": "النقل الخاص والسائقون — كابيتال تورز",
+  "meta.transport.desc":
+    "أسطول فاخر وسائقون محترفون: التنقلات، ووضع السيارات رهن إشارتكم، وخدمة VIP في المغرب.",
+  "meta.about.title": "من نحن — كابيتال تورز",
+  "meta.about.desc":
+    "كابيتال تورز، وكالة أسفار مغربية: رحلات جماعية، ورحلات بحرية، والحج والعمرة، والمؤتمرات.",
+  "meta.contact.title": "اتصل بنا — كابيتال تورز",
+  "meta.contact.desc":
+    "تواصلوا معنا للحصول على عرض ثمن أو لإتمام حجز أو لأي استفسار.",
+  "meta.gallery.title": "صور من رحلاتنا — كابيتال تورز",
 
   "error.notFoundTitle": "الصفحة غير موجودة",
   "error.notFoundBody": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",

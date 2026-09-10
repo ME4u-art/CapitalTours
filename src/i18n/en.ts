@@ -43,6 +43,14 @@ export const en: Dictionary = {
   "home.cruisesTitle": "See the world by sea.",
   "home.miceTitle": "Meetings, Incentives, Conferences & Exhibitions",
   "home.partners": "Our partners",
+  "meta.home.title": "Capital Tours — travel agency in Morocco",
+  "meta.home.desc":
+    "Group trips, tours, cruises, Hajj & Umrah and MICE. See the world with Capital Tours, a travel agency based in Morocco.",
+  "meta.home.ogDesc":
+    "Group trips, tours, cruises, Hajj & Umrah and MICE.",
+  "home.moroccoLead":
+    "Explore the Kingdom through its imperial cities, its coasts and its deserts — culture, rest and adventure in one trip.",
+  "action.moreDetail": "More detail",
 
   "action.discover": "Discover",
   "action.seeAll": "See all",
@@ -66,6 +74,149 @@ export const en: Dictionary = {
   "pilgrimage.roomDouble": "Double room",
   "pilgrimage.roomTriple": "Triple room",
   "pilgrimage.roomQuad": "Quad room",
+
+  "region.all": "All",
+  "region.Asie": "Asia",
+  "region.Europe": "Europe",
+  "region.Afrique": "Africa",
+  "region.Ameriques": "The Americas",
+  "region.MoyenOrient": "Middle East",
+
+  "voyages.title": "All our destinations",
+  "voyages.lead":
+    "Group tours with flights included, departing from Morocco and led by our guides.",
+
+  "tour.overview": "Programme overview",
+  "tour.overviewBody":
+    "A programme organised by Capital Tours and accompanied by our teams, from departure to return.",
+  "tour.yourItinerary": "Your itinerary",
+  "tour.includedTitle": "What the programme includes",
+  "tour.notIncludedTitle": "Not included",
+  "tour.pricePerPerson": "Price per person",
+  "tour.priceNoteDefault": "Based on a double room, subject to availability.",
+  "tour.deposit": "Book online — 3 000 dh deposit",
+  "tour.seeAll": "See all trips",
+  "tour.notFound": "Trip not found",
+  "tour.fbFlights": "International flights",
+  "tour.fbHotel": "Accommodation",
+  "tour.fbTransfers": "Transfers",
+  "tour.fbGuiding": "Guided throughout",
+
+  "maroc.eyebrow": "Guaranteed departures in Morocco",
+  "maroc.title": "See Morocco differently.",
+  "maroc.lead":
+    "Carefully built trips blending culture, rest and adventure.",
+  "maroc.circuits": "Morocco tours",
+  "maroc.destinations": "Our destinations in Morocco",
+  "maroc.ifrane": "A day in the heart of Ifrane",
+  "maroc.imperial": "Through the imperial cities",
+  "maroc.south": "Southern Morocco",
+
+  "mice.lead":
+    "From concept to logistics, we design and run bespoke corporate events in Morocco and abroad.",
+  "mice.quote": "Request a quote",
+  "mice.meetings": "Meetings",
+  "mice.meetingsDesc": "Corporate meetings, fully handled.",
+  "mice.incentives": "Incentives",
+  "mice.incentivesDesc": "Motivation and reward trips.",
+  "mice.conferences": "Conferences",
+  "mice.conferencesDesc": "Professional and scientific congresses.",
+  "mice.exhibitions": "Exhibitions",
+  "mice.exhibitionsDesc": "Trade shows and large-format events.",
+  "mice.gallery": "Our events in pictures",
+
+  "transport.title": "Your comfort, our priority.",
+  "transport.lead":
+    "A premium fleet, professional drivers and executive service for individual and group travel across Morocco.",
+  "transport.cta": "Book a transfer",
+  "transport.fleet": "Premium fleet",
+  "transport.fleetDesc": "Recent saloons, SUVs, minibuses and VIP vans.",
+  "transport.safety": "Safety",
+  "transport.safetyDesc":
+    "Trained drivers, insured vehicles, journeys monitored.",
+  "transport.always": "24/7",
+  "transport.alwaysDesc": "Always available, always on time.",
+
+  "about.eyebrow": "About us",
+  "about.title": "Travel, with heart.",
+  "about.p1":
+    "Capital Tours is a Moroccan travel agency that has spent years building carefully considered journeys: group tours, tailor-made stays, Hajj & Umrah and business travel.",
+  "about.p2":
+    "Our strength: a team that cares, a hand-picked international network of partners and personal follow-up before, during and after your trip.",
+  "about.statYears": "years of experience",
+  "about.statTravellers": "happy travellers",
+  "about.statDestinations": "destinations covered",
+
+  "contact.title": "Let's talk about your next trip.",
+  "contact.lead": "Our team replies within 24 working hours.",
+  "contact.city": "Fes, Morocco",
+  "contact.firstName": "First name",
+  "contact.lastName": "Last name",
+  "contact.email": "Email",
+  "contact.subject": "Subject",
+  "contact.message": "Message",
+  "contact.send": "Send",
+
+  "gallery.title": "Photos from our trips",
+  "gallery.lead":
+    "A few memories from our recent departures and pilgrimages.",
+
+  "res.notFound": "Programme not found",
+  "res.seePrograms": "See our programmes",
+  "res.step1": "Details",
+  "res.step2": "Payment",
+  "res.step3": "Confirmation",
+  "res.pricePerPerson": "Price / person",
+  "res.depositDue": "Deposit due",
+  "res.balance": "Balance at the agency",
+  "res.beforeDeparture": "Before departure",
+  "res.secureNote": "Secure payment — deposit refundable under conditions.",
+  "res.demoNote":
+    "Demonstration — payment simulated. In production this step connects to the Moroccan banking gateway (Payzone / CMI). No card is actually charged.",
+  "res.yourInfo": "Your details",
+  "res.mainTraveller": "Tell us about the lead traveller.",
+  "res.phone": "Phone",
+  "res.travellers": "Number of travellers",
+  "res.departureCity": "Departure city",
+  "res.continue": "Continue to payment",
+  "res.payTitle": "Deposit payment",
+  "res.secureBadge": "Secure",
+  "res.payLead": "Pay {amount} to confirm your booking.",
+  "res.cardHolder": "Cardholder name",
+  "res.cardNumber": "Card number",
+  "res.expiry": "Expiry",
+  "res.cvc": "CVC",
+  "res.processing": "Processing…",
+  "res.pay": "Pay",
+  "res.back": "Back",
+  "res.confirmed": "Booking confirmed!",
+  "res.thanks":
+    "Thank you — your {amount} deposit for {tour} has been received.",
+  "res.reference": "Reference",
+  "res.followUp":
+    "A Capital Tours adviser will call you within 24 hours to complete your file.",
+  "res.otherPrograms": "See other programmes",
+  "meta.reservation": "Booking",
+
+  "meta.voyages.title": "Our group trips — Capital Tours",
+  "meta.voyages.desc":
+    "All our group trips with flights included: Asia, Europe, the Americas and more.",
+  "meta.maroc.title": "Morocco departures — tours & stays | Capital Tours",
+  "meta.maroc.desc":
+    "See Morocco with our carefully built tours: Marrakech, Fes, the Sahara, the imperial cities and the Atlantic coast.",
+  "meta.mice.title": "MICE — seminars, congresses & incentives | Capital Tours",
+  "meta.mice.desc":
+    "Seminars, conferences, congresses and incentive trips, organised end to end. Capital Tours MICE.",
+  "meta.transport.title": "Private transport & drivers — Capital Tours",
+  "meta.transport.desc":
+    "A premium fleet and professional drivers: transfers, cars at your disposal and VIP service across Morocco.",
+  "meta.about.title": "About us — Capital Tours",
+  "meta.about.desc":
+    "Capital Tours, a Moroccan travel agency: group tours, cruises, Hajj & Umrah and MICE.",
+  "meta.contact.title": "Contact — Capital Tours",
+  "meta.contact.desc":
+    "Get in touch for a quote, a booking or a question.",
+  "meta.gallery.title": "Photos from our trips — Capital Tours",
 
   "error.notFoundTitle": "Page not found",
   "error.notFoundBody":
