@@ -48,6 +48,14 @@ export const en: Dictionary = {
     "Group trips, tours, cruises, Hajj & Umrah and MICE. See the world with Capital Tours, a travel agency based in Morocco.",
   "meta.home.ogDesc":
     "Group trips, tours, cruises, Hajj & Umrah and MICE.",
+  "home.fareWithFlight": "Fare includes the flight",
+  "home.seeAllTrips": "See all our trips",
+  "home.cruisesLead":
+    "The Caribbean, the eastern Mediterranean, round the world — our partners: Royal Caribbean, MSC and many more.",
+  "home.seeCruises": "See the cruises",
+  "home.miceLead":
+    "Capital Tours handles the organisation of seminars, conferences, congresses and incentive trips. From the concept to the logistics, we build corporate events people remember.",
+  "action.learnMore": "Learn more",
   "home.moroccoLead":
     "Explore the Kingdom through its imperial cities, its coasts and its deserts — culture, rest and adventure in one trip.",
   "action.moreDetail": "More detail",

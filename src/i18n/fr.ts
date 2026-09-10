@@ -55,6 +55,14 @@ export const fr = {
     "Voyages organisés, circuits, croisières, Hajj & Omra et MICE. Découvrez le monde avec Capital Tours, votre agence de voyages basée au Maroc.",
   "meta.home.ogDesc":
     "Voyages organisés, circuits, croisières, Hajj & Omra et MICE.",
+  "home.fareWithFlight": "Tarif avec billet d'avion",
+  "home.seeAllTrips": "Voir tous les voyages",
+  "home.cruisesLead":
+    "Caraïbes, Méditerranée orientale, tour du monde — nos partenaires : Royal Caribbean, MSC et bien plus.",
+  "home.seeCruises": "Voir les croisières",
+  "home.miceLead":
+    "Capital Tours vous accompagne dans l'organisation de séminaires, conférences, congrès et voyages incentives. De la conception à la logistique, nous créons des expériences professionnelles mémorables.",
+  "action.learnMore": "En savoir plus",
   "home.moroccoLead":
     "Explorez le Royaume à travers ses villes impériales, ses côtes et ses déserts — entre culture, détente et aventure.",
   "action.moreDetail": "Plus de détail",

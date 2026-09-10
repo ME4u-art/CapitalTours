@@ -348,7 +348,7 @@ function FeaturedTours() {
           {t("home.organisedTrips")}
         </h2>
         <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-secondary px-5 py-2 text-sm font-semibold text-primary">
-          <span aria-hidden>•</span> Tarif avec billet d'avion{" "}
+          <span aria-hidden>•</span> {t("home.fareWithFlight")}{" "}
           <span aria-hidden>•</span>
         </span>
       </Reveal>
@@ -408,7 +408,8 @@ function FeaturedTours() {
           params={{ lang }}
           className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
         >
-          Voir tous les voyages <ArrowRight className="h-4 w-4" />
+          {t("home.seeAllTrips")}
+          <ArrowRight className="h-4 w-4 rtl:-scale-x-100" />
         </Link>
       </div>
     </section>
@@ -604,16 +605,14 @@ function CruiseBanner() {
                 <h2 className="mt-1 font-display text-4xl sm:text-5xl">
                   {t("home.cruisesTitle")}
                 </h2>
-                <p className="mt-3 opacity-90">
-                  Caraïbes, Méditerranée orientale, tour du monde — nos
-                  partenaires : Royal Caribbean, MSC et bien plus.
-                </p>
+                <p className="mt-3 opacity-90">{t("home.cruisesLead")}</p>
                 <Link
                   to="/$lang/voyages"
                   params={{ lang }}
                   className="btn-primary mt-6 hover:-translate-y-0.5"
                 >
-                  Voir les croisières <ArrowRight className="h-4 w-4" />
+                  {t("home.seeCruises")}
+                  <ArrowRight className="h-4 w-4 rtl:-scale-x-100" />
                 </Link>
               </div>
             </div>
@@ -635,17 +634,14 @@ function MICE() {
           <h2 className="mt-1 font-display text-4xl sm:text-5xl">
             {t("home.miceTitle")}
           </h2>
-          <p className="mt-4 opacity-80">
-            Capital Tours vous accompagne dans l'organisation de séminaires,
-            conférences, congrès et voyages incentives. De la conception à la
-            logistique, nous créons des expériences professionnelles mémorables.
-          </p>
+          <p className="mt-4 opacity-80">{t("home.miceLead")}</p>
           <Link
             to="/$lang/mice"
             params={{ lang }}
             className="btn-primary mt-6 hover:-translate-y-0.5"
           >
-            En savoir plus <ArrowRight className="h-4 w-4" />
+            {t("action.learnMore")}
+            <ArrowRight className="h-4 w-4 rtl:-scale-x-100" />
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
