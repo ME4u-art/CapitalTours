@@ -7,6 +7,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { TourCard } from "@/components/site/TourCard";
 import { featuredTours, destinationsMaroc, IMG } from "@/lib/tours";
+import { pilgrimagePrograms } from "@/lib/pilgrimage";
 import { partners } from "@/lib/partners";
 import businessNewspaper from "@/assets/mice/business-newspaper.jpg";
 import streetProfessionals from "@/assets/mice/street-professionals.jpg";
@@ -488,34 +489,24 @@ function PillarStrip() {
 
 function HajjOmra() {
   const lang = useLocale();
+  const t = useT();
+  const { pick } = useLocalized();
   return (
     <section className="mt-16 sm:mt-24">
       <div className="container-page grid gap-4 sm:gap-6 md:grid-cols-2">
-        {[
-          {
-            title: "برنامج الحج 1448هـ / 2027م",
-            label: "Hajj",
-            price: "À partir de 76 500 dhs",
-            href: "/hajj-omra",
-            image: "/Hajj.jpg",
-          },
-          {
-            title: "برنامج العمرة 1447هـ / 2026م",
-            label: "Omra",
-            price: "À partir de 15 900 dhs",
-            href: "/hajj-omra",
-            image: IMG.hajj,
-          },
-        ].map((h, i) => (
-          <Reveal key={i} delay={i * 0.1}>
+        {/* Driven off the real programmes rather than a hardcoded copy: this
+            block used to quote its own prices, and they had drifted below the
+            ones on the programme pages. One source, no drift. */}
+        {pilgrimagePrograms.map((h, i) => (
+          <Reveal key={h.slug} delay={i * 0.1}>
             <Link
-              to="/$lang/hajj-omra"
-              params={{ lang }}
+              to="/$lang/hajj-omra/$slug"
+              params={{ lang, slug: h.slug }}
               className="group relative overflow-hidden rounded-3xl"
             >
               <img
                 src={h.image}
-                alt={h.title}
+                alt={pick(h.title)}
                 loading="lazy"
                 width={1200}
                 height={800}
@@ -524,12 +515,12 @@ function HajjOmra() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-7 text-white">
                 <span className="rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground">
-                  {h.label}
+                  {t(`hajj.${h.kind}`)}
                 </span>
-                <h3 dir="rtl" className="mt-3 font-display text-3xl">
-                  {h.title}
-                </h3>
-                <p className="mt-2 text-sm opacity-90">{h.price}</p>
+                <h3 className="mt-3 font-display text-3xl">{pick(h.title)}</h3>
+                <p className="mt-2 text-sm opacity-90">
+                  {t("tour.from")} <bdi>{pick(h.priceFrom)}</bdi>
+                </p>
               </div>
             </Link>
           </Reveal>
