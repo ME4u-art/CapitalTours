@@ -89,7 +89,7 @@ export function Header() {
             <button
               onClick={() => setOpen((o) => !o)}
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border lg:hidden"
-              aria-label="Menu"
+              aria-label={open ? t("nav.close") : t("nav.menu")}
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
