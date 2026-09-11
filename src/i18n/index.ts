@@ -15,6 +15,41 @@ export type { TranslationKey } from "./fr";
 
 const DICTIONARIES: Record<Locale, Dictionary> = { fr, en, ar };
 
+/* Written as escapes on purpose: invisible characters in source invite a "cleanup". */
+const NBSP = "\u00a0"; // no-break space
+const LRI = "\u2066";  // left-to-right isolate
+const PDI = "\u2069";  // pop directional isolate
+
+/**
+ * Make a number survive an Arabic paragraph. Two separate bugs:
+ *
+ * 1. "19 500" — a plain space is whitespace, and whitespace takes the
+ *    paragraph's direction, so the number splits into two runs that then
+ *    swap and the price renders "500 19". A no-break space is a bidi Common
+ *    Separator instead, which keeps the digits one run.
+ *
+ * 2. "+1 000" — a sign beside a number still gets reordered and the plus
+ *    lands on the wrong end: "1 000+". Isolating the signed number pins it
+ *    left-to-right whatever surrounds it.
+ *
+ * Both checked in a browser rather than reasoned about — the bidi algorithm
+ * is not something to take on trust. Only signed numbers are isolated; a
+ * bare number is fine once its digits are bound.
+ *
+ * Applied in every language, not only Arabic: elsewhere the no-break space is
+ * the correct thousands separator anyway, and it stops a price breaking
+ * across two lines.
+ *
+ * Every visible string passes through translate/pick/pickList below, so this
+ * covers the dictionaries and whatever the client later types into the CMS.
+ */
+const SIGNED_NUMBER = new RegExp(`[+−-]\\d[\\d${NBSP}]*`, "g");
+
+const bindDigits = (s: string): string =>
+  s
+    .replace(/(\d) (?=\d)/g, `$1${NBSP}`)
+    .replace(SIGNED_NUMBER, (m) => `${LRI}${m}${PDI}`);
+
 /**
  * Look a key up in `locale`, falling back to French.
  *
@@ -24,13 +59,13 @@ const DICTIONARIES: Record<Locale, Dictionary> = { fr, en, ar };
  */
 export function translate(locale: Locale, key: TranslationKey): string {
   const value = DICTIONARIES[locale]?.[key];
-  if (value) return value;
+  if (value) return bindDigits(value);
   if (import.meta.env.DEV && locale !== DEFAULT_LOCALE) {
     console.warn(
       `[i18n] missing ${locale} translation for "${key}" — showing French`,
     );
   }
-  return fr[key];
+  return bindDigits(fr[key]);
 }
 
 /**
@@ -67,12 +102,12 @@ export function useT(): (key: TranslationKey) => string {
 
 /** Pick the active language out of a piece of localised content. */
 export function pick(locale: Locale, value: Localized): string {
-  return value[locale] || value[DEFAULT_LOCALE];
+  return bindDigits(value[locale] || value[DEFAULT_LOCALE]);
 }
 
 export function pickList(locale: Locale, value: LocalizedList): string[] {
   const list = value[locale];
-  return list && list.length ? list : value[DEFAULT_LOCALE];
+  return (list && list.length ? list : value[DEFAULT_LOCALE]).map(bindDigits);
 }
 
 /** Hook form of `pick`, for use inside components. */
