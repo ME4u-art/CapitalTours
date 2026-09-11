@@ -165,9 +165,6 @@ export const en: Dictionary = {
   "contact.message": "Message",
   "contact.send": "Send",
 
-  "gallery.title": "Photos from our trips",
-  "gallery.lead":
-    "A few memories from our recent departures and pilgrimages.",
 
   "hajj.omra": "Umrah",
   "hajj.hajj": "Hajj",
@@ -308,7 +305,6 @@ export const en: Dictionary = {
   "meta.contact.title": "Contact — Capital Tours",
   "meta.contact.desc":
     "Get in touch for a quote, a booking or a question.",
-  "meta.gallery.title": "Photos from our trips — Capital Tours",
 
   "error.notFoundTitle": "Page not found",
   "error.notFoundBody":

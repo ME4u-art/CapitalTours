@@ -167,8 +167,6 @@ export const ar: Dictionary = {
   "contact.message": "الرسالة",
   "contact.send": "إرسال",
 
-  "gallery.title": "صور من رحلاتنا",
-  "gallery.lead": "بعض الذكريات من رحلاتنا ومواسمنا الأخيرة.",
 
   "hajj.omra": "العمرة",
   "hajj.hajj": "الحج",
@@ -306,7 +304,6 @@ export const ar: Dictionary = {
   "meta.contact.title": "اتصل بنا — كابيتال تورز",
   "meta.contact.desc":
     "تواصلوا معنا للحصول على عرض ثمن أو لإتمام حجز أو لأي استفسار.",
-  "meta.gallery.title": "صور من رحلاتنا — كابيتال تورز",
 
   "error.notFoundTitle": "الصفحة غير موجودة",
   "error.notFoundBody": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",

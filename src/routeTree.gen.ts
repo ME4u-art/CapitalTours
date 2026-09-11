@@ -15,7 +15,6 @@ import { Route as LangIndexRouteImport } from './routes/$lang.index'
 import { Route as LangTransportRouteImport } from './routes/$lang.transport'
 import { Route as LangMiceRouteImport } from './routes/$lang.mice'
 import { Route as LangMarocRouteImport } from './routes/$lang.maroc'
-import { Route as LangGalleryRouteImport } from './routes/$lang.gallery'
 import { Route as LangContactRouteImport } from './routes/$lang.contact'
 import { Route as LangAProposRouteImport } from './routes/$lang.a-propos'
 import { Route as LangVoyagesIndexRouteImport } from './routes/$lang.voyages.index'
@@ -52,11 +51,6 @@ const LangMiceRoute = LangMiceRouteImport.update({
 const LangMarocRoute = LangMarocRouteImport.update({
   id: '/maroc',
   path: '/maroc',
-  getParentRoute: () => LangRoute,
-} as any)
-const LangGalleryRoute = LangGalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
   getParentRoute: () => LangRoute,
 } as any)
 const LangContactRoute = LangContactRouteImport.update({
@@ -100,7 +94,6 @@ export interface FileRoutesByFullPath {
   '/$lang': typeof LangRouteWithChildren
   '/$lang/a-propos': typeof LangAProposRoute
   '/$lang/contact': typeof LangContactRoute
-  '/$lang/gallery': typeof LangGalleryRoute
   '/$lang/maroc': typeof LangMarocRoute
   '/$lang/mice': typeof LangMiceRoute
   '/$lang/transport': typeof LangTransportRoute
@@ -115,7 +108,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$lang/a-propos': typeof LangAProposRoute
   '/$lang/contact': typeof LangContactRoute
-  '/$lang/gallery': typeof LangGalleryRoute
   '/$lang/maroc': typeof LangMarocRoute
   '/$lang/mice': typeof LangMiceRoute
   '/$lang/transport': typeof LangTransportRoute
@@ -132,7 +124,6 @@ export interface FileRoutesById {
   '/$lang': typeof LangRouteWithChildren
   '/$lang/a-propos': typeof LangAProposRoute
   '/$lang/contact': typeof LangContactRoute
-  '/$lang/gallery': typeof LangGalleryRoute
   '/$lang/maroc': typeof LangMarocRoute
   '/$lang/mice': typeof LangMiceRoute
   '/$lang/transport': typeof LangTransportRoute
@@ -150,7 +141,6 @@ export interface FileRouteTypes {
     | '/$lang'
     | '/$lang/a-propos'
     | '/$lang/contact'
-    | '/$lang/gallery'
     | '/$lang/maroc'
     | '/$lang/mice'
     | '/$lang/transport'
@@ -165,7 +155,6 @@ export interface FileRouteTypes {
     | '/'
     | '/$lang/a-propos'
     | '/$lang/contact'
-    | '/$lang/gallery'
     | '/$lang/maroc'
     | '/$lang/mice'
     | '/$lang/transport'
@@ -181,7 +170,6 @@ export interface FileRouteTypes {
     | '/$lang'
     | '/$lang/a-propos'
     | '/$lang/contact'
-    | '/$lang/gallery'
     | '/$lang/maroc'
     | '/$lang/mice'
     | '/$lang/transport'
@@ -242,13 +230,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangMarocRouteImport
       parentRoute: typeof LangRoute
     }
-    '/$lang/gallery': {
-      id: '/$lang/gallery'
-      path: '/gallery'
-      fullPath: '/$lang/gallery'
-      preLoaderRoute: typeof LangGalleryRouteImport
-      parentRoute: typeof LangRoute
-    }
     '/$lang/contact': {
       id: '/$lang/contact'
       path: '/contact'
@@ -304,7 +285,6 @@ declare module '@tanstack/react-router' {
 interface LangRouteChildren {
   LangAProposRoute: typeof LangAProposRoute
   LangContactRoute: typeof LangContactRoute
-  LangGalleryRoute: typeof LangGalleryRoute
   LangMarocRoute: typeof LangMarocRoute
   LangMiceRoute: typeof LangMiceRoute
   LangTransportRoute: typeof LangTransportRoute
@@ -319,7 +299,6 @@ interface LangRouteChildren {
 const LangRouteChildren: LangRouteChildren = {
   LangAProposRoute: LangAProposRoute,
   LangContactRoute: LangContactRoute,
-  LangGalleryRoute: LangGalleryRoute,
   LangMarocRoute: LangMarocRoute,
   LangMiceRoute: LangMiceRoute,
   LangTransportRoute: LangTransportRoute,

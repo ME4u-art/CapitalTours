@@ -43,13 +43,15 @@ export type PilgrimageProgram = {
   gallery: string[];
 };
 
-const GALLERY = [
-  "/gallery/1.jpg",
-  "/gallery/2.jpg",
-  "/gallery/3.jpg",
-  "/gallery/4.jpg",
-  "/gallery/5.jpg",
-];
+/**
+ * Empty on purpose.
+ *
+ * This used to point at five photographs of a Tazi Travels pilgrimage group —
+ * real, identifiable people who never agreed to appear on another agency's
+ * site. The gallery section is skipped while this is empty; fill it with
+ * Capital Tours' own photos, with the travellers' consent.
+ */
+const GALLERY: string[] = [];
 
 export const pilgrimagePrograms: PilgrimageProgram[] = [
   {

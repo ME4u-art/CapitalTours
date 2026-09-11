@@ -184,10 +184,6 @@ export const fr = {
   "contact.message": "Message",
   "contact.send": "Envoyer",
 
-  // /gallery
-  "gallery.title": "Photos de nos voyages",
-  "gallery.lead":
-    "Quelques souvenirs de nos dernières sorties et pèlerinages.",
 
   // Hajj & Omra pages
   "hajj.omra": "Omra",
@@ -334,7 +330,6 @@ export const fr = {
   "meta.contact.title": "Contact — Capital Tours",
   "meta.contact.desc":
     "Contactez notre équipe pour un devis, une réservation ou un renseignement.",
-  "meta.gallery.title": "Photos de nos voyages — Capital Tours",
 
   // errors and empty states
   "error.notFoundTitle": "Page introuvable",
