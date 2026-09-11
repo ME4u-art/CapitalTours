@@ -155,10 +155,17 @@
   backdrop-filter: blur(6px);
 }
 
-/* Partners logo strip — seamless infinite scroll (paused on hover, static when reduced motion) */
+/* Partners logo strip — seamless infinite scroll (paused on hover, static when reduced motion)
+   The track holds three copies of the logos and slides by exactly one copy,
+   so the loop restarts on an identical frame.
+
+   Direction has to follow the page. An RTL flex row starts at the RIGHT edge
+   and overflows to the left, so sliding left drags the logos away from the
+   box and opens a growing hole on the right — which is what the Arabic page
+   was doing. --marquee-dir flips the slide instead. */
 @keyframes partners-scroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-33.333%); }
+  to { transform: translateX(calc(-33.333% * var(--marquee-dir, 1))); }
 }
 
 @utility partners-track {
@@ -168,6 +175,10 @@
   @media (prefers-reduced-motion: no-preference) {
     animation: partners-scroll 25s linear infinite;
   }
+}
+
+[dir="rtl"] .partners-track {
+  --marquee-dir: -1;
 }
 
 .partners-track:hover {
