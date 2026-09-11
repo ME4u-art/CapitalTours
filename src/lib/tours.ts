@@ -40,6 +40,9 @@ export type Tour = {
   image: string;
   region: Region;
   priceNote?: Localized;
+  /** Extra photos of this trip, shown as a gallery under the itinerary.
+      `image` stays the cover; these are additional. Empty = no section. */
+  gallery?: string[];
   included?: LocalizedList;
   notIncluded?: LocalizedList;
   itinerary?: { day: Localized; place: Localized }[];

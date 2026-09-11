@@ -5,6 +5,7 @@ import { Footer } from "@/components/site/Footer";
 import { content } from "@/lib/content";
 import { Calendar, Clock, MapPin, Check, X, ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
 export const Route = createFileRoute("/$lang/voyages/$slug")({
   loader: async ({ params }) => {
@@ -154,6 +155,38 @@ function TourDetail() {
         </aside>
         </Reveal>
       </section>
+
+      {/* Photos of the trip itself — same grid as the pilgrimage pages.
+          Absent until the agency adds photos, so a programme without any
+          simply has no section rather than an empty heading. */}
+      {tour.gallery && tour.gallery.length > 0 && (
+        <section className="bg-sand py-16">
+          <div className="container-page">
+            <div className="text-center">
+              <div className="text-sm font-bold" style={{ color: "var(--brand-yellow)" }}>
+                {t("tour.galleryEyebrow")}
+              </div>
+              <h2 className="mt-1 font-display text-3xl text-primary sm:text-4xl">{t("tour.gallery")}</h2>
+            </div>
+            <StaggerGroup className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+              {tour.gallery.map((src, i) => (
+                <StaggerItem
+                  key={src}
+                  className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-[var(--shadow-soft)]"
+                >
+                  <img
+                    src={src}
+                    alt={`${pick(tour.title)} — ${t("hajj.photo")} ${i + 1}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          </div>
+        </section>
+      )}
+
       <Footer />
     </div>
   );

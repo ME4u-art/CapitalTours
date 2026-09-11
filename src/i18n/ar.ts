@@ -107,6 +107,8 @@ export const ar: Dictionary = {
   "tour.pricePerPerson": "الثمن للشخص الواحد",
   "tour.priceNoteDefault": "على أساس غرفة ثنائية، حسب توفر الأماكن.",
   "tour.deposit": "احجز عبر الإنترنت — تسبيق 3 000 درهم",
+  "tour.gallery": "صور من الرحلة",
+  "tour.galleryEyebrow": "بالصور",
   "tour.seeAll": "عرض جميع الرحلات",
   "tour.notFound": "الرحلة غير موجودة",
   "tour.fbFlights": "الرحلات الجوية الدولية",

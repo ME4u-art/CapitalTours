@@ -136,6 +136,10 @@ function mapTour(post: WpPost): Tour {
   const notIncluded = locList(acf, "not_included", "text", local?.notIncluded);
   const priceNote = loc(acf, "price_note", local?.priceNote);
 
+  // Photos the client uploaded for this programme; the bundled record's own
+  // gallery stands in until they add some.
+  const gallery = rows(acf.gallery).map((r) => str(r.image)).filter(Boolean);
+
   const legs = rows(acf.itinerary)
     .map((r) => ({ day: rowLoc(r, "day"), place: rowLoc(r, "title") }))
     .filter((l) => !isEmpty(l.place));
@@ -156,6 +160,7 @@ function mapTour(post: WpPost): Tour {
     image: str(post._embedded?.["wp:featuredmedia"]?.[0]?.source_url) || local?.image || IMG.hero,
     region: toRegion(loc(acf, "region"), local?.region ?? "Asie"),
     ...(isEmpty(priceNote) ? {} : { priceNote }),
+    ...(gallery.length ? { gallery } : local?.gallery ? { gallery: local.gallery } : {}),
     ...(included.fr.length ? { included } : {}),
     ...(notIncluded.fr.length ? { notIncluded } : {}),
     ...(legs.length ? { itinerary: legs } : local?.itinerary ? { itinerary: local.itinerary } : {}),

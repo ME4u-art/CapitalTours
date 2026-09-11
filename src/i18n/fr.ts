@@ -117,6 +117,8 @@ export const fr = {
   "tour.priceNoteDefault":
     "Base chambre double, sous réserve de disponibilité.",
   "tour.deposit": "Réservez en ligne — acompte 3 000 dhs",
+  "tour.gallery": "Photos du voyage",
+  "tour.galleryEyebrow": "En images",
   "tour.seeAll": "Voir tous les voyages",
   "tour.notFound": "Voyage introuvable",
   "tour.fbFlights": "Vols internationaux",

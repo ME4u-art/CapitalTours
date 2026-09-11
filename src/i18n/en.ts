@@ -103,6 +103,8 @@ export const en: Dictionary = {
   "tour.pricePerPerson": "Price per person",
   "tour.priceNoteDefault": "Based on a double room, subject to availability.",
   "tour.deposit": "Book online — 3 000 dh deposit",
+  "tour.gallery": "Photos from the trip",
+  "tour.galleryEyebrow": "In pictures",
   "tour.seeAll": "See all trips",
   "tour.notFound": "Trip not found",
   "tour.fbFlights": "International flights",

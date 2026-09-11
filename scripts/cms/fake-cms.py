@@ -18,6 +18,10 @@ PROGRAMMES = [
             "region_fr": "Asie", "region_en": "Asia", "region_ar": "آسيا",
             "included": [{"text_fr": "Vol A/R", "text_en": "Return flight", "text_ar": "رحلة ذهاب وإياب"}],
             "itinerary": [{"day": "J1", "title_fr": "Casablanca", "title_en": "Casablanca", "title_ar": "الدار البيضاء"}],
+            # the gallery repeater: what the client uploads in wp-admin
+            "gallery": [{"image": "http://localhost:5184/gallery/1.jpg"},
+                        {"image": "http://localhost:5184/gallery/2.jpg"},
+                        {"image": "http://localhost:5184/gallery/3.jpg"}],
         },
     },
     {   # CMS-only programme, no bundled twin, and a region word not a key
