@@ -75,7 +75,7 @@ function MarocPage() {
         <Reveal><h2 className="font-display text-4xl">{t("maroc.destinations")}</h2></Reveal>
         <StaggerGroup className="mt-8 grid gap-6 md:grid-cols-3">
           {destinationsMaroc.map((d) => (
-            <StaggerItem key={d.slug} className="group overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
+            <StaggerItem key={d.slug} className="group relative overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)] transition duration-300 hover:shadow-[var(--shadow-lift)]">
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={d.image} alt={pick(d.name)} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
               </div>
@@ -83,7 +83,8 @@ function MarocPage() {
                 <div className="text-xs uppercase tracking-widest text-accent">{pick(d.tagline)}</div>
                 <h3 className="mt-1 font-display text-2xl">{pick(d.name)}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{pick(d.desc)}</p>
-                <Link to="/$lang/contact" params={{ lang }} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                {/* stretched over the card — see the same pattern on the home page */}
+                <Link to="/$lang/contact" params={{ lang }} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary after:absolute after:inset-0 after:content-['']">
                   {t("action.book")} <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

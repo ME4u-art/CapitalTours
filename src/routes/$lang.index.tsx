@@ -556,7 +556,7 @@ function MarocSection() {
         <StaggerGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {destinationsMaroc.map((d) => (
             <StaggerItem key={d.slug}>
-              <article className="group overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)]">
+              <article className="group relative overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-soft)] transition duration-300 hover:shadow-[var(--shadow-lift)]">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={d.image}
@@ -573,10 +573,14 @@ function MarocSection() {
                   </div>
                   <h3 className="mt-2 font-display text-2xl">{pickL(d.name)}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{pickL(d.desc)}</p>
+                {/* The link stretches over the whole card (after:absolute
+                    inset-0): the photo reads as clickable, so it has to be.
+                    One real anchor, not a click handler on the article — it
+                    stays keyboard-reachable and middle-clickable. */}
                   <Link
                     to="/$lang/maroc"
                     params={{ lang }}
-                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary"
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary after:absolute after:inset-0 after:content-['']"
                   >
                     {t("action.moreDetail")} <ArrowRight className="h-4 w-4" />
                   </Link>
