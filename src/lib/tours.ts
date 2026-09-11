@@ -4,13 +4,14 @@ import vietnam from "@/assets/tour-vietnam.jpg";
 import prague from "@/assets/tour-prague.jpg";
 import china from "@/assets/tour-china.jpg";
 import thailand from "@/assets/tour-thailand.jpg";
+import maldives from "@/assets/tour-maldives.jpg";
 import marrakech from "@/assets/dest-marrakech.jpg";
 import fes from "@/assets/dest-fes.jpg";
 import sahara from "@/assets/dest-sahara.jpg";
 import hajj from "@/assets/hajj.jpg";
 import cruise from "@/assets/cruise.jpg";
 
-export const IMG = { hero, vietnam, prague, china, thailand, marrakech, fes, sahara, hajj, cruise };
+export const IMG = { hero, vietnam, prague, china, thailand, maldives, marrakech, fes, sahara, hajj, cruise };
 
 /**
  * Regions are stored as stable keys, not display text.
@@ -69,7 +70,16 @@ export const featuredTours: Tour[] = [
     },
     price: "30 800 dh",
     priceNote: { fr: "À partir de", en: "From", ar: "ابتداءً من" },
-    image: thailand,
+    image: maldives,
+    /* Photos: Unsplash (free for commercial use).
+       cover + 1 Rayyu Maldives · 2 Hushaan (fromtinyisles) · 3 Dylan Shaw
+       · 4 Chathura Anuradha Subasinghe · 5 Rowan Heuvel */
+    gallery: [
+      "/programmes/maldives-sri-lanka/1.jpg", // coucher de soleil, dhoni aux Maldives
+      "/programmes/maldives-sri-lanka/2.jpg", // rocher de Sigiriya
+      "/programmes/maldives-sri-lanka/3.jpg", // Kandy, temple de la Dent
+      "/programmes/maldives-sri-lanka/4.jpg", // plantation de thé, Nuwara Eliya
+    ],
     region: "Asie",
     included: {
       fr: [
