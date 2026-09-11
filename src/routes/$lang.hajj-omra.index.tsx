@@ -3,7 +3,8 @@ import { tFor, useLocale, useLocalized, useT, type TranslationKey } from "@/i18n
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { IMG } from "@/lib/tours";
-import { pilgrimagePrograms, agencyPhones, agencyAddresses } from "@/lib/pilgrimage";
+import { agencyPhones, agencyAddresses } from "@/lib/pilgrimage";
+import { content } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import {
@@ -20,6 +21,7 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/$lang/hajj-omra/")({
+  loader: async () => ({ programs: await content.getPilgrimagePrograms() }),
   head: ({ params }) => {
     const t = tFor(params.lang);
     return {
@@ -61,6 +63,7 @@ function HajjOmraIndex() {
   const lang = useLocale();
   const t = useT();
   const { pick } = useLocalized();
+  const { programs } = Route.useLoaderData();
 
   return (
     <div className="min-h-screen">
@@ -98,7 +101,7 @@ function HajjOmraIndex() {
           </Reveal>
 
           <StaggerGroup className="mt-10 grid gap-6 md:grid-cols-2">
-            {pilgrimagePrograms.map((p) => (
+            {programs.map((p) => (
               <StaggerItem key={p.slug}>
                 <Link
                   to="/$lang/hajj-omra/$slug"

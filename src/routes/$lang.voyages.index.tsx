@@ -2,12 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { TourCard } from "@/components/site/TourCard";
-import { featuredTours, REGIONS, type Region } from "@/lib/tours";
+import { REGIONS, type Region } from "@/lib/tours";
+import { content } from "@/lib/content";
 import { tFor, useT } from "@/i18n";
 import { useState } from "react";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
 export const Route = createFileRoute("/$lang/voyages/")({
+  loader: async () => ({ tours: await content.getTours() }),
   head: ({ params }) => {
     const t = tFor(params.lang);
     return {
@@ -27,8 +29,9 @@ type Filter = Region | null;
 
 function VoyagesPage() {
   const t = useT();
+  const { tours } = Route.useLoaderData();
   const [filter, setFilter] = useState<Filter>(null);
-  const list = filter ? featuredTours.filter((x) => x.region === filter) : featuredTours;
+  const list = filter ? tours.filter((x) => x.region === filter) : tours;
   const filters: Filter[] = [null, ...REGIONS];
 
   return (

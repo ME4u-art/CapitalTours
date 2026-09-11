@@ -3,7 +3,7 @@ import { pickFor, tFor, useLocale, useLocalized, useT, type TranslationKey } fro
 import { useState } from "react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { featuredTours } from "@/lib/tours";
+import { content } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import {
   Calendar,
@@ -18,8 +18,8 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/$lang/reservation/$slug")({
-  loader: ({ params }) => {
-    const tour = featuredTours.find((t) => t.slug === params.slug);
+  loader: async ({ params }) => {
+    const tour = await content.getTour(params.slug);
     if (!tour) throw notFound();
     return { tour };
   },

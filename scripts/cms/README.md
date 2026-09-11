@@ -67,3 +67,39 @@ curl -s "http://capital-cms.local/wp-json/wp/v2/omra-programmes?per_page=10"
 
 Each programme should carry `subtitle_fr`, `subtitle_en`, `subtitle_ar` and
 a single `price`. The pilgrimage route is `omra-programmes`, not `omra`.
+
+## Pointing the site at the CMS
+
+The site reads its programmes from WordPress when `VITE_CMS_URL` is set, and
+from the bundled TypeScript files when it isn't. Unset is the default, so a
+fresh clone and every build without a CMS keep working.
+
+```bash
+echo "VITE_CMS_URL=http://capital-cms.local" > .env.local   # gitignored
+npm run dev
+```
+
+On Vercel, set the same variable in the project's environment settings.
+
+If the CMS is unreachable the site logs a warning and serves the bundled
+programmes instead — a WordPress that is down does not take the site down.
+
+Fields the CMS has no home for yet — a programme's photo, the pilgrimage
+badges and intro — fall back to the bundled record with the same slug, so the
+client edits text and prices while the design assets stay in the repo.
+
+## Checking the wiring without WordPress
+
+`fake-cms.py` serves the same two endpoints from a fixture, so the WordPress
+path can be exercised while LocalWP is stopped:
+
+```bash
+python scripts/cms/fake-cms.py                    # serves on 127.0.0.1:9788
+echo "VITE_CMS_URL=http://127.0.0.1:9788" > .env.local
+npm run dev
+```
+
+`/fr/voyages` should then show "Maldives & Sri Lanka REVISED" and a programme
+called "Istanbul depuis le CMS" that filters under Moyen-Orient. Stop the
+script and reload: the bundled programmes come back and `/fr/voyages/istanbul-cms`
+404s. Delete `.env.local` when you're done.

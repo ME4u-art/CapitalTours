@@ -6,8 +6,8 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { TourCard } from "@/components/site/TourCard";
-import { featuredTours, destinationsMaroc, IMG } from "@/lib/tours";
-import { pilgrimagePrograms } from "@/lib/pilgrimage";
+import { destinationsMaroc, IMG } from "@/lib/tours";
+import { content } from "@/lib/content";
 import { partners } from "@/lib/partners";
 import businessNewspaper from "@/assets/mice/business-newspaper.jpg";
 import streetProfessionals from "@/assets/mice/street-professionals.jpg";
@@ -28,6 +28,12 @@ import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { HoverScale } from "@/components/motion/HoverScale";
 
 export const Route = createFileRoute("/$lang/")({
+  // Both collections in one loader: the home page shows a slice of each, and
+  // two sections asking separately would mean two round trips before paint.
+  loader: async () => ({
+    tours: await content.getTours(),
+    pilgrimages: await content.getPilgrimagePrograms(),
+  }),
   head: ({ params }) => {
     const t = tFor(params.lang);
     return {
@@ -331,6 +337,7 @@ function Hero() {
 }
 
 function FeaturedTours() {
+  const { tours } = Route.useLoaderData();
   const t = useT();
   const lang = useLocale();
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -373,7 +380,7 @@ function FeaturedTours() {
         <div className="container-page">
           <div className="overflow-visible" ref={emblaRef}>
             <div className="-ml-6 flex">
-              {featuredTours.map((t) => (
+              {tours.map((t) => (
                 <div
                   key={t.slug}
                   className="min-w-0 shrink-0 grow-0 basis-[82%] pl-6 sm:basis-[46%] lg:basis-[33.333%]"
@@ -489,6 +496,7 @@ function PillarStrip() {
 }
 
 function HajjOmra() {
+  const { pilgrimages } = Route.useLoaderData();
   const lang = useLocale();
   const t = useT();
   const { pick } = useLocalized();
@@ -498,7 +506,7 @@ function HajjOmra() {
         {/* Driven off the real programmes rather than a hardcoded copy: this
             block used to quote its own prices, and they had drifted below the
             ones on the programme pages. One source, no drift. */}
-        {pilgrimagePrograms.map((h, i) => (
+        {pilgrimages.map((h, i) => (
           <Reveal key={h.slug} delay={i * 0.1}>
             <Link
               to="/$lang/hajj-omra/$slug"

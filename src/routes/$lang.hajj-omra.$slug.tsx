@@ -3,7 +3,8 @@ import { pickFor, tFor, useLocale, useLocalized, useT } from "@/i18n";
 import { useState } from "react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { pilgrimagePrograms, agencyPhones, agencyAddresses, whatsappNumber, type PriceRow } from "@/lib/pilgrimage";
+import { agencyPhones, agencyAddresses, whatsappNumber, type PriceRow } from "@/lib/pilgrimage";
+import { content } from "@/lib/content";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import {
@@ -18,8 +19,8 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/$lang/hajj-omra/$slug")({
-  loader: ({ params }) => {
-    const program = pilgrimagePrograms.find((p) => p.slug === params.slug);
+  loader: async ({ params }) => {
+    const program = await content.getPilgrimageProgram(params.slug);
     if (!program) throw notFound();
     return { program };
   },

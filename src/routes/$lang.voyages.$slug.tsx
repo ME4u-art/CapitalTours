@@ -2,13 +2,13 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { pickFor, tFor, useLocale, useLocalized, useT } from "@/i18n";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { featuredTours } from "@/lib/tours";
+import { content } from "@/lib/content";
 import { Calendar, Clock, MapPin, Check, X, ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 
 export const Route = createFileRoute("/$lang/voyages/$slug")({
-  loader: ({ params }) => {
-    const tour = featuredTours.find((t) => t.slug === params.slug);
+  loader: async ({ params }) => {
+    const tour = await content.getTour(params.slug);
     if (!tour) throw notFound();
     return { tour };
   },
